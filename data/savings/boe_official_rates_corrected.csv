@@ -1,0 +1,73 @@
+month,bank_base_rate,instant_access_rate_aer,source,notes
+2020-01-01,0.0075,0.0015,Bank of England Database,Pre-COVID bank rate 0.75%
+2020-02-01,0.0075,0.0015,Bank of England Database,Pre-COVID bank rate 0.75%
+2020-03-01,0.0050,0.0012,Bank of England Database,Emergency cut to 0.50% on March 11
+2020-04-01,0.0010,0.0003,Bank of England Database,Emergency cut to 0.10% on March 19
+2020-05-01,0.0010,0.0003,Bank of England Database,Historic low 0.10%
+2020-06-01,0.0010,0.0003,Bank of England Database,Historic low 0.10%
+2020-07-01,0.0010,0.0003,Bank of England Database,Historic low 0.10%
+2020-08-01,0.0010,0.0003,Bank of England Database,Historic low 0.10%
+2020-09-01,0.0010,0.0003,Bank of England Database,Historic low 0.10%
+2020-10-01,0.0010,0.0003,Bank of England Database,Historic low 0.10%
+2020-11-01,0.0010,0.0003,Bank of England Database,Historic low 0.10%
+2020-12-01,0.0010,0.0003,Bank of England Database,Historic low 0.10%
+2021-01-01,0.0010,0.0003,Bank of England Database,Historic low 0.10%
+2021-02-01,0.0010,0.0003,Bank of England Database,Historic low 0.10%
+2021-03-01,0.0010,0.0003,Bank of England Database,Historic low 0.10%
+2021-04-01,0.0010,0.0003,Bank of England Database,Historic low 0.10%
+2021-05-01,0.0010,0.0003,Bank of England Database,Historic low 0.10%
+2021-06-01,0.0010,0.0003,Bank of England Database,Historic low 0.10%
+2021-07-01,0.0010,0.0003,Bank of England Database,Historic low 0.10%
+2021-08-01,0.0010,0.0003,Bank of England Database,Historic low 0.10%
+2021-09-01,0.0010,0.0003,Bank of England Database,Historic low 0.10%
+2021-10-01,0.0010,0.0003,Bank of England Database,Historic low 0.10%
+2021-11-01,0.0010,0.0003,Bank of England Database,Historic low 0.10%
+2021-12-01,0.0025,0.0006,Bank of England Database,First rate hike to 0.25% on Dec 16
+2022-01-01,0.0025,0.0006,Bank of England Database,Bank rate 0.25%
+2022-02-01,0.0050,0.0012,Bank of England Database,Rate hike to 0.50% on Feb 3
+2022-03-01,0.0075,0.0018,Bank of England Database,Rate hike to 0.75% on Mar 17
+2022-04-01,0.0075,0.0018,Bank of England Database,Bank rate 0.75%
+2022-05-01,0.0100,0.0024,Bank of England Database,Rate hike to 1.00% on May 5
+2022-06-01,0.0125,0.0030,Bank of England Database,Rate hike to 1.25% on Jun 16
+2022-07-01,0.0125,0.0030,Bank of England Database,Bank rate 1.25%
+2022-08-01,0.0175,0.0042,Bank of England Database,Rate hike to 1.75% on Aug 4
+2022-09-01,0.0225,0.0054,Bank of England Database,Rate hike to 2.25% on Sep 22
+2022-10-01,0.0225,0.0054,Bank of England Database,Bank rate 2.25%
+2022-11-01,0.0300,0.0072,Bank of England Database,Rate hike to 3.00% on Nov 3
+2022-12-01,0.0350,0.0084,Bank of England Database,Rate hike to 3.50% on Dec 15
+2023-01-01,0.0350,0.0084,Bank of England Database,Bank rate 3.50%
+2023-02-01,0.0400,0.0096,Bank of England Database,Rate hike to 4.00% on Feb 2
+2023-03-01,0.0425,0.0102,Bank of England Database,Rate hike to 4.25% on Mar 23
+2023-04-01,0.0425,0.0102,Bank of England Database,Bank rate 4.25%
+2023-05-01,0.0450,0.0108,Bank of England Database,Rate hike to 4.50% on May 11
+2023-06-01,0.0500,0.0120,Bank of England Database,Rate hike to 5.00% on Jun 22
+2023-07-01,0.0500,0.0120,Bank of England Database,Bank rate 5.00%
+2023-08-01,0.0525,0.0126,Bank of England Database,Rate hike to 5.25% on Aug 3
+2023-09-01,0.0525,0.0126,Bank of England Database,Peak rate 5.25%
+2023-10-01,0.0525,0.0126,Bank of England Database,Peak rate 5.25%
+2023-11-01,0.0525,0.0126,Bank of England Database,Peak rate 5.25%
+2023-12-01,0.0525,0.0126,Bank of England Database,Peak rate 5.25%
+2024-01-01,0.0525,0.0126,Bank of England Database,Peak rate 5.25%
+2024-02-01,0.0525,0.0126,Bank of England Database,Peak rate 5.25%
+2024-03-01,0.0525,0.0126,Bank of England Database,Peak rate 5.25%
+2024-04-01,0.0525,0.0126,Bank of England Database,Peak rate 5.25%
+2024-05-01,0.0525,0.0126,Bank of England Database,Peak rate 5.25%
+2024-06-01,0.0525,0.0126,Bank of England Database,Peak rate 5.25%
+2024-07-01,0.0525,0.0126,Bank of England Database,Peak rate 5.25%
+2024-08-01,0.0500,0.0120,Bank of England Database,Rate cut to 5.00% on Aug 1
+2024-09-01,0.0500,0.0120,Bank of England Database,Bank rate 5.00%
+2024-10-01,0.0500,0.0120,Bank of England Database,Bank rate 5.00%
+2024-11-01,0.0475,0.0114,Bank of England Database,Rate cut to 4.75% on Nov 7
+2024-12-01,0.0450,0.0108,Bank of England Database,Rate cut to 4.50% on Dec 19
+2025-01-01,0.0450,0.0108,Bank of England Database,Bank rate 4.50%
+2025-02-01,0.0425,0.0102,Bank of England Database,Rate cut to 4.25% on Feb 6
+2025-03-01,0.0425,0.0102,Bank of England Database,Bank rate 4.25%
+2025-04-01,0.0400,0.0096,Bank of England Database,Rate cut to 4.00% on Apr 10
+2025-05-01,0.0400,0.0096,Bank of England Database,Bank rate 4.00%
+2025-06-01,0.0400,0.0096,Bank of England Database,Bank rate 4.00%
+2025-07-01,0.0400,0.0096,Bank of England Database,Bank rate 4.00%
+2025-08-01,0.0400,0.0096,Bank of England Database,Rate cut to 4.00% on Aug 7 (confirmed)
+2025-09-01,0.0400,0.0096,Bank of England Database,Bank rate 4.00%
+2025-10-01,0.0375,0.0090,Bank of England Database,Projected rate cut to 3.75%
+2025-11-01,0.0375,0.0090,Bank of England Database,Projected bank rate 3.75%
+2025-12-01,0.0375,0.0090,Bank of England Database,Projected bank rate 3.75%

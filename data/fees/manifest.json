@@ -1,0 +1,25 @@
+{
+  "description": "University fees data for Oxford and Cambridge (2020-2025)",
+  "sources": {
+    "Oxford": {
+      "undergraduate_international": "https://www.ox.ac.uk/students/fees-funding",
+      "retrieved": "2025-01-01",
+      "notes": "International undergraduate tuition fees"
+    },
+    "Cambridge": {
+      "undergraduate_international": "https://www.undergraduate.study.cam.ac.uk/fees-and-finance",
+      "retrieved": "2025-01-01",
+      "notes": "International undergraduate tuition fees"
+    }
+  },
+  "data_file": "oxbridge_fees_2020_2025.csv",
+  "fee_types": [
+    "undergraduate_international",
+    "undergraduate_home",
+    "postgraduate_international",
+    "postgraduate_home"
+  ],
+  "years_covered": "2020/21 to 2025/26",
+  "currency": "GBP",
+  "last_updated": "2025-01-01"
+}

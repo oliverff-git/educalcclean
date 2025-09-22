@@ -1,0 +1,77 @@
+cost_category,university,location,programme_type,academic_year,amount_gbp,frequency,notes,source
+tuition_fees,Oxford,Oxford,BA Humanities,2025/26,35260,annual,English Language and Literature etc.,Oxford official
+tuition_fees,Oxford,Oxford,BA Economics and Management,2025/26,41130,annual,Economics and Management programmes,Oxford official
+tuition_fees,Oxford,Oxford,BA Computer Science,2025/26,48620,annual,STEM programmes,Oxford official
+tuition_fees,Oxford,Oxford,BM BCh Medicine,2025/26,59260,annual,Clinical medicine programmes,Oxford official
+tuition_fees,Cambridge,Cambridge,BA Group 1,2025/26,28392,annual,Humanities - Economics History Law,Cambridge official
+tuition_fees,Cambridge,Cambridge,BA Group 2,2025/26,37500,annual,Mathematics Architecture Geography Music,Cambridge official
+tuition_fees,Cambridge,Cambridge,BA Group 3,2025/26,43170,annual,Computer Science Engineering Natural Sciences,Cambridge official
+tuition_fees,Cambridge,Cambridge,BA Group 4,2025/26,74058,annual,Medicine Veterinary Medicine,Cambridge official
+tuition_fees,LSE,London,MSc Economics,2025/26,39000,annual,Masters Economics programmes,LSE official
+tuition_fees,LSE,London,MSc Finance,2025/26,48500,annual,Masters Finance programmes,LSE official
+tuition_fees,LSE,London,MSc Management,2025/26,41000,annual,Masters Management programmes,LSE official
+tuition_fees,LSE,London,MSc Data Science,2025/26,42500,annual,Masters Data Science programme,LSE official
+college_fees,Oxford,Oxford,All programmes,2025/26,9000,annual,Estimated college fees,Oxford official
+college_fees,Cambridge,Cambridge,All programmes,2025/26,10500,annual,College fees range 8000-11000,Cambridge official
+college_fees,LSE,London,All programmes,2025/26,0,annual,No college system,N/A
+accommodation,Oxford,Oxford,All programmes,2025/26,8500,annual,Average accommodation costs 790-950/month for 9 months,Oxford official
+accommodation,Cambridge,Cambridge,All programmes,2025/26,13000,annual,College accommodation range 11160-14880,Cambridge official
+accommodation,LSE,London,All programmes,2025/26,12000,annual,London student accommodation estimate,Market data
+living_costs,Oxford,Oxford,All programmes,2025/26,12000,annual,Food transport utilities personal 1000/month,Market data
+living_costs,Cambridge,Cambridge,All programmes,2025/26,12000,annual,Food transport utilities personal 1000/month,Market data
+living_costs,LSE,London,All programmes,2025/26,15600,annual,London living costs premium 1300/month,Market data
+visa_application,All,UK,All programmes,2025/26,524,one-time,Student visa application fee,UK Government
+immigration_health_surcharge,All,UK,1 year programme,2025/26,776,annual,IHS for students per year,UK Government
+immigration_health_surcharge,All,UK,2 year programme,2025/26,1164,total,IHS for 2 year programmes 776+388,UK Government
+immigration_health_surcharge,All,UK,3 year programme,2025/26,2328,total,IHS for 3 year programmes,UK Government
+immigration_health_surcharge,All,UK,4 year programme,2025/26,3104,total,IHS for 4 year programmes,UK Government
+total_annual_cost,Oxford,Oxford,BA Humanities,2025/26,64760,annual,Tuition + College + Accommodation + Living,Calculated
+total_annual_cost,Oxford,Oxford,BA Economics and Management,2025/26,70630,annual,Tuition + College + Accommodation + Living,Calculated
+total_annual_cost,Oxford,Oxford,BA Computer Science,2025/26,78120,annual,Tuition + College + Accommodation + Living,Calculated
+total_annual_cost,Oxford,Oxford,BM BCh Medicine,2025/26,88760,annual,Tuition + College + Accommodation + Living,Calculated
+total_annual_cost,Cambridge,Cambridge,BA Group 1,2025/26,63892,annual,Tuition + College + Accommodation + Living,Calculated
+total_annual_cost,Cambridge,Cambridge,BA Group 2,2025/26,73000,annual,Tuition + College + Accommodation + Living,Calculated
+total_annual_cost,Cambridge,Cambridge,BA Group 3,2025/26,78670,annual,Tuition + College + Accommodation + Living,Calculated
+total_annual_cost,Cambridge,Cambridge,BA Group 4,2025/26,109558,annual,Tuition + College + Accommodation + Living,Calculated
+total_annual_cost,LSE,London,MSc Economics,2025/26,66600,annual,Tuition + Accommodation + Living,Calculated
+total_annual_cost,LSE,London,MSc Finance,2025/26,76100,annual,Tuition + Accommodation + Living,Calculated
+total_annual_cost,LSE,London,MSc Management,2025/26,68600,annual,Tuition + Accommodation + Living,Calculated
+total_annual_cost,LSE,London,MSc Data Science,2025/26,70100,annual,Tuition + Accommodation + Living,Calculated
+tuition_fees,Oxford,Oxford,BA Humanities,2024/25,35260,annual,English Language and Literature etc.,Oxford official
+tuition_fees,Oxford,Oxford,BA Economics and Management,2024/25,41130,annual,Economics and Management programmes,Oxford official
+tuition_fees,Oxford,Oxford,BA Computer Science,2024/25,48620,annual,STEM programmes,Oxford official
+tuition_fees,Oxford,Oxford,BM BCh Medicine,2024/25,59260,annual,Clinical medicine programmes,Oxford official
+tuition_fees,Cambridge,Cambridge,BA Group 1,2024/25,27024,annual,Humanities - Economics History Law,Cambridge official
+tuition_fees,Cambridge,Cambridge,BA Group 2,2024/25,36500,annual,Mathematics Architecture Geography Music,Cambridge official
+tuition_fees,Cambridge,Cambridge,BA Group 3,2024/25,41124,annual,Computer Science Engineering Natural Sciences,Cambridge official
+tuition_fees,Cambridge,Cambridge,BA Group 4,2024/25,70554,annual,Medicine Veterinary Medicine,Cambridge official
+tuition_fees,LSE,London,MSc Economics,2024/25,37296,annual,Masters Economics programmes,LSE official
+tuition_fees,LSE,London,MSc Finance,2024/25,48500,annual,Masters Finance programmes,LSE official
+tuition_fees,LSE,London,MSc Management,2024/25,40176,annual,Masters Management programmes,LSE official
+tuition_fees,LSE,London,MSc Data Science,2024/25,41952,annual,Masters Data Science programme,LSE official
+college_fees,Oxford,Oxford,All programmes,2024/25,8800,annual,Estimated college fees,Oxford official
+college_fees,Cambridge,Cambridge,All programmes,2024/25,10200,annual,College fees range 8000-11000,Cambridge official
+college_fees,LSE,London,All programmes,2024/25,0,annual,No college system,N/A
+accommodation,Oxford,Oxford,All programmes,2024/25,8200,annual,Average accommodation costs,Oxford official
+accommodation,Cambridge,Cambridge,All programmes,2024/25,12500,annual,College accommodation range,Cambridge official
+accommodation,LSE,London,All programmes,2024/25,11500,annual,London student accommodation estimate,Market data
+living_costs,Oxford,Oxford,All programmes,2024/25,11500,annual,Food transport utilities personal,Market data
+living_costs,Cambridge,Cambridge,All programmes,2024/25,11500,annual,Food transport utilities personal,Market data
+living_costs,LSE,London,All programmes,2024/25,15000,annual,London living costs premium,Market data
+visa_application,All,UK,All programmes,2024/25,490,one-time,Student visa application fee 2024,UK Government
+immigration_health_surcharge,All,UK,1 year programme,2024/25,776,annual,IHS for students per year,UK Government
+immigration_health_surcharge,All,UK,2 year programme,2024/25,1164,total,IHS for 2 year programmes,UK Government
+immigration_health_surcharge,All,UK,3 year programme,2024/25,2328,total,IHS for 3 year programmes,UK Government
+immigration_health_surcharge,All,UK,4 year programme,2024/25,3104,total,IHS for 4 year programmes,UK Government
+total_annual_cost,Oxford,Oxford,BA Humanities,2024/25,63760,annual,Tuition + College + Accommodation + Living,Calculated
+total_annual_cost,Oxford,Oxford,BA Economics and Management,2024/25,69630,annual,Tuition + College + Accommodation + Living,Calculated
+total_annual_cost,Oxford,Oxford,BA Computer Science,2024/25,77120,annual,Tuition + College + Accommodation + Living,Calculated
+total_annual_cost,Oxford,Oxford,BM BCh Medicine,2024/25,87760,annual,Tuition + College + Accommodation + Living,Calculated
+total_annual_cost,Cambridge,Cambridge,BA Group 1,2024/25,61224,annual,Tuition + College + Accommodation + Living,Calculated
+total_annual_cost,Cambridge,Cambridge,BA Group 2,2024/25,70700,annual,Tuition + College + Accommodation + Living,Calculated
+total_annual_cost,Cambridge,Cambridge,BA Group 3,2024/25,75324,annual,Tuition + College + Accommodation + Living,Calculated
+total_annual_cost,Cambridge,Cambridge,BA Group 4,2024/25,104754,annual,Tuition + College + Accommodation + Living,Calculated
+total_annual_cost,LSE,London,MSc Economics,2024/25,63796,annual,Tuition + Accommodation + Living,Calculated
+total_annual_cost,LSE,London,MSc Finance,2024/25,75000,annual,Tuition + Accommodation + Living,Calculated
+total_annual_cost,LSE,London,MSc Management,2024/25,67676,annual,Tuition + Accommodation + Living,Calculated
+total_annual_cost,LSE,London,MSc Data Science,2024/25,68452,annual,Tuition + Accommodation + Living,Calculated

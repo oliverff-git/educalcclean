@@ -1,0 +1,129 @@
+{
+  "extraction_date": "2025-09-16T18:55:35.753693",
+  "total_records": 2687,
+  "universities": 3,
+  "academic_years": [
+    "2020/21",
+    "2021/22",
+    "2022/23",
+    "2023/24",
+    "2024/25",
+    "2025/26",
+    "2026/27"
+  ],
+  "degree_levels": [
+    "BA",
+    "BFA",
+    "BMBCH",
+    "BTh",
+    "MA",
+    "MBIOMEDSCI",
+    "MBiochem",
+    "MBiol",
+    "MChem",
+    "MCompPhil",
+    "MCompSci",
+    "MEarthSci",
+    "MEng",
+    "MMath",
+    "MMathCompSci",
+    "MMathPhil",
+    "MMathPhys",
+    "MPP",
+    "MPhys",
+    "MPhysPhil",
+    "MSc",
+    "UGCert",
+    "UGDip"
+  ],
+  "by_university": {
+    "Cambridge": {
+      "total_records": 400,
+      "programmes": 40,
+      "years": [
+        "2020/21",
+        "2021/22",
+        "2022/23",
+        "2023/24",
+        "2024/25",
+        "2025/26"
+      ]
+    },
+    "LSE": {
+      "total_records": 1384,
+      "programmes": 184,
+      "years": [
+        "2020/21",
+        "2021/22",
+        "2022/23",
+        "2023/24",
+        "2024/25",
+        "2025/26"
+      ]
+    },
+    "Oxford": {
+      "total_records": 903,
+      "programmes": 61,
+      "years": [
+        "2020/21",
+        "2021/22",
+        "2022/23",
+        "2023/24",
+        "2024/25",
+        "2025/26",
+        "2026/27"
+      ]
+    }
+  },
+  "by_year": {
+    "2020/21": {
+      "total_records": 432,
+      "universities": 3,
+      "programmes": 202
+    },
+    "2021/22": {
+      "total_records": 424,
+      "universities": 3,
+      "programmes": 198
+    },
+    "2022/23": {
+      "total_records": 424,
+      "universities": 3,
+      "programmes": 198
+    },
+    "2023/24": {
+      "total_records": 417,
+      "universities": 3,
+      "programmes": 193
+    },
+    "2024/25": {
+      "total_records": 420,
+      "universities": 3,
+      "programmes": 194
+    },
+    "2025/26": {
+      "total_records": 440,
+      "universities": 3,
+      "programmes": 204
+    },
+    "2026/27": {
+      "total_records": 130,
+      "universities": 1,
+      "programmes": 55
+    }
+  },
+  "fee_ranges": {
+    "home": {
+      "min": 3500.0,
+      "max": 71100.0,
+      "mean": 16786.078125,
+      "median": 14640.0
+    },
+    "overseas": {
+      "min": 3500.0,
+      "max": 71100.0,
+      "mean": 32138.685033507074,
+      "median": 29500.0
+    }
+  }
+}
