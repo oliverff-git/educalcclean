@@ -45,18 +45,5 @@ venv.bak/
 ehthumbs.db
 Thumbs.db
 
-# Jupyter Notebook
-.ipynb_checkpoints
-
 # Streamlit
 .streamlit/secrets.toml
-
-# Data files (keep structure but ignore large datasets)
-*.pkl
-*.pickle
-
-# Environment variables
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local

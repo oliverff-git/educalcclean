@@ -1,92 +1,65 @@
 # 🎓 UK Education Savings Calculator
 
-**Interactive calculator for INR→GBP conversion strategies for UK university education**
+An interactive tool for Indian families to calculate potential savings from early INR→GBP conversion strategies for UK university education.
 
-[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://YOUR-APP-URL.streamlit.app)
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://your-app-url.streamlit.app)
 
-## 📊 Overview
+## 📋 Features
 
-This calculator helps Indian families plan their UK university education finances by analyzing potential savings from converting Indian Rupees to British Pounds in advance, rather than paying fees as they come due.
+- **University Selection**: Oxford, Cambridge, LSE
+- **Course-Specific Analysis**: 100+ programmes with individual fee projections
+- **Multiple Conversion Strategies**: Early conversion, staggered, pay-as-you-go comparison
+- **Real Data**: Official university fees + Bank of England interest rates + historical GBP/INR rates
+- **Full Transparency**: Data quality indicators and parent verification guides
 
-**Key Finding**: Converting INR to GBP 3-5 years before education start can save ₹25-45 lakhs per child through currency hedging.
+## 🚀 Quick Start
 
-## 🚀 Live Calculator
+### Run Locally
+```bash
+git clone https://github.com/oliverff-git/education-savings-calculator.git
+cd education-savings-calculator
+pip install -r requirements.txt
+streamlit run gui/education_savings_app.py
+```
 
-**[Try the Interactive Calculator →](https://YOUR-APP-URL.streamlit.app)**
+### View Online
+Visit the live app: [Education Savings Calculator](https://your-app-url.streamlit.app)
 
-### Features
+## 📊 Key Insights
 
-- **Multiple UK Universities**: Oxford, Cambridge, and LSE with sample fee data
-- **Course-Specific Analysis**: Historical fee progression and projections
-- **Currency Impact Modeling**: GBP/INR exchange rate effects
-- **Savings Comparison**: Early conversion vs pay-as-you-go strategies
-- **Interactive Interface**: Easy-to-use Streamlit web application
+- **Currency Hedging**: INR has depreciated ~4.18% annually vs GBP (2017-2025)
+- **Potential Savings**: 10-20% savings through early conversion strategies
+- **Data-Driven**: All projections based on verified historical trends
+- **Conservative Estimates**: Uses 8-year historical averages for reliability
+
+## 🔍 Data Sources
+
+- **University Fees**: Official websites (Oxford, Cambridge, LSE)
+- **Exchange Rates**: Twelve Data (historical GBP/INR)
+- **UK Interest Rates**: Bank of England official rates
+- **Projections**: Conservative historical trend analysis
 
 ## 📈 How It Works
 
-1. **Select University & Course**: Choose from Oxford, Cambridge, or LSE programmes
-2. **Set Timeline**: Pick your savings start year and education start year
-3. **See Results**: Compare conversion strategies and potential savings
-4. **Analyze Impact**: Understand fee growth and currency depreciation effects
-
-## 🎯 Key Insights
-
-- **Currency Depreciation**: Historical INR/GBP depreciation adds 15-20% to total costs
-- **Fee Growth**: UK university fees grow at 5-8% annually in GBP terms
-- **Double Impact**: Indian families face both fee increases AND currency depreciation
-- **Early Conversion Benefit**: Converting 3-5 years early can save 20-25% on total costs
-
-## 💻 Local Development
-
-```bash
-# Clone the repository
-git clone https://github.com/oliverff-git/education-savings-calculator.git
-cd education-savings-calculator
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Run the app
-streamlit run app.py
-```
-
-## 📊 Sample Data
-
-The calculator includes sample data for:
-
-### Universities
-- **Oxford**: Computer Science, Economics
-- **Cambridge**: Engineering, Medicine
-- **LSE**: Economics, Finance
-
-### Exchange Rates
-- Historical and projected GBP/INR rates from 2020-2026
-- Based on long-term depreciation trends
+1. **Select University & Course**: Choose from 100+ verified programmes
+2. **Set Timeline**: When to start saving vs when education begins
+3. **Compare Strategies**: See savings from different conversion approaches
+4. **Verify Data**: Built-in guides for parents to fact-check all numbers
 
 ## ⚠️ Important Disclaimers
 
-1. **Sample Data**: This calculator uses representative data for demonstration
-2. **Rate Variations**: Actual exchange rates and fees may vary significantly
-3. **Verification Required**: Always verify current fees with official university sources
-4. **Professional Advice**: Consider consulting financial advisors for major decisions
+- Projections based on historical trends (may vary)
+- Exchange rates subject to economic conditions
+- UK university fees are fixed at enrollment for programme duration
+- Consult financial advisors for major decisions
 
-## 📈 Educational Value
+## 🛠️ Built With
 
-This tool demonstrates:
-- Impact of currency depreciation on international education costs
-- Benefits of early financial planning and currency hedging
-- Compound effect of fee inflation and exchange rate changes
-- Data-driven approach to education finance planning
-
-## 🔗 Links
-
-- **Streamlit Cloud**: [Live App](https://YOUR-APP-URL.streamlit.app)
-- **GitHub**: [Source Code](https://github.com/oliverff-git/education-savings-calculator)
-
-## 📄 License
-
-This project is provided for educational and demonstration purposes.
+- **Streamlit**: Interactive web interface
+- **Pandas**: Data processing
+- **Plotly**: Interactive charts
+- **NumPy**: Statistical calculations
 
 ---
 
-**Built with Streamlit | Helping Indian families plan UK education finances**
+*🤖 Generated with [Claude Code](https://claude.ai/code)*
