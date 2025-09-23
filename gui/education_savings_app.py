@@ -262,46 +262,55 @@ def main():
             # Charts section
             st.subheader("📊 Projections")
 
-            # Create simple charts using legacy chart functions
+            # Create charts using correct data structure
             chart_col1, chart_col2 = st.columns(2)
             with chart_col1:
-                # Fee projection chart (simplified)
-                fee_data = projections_data
-                if fee_data and 'years' in fee_data and 'projected_fees' in fee_data:
-                    fee_fig = go.Figure()
-                    fee_fig.add_trace(go.Scatter(
-                        x=fee_data['years'],
-                        y=fee_data['projected_fees'],
-                        mode='lines+markers',
-                        name='Projected Fees',
-                        line=dict(color='#1f77b4')
-                    ))
-                    fee_fig.update_layout(
-                        title="Fee Projections",
-                        xaxis_title="Year",
-                        yaxis_title="Annual Fee (GBP)",
-                        height=400
-                    )
-                    st.plotly_chart(fee_fig, use_container_width=True)
+                # Fee projection chart
+                if projections_data and 'fee_projections' in projections_data:
+                    fee_projections = projections_data['fee_projections']
+                    if fee_projections:
+                        years = sorted(fee_projections.keys())
+                        fees = [fee_projections[year] for year in years]
+
+                        fee_fig = go.Figure()
+                        fee_fig.add_trace(go.Scatter(
+                            x=years,
+                            y=fees,
+                            mode='lines+markers',
+                            name='Projected Fees',
+                            line=dict(color='#1f77b4')
+                        ))
+                        fee_fig.update_layout(
+                            title="Fee Projections",
+                            xaxis_title="Year",
+                            yaxis_title="Annual Fee (GBP)",
+                            height=400
+                        )
+                        st.plotly_chart(fee_fig, use_container_width=True)
 
             with chart_col2:
-                # FX projection chart (simplified)
-                if fee_data and 'years' in fee_data and 'fx_rates' in fee_data:
-                    fx_fig = go.Figure()
-                    fx_fig.add_trace(go.Scatter(
-                        x=fee_data['years'],
-                        y=fee_data['fx_rates'],
-                        mode='lines+markers',
-                        name='Exchange Rate',
-                        line=dict(color='#ff7f0e')
-                    ))
-                    fx_fig.update_layout(
-                        title="Exchange Rate Projections",
-                        xaxis_title="Year",
-                        yaxis_title="INR per GBP",
-                        height=400
-                    )
-                    st.plotly_chart(fx_fig, use_container_width=True)
+                # FX projection chart
+                if projections_data and 'fx_projections' in projections_data:
+                    fx_projections = projections_data['fx_projections']
+                    if fx_projections:
+                        years = sorted(fx_projections.keys())
+                        rates = [fx_projections[year] for year in years]
+
+                        fx_fig = go.Figure()
+                        fx_fig.add_trace(go.Scatter(
+                            x=years,
+                            y=rates,
+                            mode='lines+markers',
+                            name='Exchange Rate',
+                            line=dict(color='#ff7f0e')
+                        ))
+                        fx_fig.update_layout(
+                            title="Exchange Rate Projections",
+                            xaxis_title="Year",
+                            yaxis_title="INR per GBP",
+                            height=400
+                        )
+                        st.plotly_chart(fx_fig, use_container_width=True)
 
             # Strategy comparison
             st.subheader("💰 Strategy Comparison")
