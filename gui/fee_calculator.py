@@ -282,3 +282,233 @@ class EducationSavingsCalculator:
             'fx_projections': fx_projections,
             'total_programme_cost': self.calculate_total_programme_cost(university, programme, education_year)
         }
+
+    # ========== ROI ANALYSIS METHODS ==========
+
+    def calculate_roi_scenario(
+        self,
+        asset_type: str,
+        university: str,
+        programme: str,
+        conversion_year: int,
+        education_year: int,
+        initial_amount_inr: float
+    ) -> SavingsScenario:
+        """Calculate ROI-based investment scenario.
+
+        Args:
+            asset_type: Investment type (GOLD_INR, NIFTY_INR, FTSE_GBP, FIXED_5PCT)
+            university: University name
+            programme: Programme name
+            conversion_year: Year to start investing
+            education_year: Year education starts
+            initial_amount_inr: Initial investment amount in INR
+
+        Returns:
+            SavingsScenario with investment analysis
+        """
+        try:
+            # Import ROI calculator
+            from modules.metrics.savings_return import ROICalculator, calculate_effective_cost
+
+            # Initialize calculator
+            roi_calc = ROICalculator()
+
+            # Calculate total programme cost
+            total_gbp_needed = self.calculate_total_programme_cost(university, programme, education_year)
+
+            # Get pay-as-you-go baseline
+            education_fx_rate = self.data_processor.get_september_fx_rate(education_year)
+            payg_cost_inr = total_gbp_needed * education_fx_rate
+
+            # Calculate investment growth
+            start_date = f"{conversion_year}-01-01"
+            end_date = f"{education_year}-01-01"
+
+            if asset_type == "FIXED_5PCT":
+                # Fixed rate calculation
+                from modules.metrics.savings_return import grow_fixed_rate
+                import pandas as pd
+                growth_result = grow_fixed_rate(
+                    pd.Timestamp(start_date),
+                    pd.Timestamp(end_date),
+                    initial_amount_inr,
+                    0.05
+                )
+            else:
+                # Asset-based growth
+                growth_result = roi_calc.calculate_asset_growth(
+                    asset_type, start_date, end_date, initial_amount_inr
+                )
+
+            # Currency conversion for FTSE
+            final_pot_inr = growth_result.final_value_native
+            if asset_type == "FTSE_GBP":
+                # Convert GBP pot to INR using education year rate
+                final_pot_inr = growth_result.final_value_native * education_fx_rate
+
+            # Calculate effective cost after investment
+            effective_cost_inr = calculate_effective_cost(payg_cost_inr, final_pot_inr)
+
+            # Calculate savings
+            savings_inr = payg_cost_inr - effective_cost_inr
+            savings_pct = (savings_inr / payg_cost_inr) * 100 if payg_cost_inr > 0 else 0
+
+            # Strategy name with performance
+            strategy_name = f"{asset_type.replace('_', ' ')} Investment ({growth_result.cagr:.1f}% CAGR)"
+
+            return SavingsScenario(
+                strategy_name=strategy_name,
+                total_cost_inr=effective_cost_inr,
+                total_cost_gbp=effective_cost_inr / education_fx_rate,
+                savings_vs_payg_inr=savings_inr,
+                savings_percentage=savings_pct,
+                exchange_rate_used=education_fx_rate,
+                conversion_details={
+                    'asset_type': asset_type,
+                    'initial_investment_inr': initial_amount_inr,
+                    'final_pot_value': growth_result.final_value_native,
+                    'final_pot_inr': final_pot_inr,
+                    'cagr': growth_result.cagr,
+                    'total_return': growth_result.total_return,
+                    'volatility': growth_result.volatility,
+                    'max_drawdown': growth_result.max_drawdown,
+                    'investment_period': f"{conversion_year} → {education_year}",
+                    'growth_curve': growth_result.curve.to_dict('records') if hasattr(growth_result.curve, 'to_dict') else []
+                },
+                breakdown={
+                    'investment_type': 'Market-based ROI' if asset_type != 'FIXED_5PCT' else 'Fixed rate savings',
+                    'risk_level': self._get_risk_level(asset_type, growth_result.volatility),
+                    'performance_summary': f"{growth_result.total_return:.1f}% total return over {education_year - conversion_year} years",
+                    'effective_cost_breakdown': {
+                        'total_education_cost': payg_cost_inr,
+                        'investment_proceeds': final_pot_inr,
+                        'net_cost_after_investment': effective_cost_inr,
+                        'surplus_if_any': max(0, final_pot_inr - payg_cost_inr)
+                    }
+                }
+            )
+
+        except Exception as e:
+            # Fallback scenario if ROI calculation fails
+            payg_scenario = self.calculate_payg_scenario(university, programme, education_year, 0)
+            payg_scenario.strategy_name = f"{asset_type} Investment (Error - using baseline)"
+            payg_scenario.conversion_details = {'error': str(e)}
+            return payg_scenario
+
+    def calculate_all_roi_scenarios(
+        self,
+        university: str,
+        programme: str,
+        conversion_year: int,
+        education_year: int,
+        initial_amount_inr: float,
+        selected_strategies: List[str] = None
+    ) -> List[SavingsScenario]:
+        """Calculate all available ROI scenarios.
+
+        Args:
+            university: University name
+            programme: Programme name
+            conversion_year: Investment start year
+            education_year: Education start year
+            initial_amount_inr: Initial investment amount
+            selected_strategies: List of strategies to calculate (optional)
+
+        Returns:
+            List of SavingsScenario results sorted by savings amount
+        """
+        if selected_strategies is None:
+            selected_strategies = ["GOLD_INR", "NIFTY_INR", "FTSE_GBP", "FIXED_5PCT"]
+
+        scenarios = []
+
+        for asset_type in selected_strategies:
+            scenario = self.calculate_roi_scenario(
+                asset_type, university, programme, conversion_year, education_year, initial_amount_inr
+            )
+            scenarios.append(scenario)
+
+        # Sort by savings amount (descending)
+        scenarios.sort(key=lambda x: x.savings_vs_payg_inr, reverse=True)
+
+        return scenarios
+
+    def _get_risk_level(self, asset_type: str, volatility: float) -> str:
+        """Determine risk level based on asset type and volatility.
+
+        Args:
+            asset_type: Type of asset
+            volatility: Annualized volatility
+
+        Returns:
+            Risk level string
+        """
+        if asset_type == "FIXED_5PCT":
+            return "Low (Capital protected)"
+        elif asset_type == "GOLD_INR":
+            return "Low-Medium (Inflation hedge)"
+        elif asset_type == "FTSE_GBP":
+            return "Medium (International equity + currency risk)"
+        elif asset_type == "NIFTY_INR":
+            if volatility < 0.15:
+                return "Medium (Domestic equity)"
+            else:
+                return "Medium-High (Domestic equity, volatile period)"
+        else:
+            return "Medium"
+
+    def get_roi_investment_summary(
+        self,
+        scenarios: List[SavingsScenario]
+    ) -> Dict:
+        """Get summary of ROI investment scenarios.
+
+        Args:
+            scenarios: List of calculated scenarios
+
+        Returns:
+            Dictionary with investment summary
+        """
+        if not scenarios:
+            return {}
+
+        best_scenario = max(scenarios, key=lambda x: x.savings_vs_payg_inr)
+        worst_scenario = min(scenarios, key=lambda x: x.savings_vs_payg_inr)
+
+        total_strategies = len(scenarios)
+        profitable_strategies = len([s for s in scenarios if s.savings_vs_payg_inr > 0])
+
+        return {
+            'total_strategies_analyzed': total_strategies,
+            'profitable_strategies': profitable_strategies,
+            'best_strategy': {
+                'name': best_scenario.strategy_name,
+                'savings': best_scenario.savings_vs_payg_inr,
+                'savings_percentage': best_scenario.savings_percentage
+            },
+            'worst_strategy': {
+                'name': worst_scenario.strategy_name,
+                'savings': worst_scenario.savings_vs_payg_inr,
+                'savings_percentage': worst_scenario.savings_percentage
+            },
+            'average_savings': np.mean([s.savings_vs_payg_inr for s in scenarios]),
+            'strategies_with_positive_savings': profitable_strategies,
+            'recommendation': self._get_investment_recommendation(scenarios)
+        }
+
+    def _get_investment_recommendation(self, scenarios: List[SavingsScenario]) -> str:
+        """Generate investment recommendation based on scenario analysis."""
+        if not scenarios:
+            return "No scenarios available for analysis"
+
+        profitable = [s for s in scenarios if s.savings_vs_payg_inr > 0]
+
+        if len(profitable) == 0:
+            return "Consider traditional conversion strategies as investment options show limited benefit"
+        elif len(profitable) == len(scenarios):
+            best = max(scenarios, key=lambda x: x.savings_vs_payg_inr)
+            return f"All strategies show positive returns. Best option: {best.strategy_name}"
+        else:
+            best = max(profitable, key=lambda x: x.savings_vs_payg_inr)
+            return f"Mixed results. Consider {best.strategy_name} for optimal returns with appropriate risk management"

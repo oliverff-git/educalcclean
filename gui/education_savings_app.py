@@ -25,6 +25,11 @@ from gui.data_quality_utils import (
     get_projection_disclaimer, get_calculation_explanation,
     DataQuality, ConfidenceLevel
 )
+from gui.roi_components import (
+    render_roi_sidebar, render_roi_scenarios_summary,
+    render_roi_scenario_cards, render_investment_warnings,
+    create_simple_roi_chart
+)
 
 
 
@@ -232,10 +237,29 @@ def main():
                 st.sidebar.error("⚠️ Education start year must be after conversion year")
                 return
 
+            # ROI Analysis Configuration
+            roi_config = render_roi_sidebar(conversion_year, education_year)
+
             # Calculate scenarios first for sidebar display
             scenarios = calculator.compare_all_strategies(
                 selected_university, selected_course, conversion_year, education_year
             )
+
+            # Calculate ROI scenarios if enabled
+            roi_scenarios = []
+            if roi_config.get("enabled", False):
+                try:
+                    roi_scenarios = calculator.calculate_all_roi_scenarios(
+                        selected_university,
+                        selected_course,
+                        conversion_year,
+                        education_year,
+                        roi_config["investment_amount"],
+                        roi_config["selected_strategies"]
+                    )
+                except Exception as e:
+                    st.sidebar.error(f"ROI calculation error: {str(e)}")
+                    roi_scenarios = []
 
             # Sidebar scenarios
             st.sidebar.header("💼 Saving Scenarios")
@@ -417,6 +441,65 @@ def main():
 
             st.dataframe(pd.DataFrame(fx_data), use_container_width=True)
             st.caption("📊 FX projections based on 8-year historical CAGR (4.18% annual depreciation, 2017-2025). Actual rates may vary due to economic conditions.")
+
+            # ROI Analysis Section
+            if roi_config.get("enabled", False) and roi_scenarios:
+                st.markdown("---")
+                st.header("💰 Investment Strategy Analysis")
+
+                # ROI scenarios summary
+                render_roi_scenarios_summary(roi_scenarios, roi_config["investment_amount"])
+
+                # Create tabs for different views
+                tab1, tab2, tab3 = st.tabs(["📊 Overview", "📋 Detailed Analysis", "⚠️ Risk Information"])
+
+                with tab1:
+                    # Simple comparison chart
+                    if roi_scenarios:
+                        chart = create_simple_roi_chart(roi_scenarios)
+                        st.plotly_chart(chart, use_container_width=True)
+
+                        # Quick comparison with traditional strategies
+                        st.subheader("🔄 Investment vs Traditional Strategies")
+                        best_traditional = min(scenarios, key=lambda x: x.total_cost_inr)
+                        best_roi = max(roi_scenarios, key=lambda x: x.savings_vs_payg_inr)
+
+                        col1, col2, col3 = st.columns(3)
+                        with col1:
+                            st.metric(
+                                "🏛️ Best Traditional",
+                                best_traditional.strategy_name,
+                                format_inr(best_traditional.savings_vs_payg_inr)
+                            )
+                        with col2:
+                            st.metric(
+                                "💎 Best Investment",
+                                best_roi.strategy_name.split(' (')[0],
+                                format_inr(best_roi.savings_vs_payg_inr)
+                            )
+                        with col3:
+                            additional_savings = best_roi.savings_vs_payg_inr - best_traditional.savings_vs_payg_inr
+                            st.metric(
+                                "📈 Additional Benefit",
+                                format_inr(additional_savings),
+                                f"{(additional_savings/roi_config['investment_amount']*100):+.1f}% ROI"
+                            )
+
+                with tab2:
+                    # Detailed scenario cards
+                    render_roi_scenario_cards(roi_scenarios)
+
+                with tab3:
+                    # Investment warnings and risk information
+                    render_investment_warnings()
+
+                    # Risk tolerance summary
+                    risk_tolerance = roi_config.get("risk_tolerance", "Moderate")
+                    st.info(f"💡 Your risk tolerance: **{risk_tolerance}**. This affects strategy recommendations and expected returns.")
+
+            elif roi_config.get("enabled", False):
+                st.markdown("---")
+                st.warning("💰 Investment analysis enabled but no scenarios calculated. Please check your selections.")
 
 
     except Exception as e:
