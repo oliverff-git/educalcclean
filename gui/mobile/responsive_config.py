@@ -152,7 +152,7 @@ class ResponsiveConfigManager:
             <style>
             /* Mobile-specific styles */
             .main .block-container {
-                padding-top: 0rem !important;
+                padding-top: 0.5rem;
                 padding-bottom: 1rem;
                 padding-left: 1rem;
                 padding-right: 1rem;
@@ -202,7 +202,7 @@ class ResponsiveConfigManager:
             <style>
             /* Tablet-specific styles */
             .main .block-container {
-                padding-top: 0rem !important;
+                padding-top: 0.75rem;
                 padding-bottom: 1.5rem;
                 padding-left: 1.5rem;
                 padding-right: 1.5rem;

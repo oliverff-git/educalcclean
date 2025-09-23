@@ -83,77 +83,82 @@ def main():
     # Apply responsive styling (which includes mobile/tablet CSS)
     apply_responsive_styling(device_type)
 
-    # FINAL FIX: Remove ALL top spacing - applied after all other styles
-    st.markdown("""
-    <style>
-    /* ULTIMATE WHITE SPACE ELIMINATION - Maximum specificity and coverage */
+    # Simple and effective white space fix + sidebar toggle
+    if device_type in ['mobile', 'tablet']:
+        st.markdown("""
+        <style>
+        /* Simple white space removal - work WITH Streamlit, not against it */
+        .block-container {
+            padding-top: 0.5rem;
+        }
 
-    /* Target the root app container */
-    .stApp {
-        margin-top: 0px !important;
-        padding-top: 0px !important;
-    }
+        /* Sidebar toggle button for mobile/tablet */
+        .sidebar-toggle {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            z-index: 999999;
+            background: #ffffff;
+            border: 2px solid #e6e6e6;
+            border-radius: 8px;
+            padding: 10px 14px;
+            cursor: pointer;
+            font-size: 18px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            font-family: monospace;
+            user-select: none;
+            display: none;
+        }
 
-    /* Target all possible main containers */
-    .stApp .main,
-    section.main,
-    .main,
-    div[data-testid="stMain"] {
-        margin-top: 0px !important;
-        padding-top: 0px !important;
-    }
+        /* Show toggle button when sidebar is hidden */
+        .sidebar-toggle.show {
+            display: block;
+        }
 
-    /* Target all block containers with maximum specificity */
-    .stApp .main .block-container,
-    .stApp section.main .block-container,
-    .main .block-container,
-    section.main .block-container,
-    .block-container,
-    div.block-container,
-    div[data-testid="block-container"] {
-        margin-top: 0px !important;
-        padding-top: 0px !important;
-    }
+        /* Hide default Streamlit sidebar on mobile when collapsed */
+        .css-1d391kg {
+            display: none;
+        }
+        </style>
 
-    /* Remove header completely */
-    .stApp > header,
-    header[data-testid="stHeader"],
-    .stHeader {
-        display: none !important;
-        height: 0px !important;
-        margin: 0px !important;
-        padding: 0px !important;
-    }
+        <div class="sidebar-toggle" id="sidebarToggle" onclick="toggleSidebar()">☰</div>
 
-    /* Target the first element containers */
-    .main > div:first-child,
-    .block-container > div:first-child,
-    .element-container:first-child {
-        margin-top: 0px !important;
-        padding-top: 0px !important;
-    }
+        <script>
+        function toggleSidebar() {
+            const sidebar = window.parent.document.querySelector('[data-testid="stSidebar"]');
+            const toggle = document.getElementById('sidebarToggle');
 
-    /* Target Streamlit title specifically */
-    h1[data-testid="stTitle"],
-    .stTitle,
-    h1:first-child {
-        margin-top: 0px !important;
-        padding-top: 0px !important;
-    }
+            if (sidebar) {
+                if (sidebar.style.display === 'none' || sidebar.style.display === '') {
+                    sidebar.style.display = 'block';
+                    toggle.classList.remove('show');
+                } else {
+                    sidebar.style.display = 'none';
+                    toggle.classList.add('show');
+                }
+            }
+        }
 
-    /* Remove default browser margins for heading elements at top */
-    body, html {
-        margin: 0px !important;
-        padding: 0px !important;
-    }
+        // Initialize - show toggle if sidebar is hidden
+        window.addEventListener('load', function() {
+            const sidebar = window.parent.document.querySelector('[data-testid="stSidebar"]');
+            const toggle = document.getElementById('sidebarToggle');
 
-    /* Streamlit specific overrides */
-    .stApp .main .block-container > div:first-child > div:first-child {
-        margin-top: 0px !important;
-        padding-top: 0px !important;
-    }
-    </style>
-    """, unsafe_allow_html=True)
+            if (sidebar && (sidebar.style.display === 'none' || getComputedStyle(sidebar).display === 'none')) {
+                toggle.classList.add('show');
+            }
+        });
+        </script>
+        """, unsafe_allow_html=True)
+    else:
+        # Desktop - simple minimal CSS
+        st.markdown("""
+        <style>
+        .block-container {
+            padding-top: 1rem;
+        }
+        </style>
+        """, unsafe_allow_html=True)
 
     st.title("🎓 UK Education Savings Calculator")
     st.markdown("**Calculate potential savings from early INR→GBP conversion strategies**")
