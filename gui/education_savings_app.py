@@ -73,9 +73,6 @@ def main():
     responsive_config = configure_streamlit_for_device(device_type)
     st.set_page_config(**responsive_config)
 
-    # Apply responsive styling
-    apply_responsive_styling(device_type)
-
     # Initialize mobile components
     mobile_renderer = MobileComponentRenderer(device_type)
     chart_renderer = MobileChartRenderer(device_type)
@@ -86,61 +83,74 @@ def main():
     # Apply responsive styling (which includes mobile/tablet CSS)
     apply_responsive_styling(device_type)
 
-    # Fix white space at top of page - APPLIED LAST with highest specificity
+    # FINAL FIX: Remove ALL top spacing - applied after all other styles
     st.markdown("""
     <style>
-    /* CRITICAL: White space fix - highest priority, applied after all responsive styles */
+    /* ULTIMATE WHITE SPACE ELIMINATION - Maximum specificity and coverage */
 
-    /* Target all possible container variations with maximum specificity */
+    /* Target the root app container */
+    .stApp {
+        margin-top: 0px !important;
+        padding-top: 0px !important;
+    }
+
+    /* Target all possible main containers */
+    .stApp .main,
+    section.main,
+    .main,
+    div[data-testid="stMain"] {
+        margin-top: 0px !important;
+        padding-top: 0px !important;
+    }
+
+    /* Target all block containers with maximum specificity */
     .stApp .main .block-container,
     .stApp section.main .block-container,
     .main .block-container,
     section.main .block-container,
     .block-container,
-    div.block-container {
-        padding-top: 0rem !important;
-        margin-top: 0rem !important;
+    div.block-container,
+    div[data-testid="block-container"] {
+        margin-top: 0px !important;
+        padding-top: 0px !important;
     }
 
-    /* Remove any top spacing from the app container */
-    .stApp {
-        margin-top: 0rem !important;
-        padding-top: 0rem !important;
-    }
-
-    /* Remove header/toolbar spacing */
+    /* Remove header completely */
     .stApp > header,
-    header[data-testid="stHeader"] {
-        background-color: transparent !important;
+    header[data-testid="stHeader"],
+    .stHeader {
+        display: none !important;
         height: 0px !important;
-        padding: 0 !important;
-        margin: 0 !important;
+        margin: 0px !important;
+        padding: 0px !important;
     }
 
-    /* Target the main content area with highest specificity */
-    .stApp section.main,
-    section.main,
-    .main {
-        padding-top: 0rem !important;
-        margin-top: 0rem !important;
-    }
-
-    /* Ensure first content element has minimal top spacing */
+    /* Target the first element containers */
     .main > div:first-child,
-    .block-container > div:first-child {
-        margin-top: 0rem !important;
-        padding-top: 0.25rem !important;
+    .block-container > div:first-child,
+    .element-container:first-child {
+        margin-top: 0px !important;
+        padding-top: 0px !important;
     }
 
-    /* Override any framework defaults */
-    * {
-        margin-top: 0 !important;
-    }
-
-    /* Specific override for the title element */
+    /* Target Streamlit title specifically */
+    h1[data-testid="stTitle"],
+    .stTitle,
     h1:first-child {
-        margin-top: 0rem !important;
-        padding-top: 0rem !important;
+        margin-top: 0px !important;
+        padding-top: 0px !important;
+    }
+
+    /* Remove default browser margins for heading elements at top */
+    body, html {
+        margin: 0px !important;
+        padding: 0px !important;
+    }
+
+    /* Streamlit specific overrides */
+    .stApp .main .block-container > div:first-child > div:first-child {
+        margin-top: 0px !important;
+        padding-top: 0px !important;
     }
     </style>
     """, unsafe_allow_html=True)
