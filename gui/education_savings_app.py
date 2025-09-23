@@ -86,19 +86,40 @@ def main():
     # Fix white space at top of page (universal CSS for all devices)
     st.markdown("""
     <style>
-    /* Remove top padding for all devices */
+    /* Remove top padding and margin for all devices - comprehensive approach */
     .main .block-container {
+        padding-top: 0rem !important;
+        margin-top: 0rem !important;
+    }
+
+    /* Target different Streamlit container variations */
+    .block-container {
+        padding-top: 0rem !important;
+        margin-top: 0rem !important;
+    }
+
+    /* Remove any top spacing from the app container */
+    .stApp {
+        margin-top: 0rem !important;
         padding-top: 0rem !important;
     }
 
-    /* Ensure proper title spacing */
-    .main .block-container > div:first-child {
-        padding-top: 1rem;
+    /* Remove header/toolbar spacing */
+    .stApp > header {
+        background-color: transparent !important;
+        height: 0px !important;
     }
 
-    /* Fix any header spacing issues */
-    .stApp > header {
-        background-color: transparent;
+    /* Target the main content area directly */
+    section.main {
+        padding-top: 0rem !important;
+        margin-top: 0rem !important;
+    }
+
+    /* Remove any default margins from first elements */
+    .main > div:first-child {
+        margin-top: 0rem !important;
+        padding-top: 0.5rem !important;
     }
     </style>
     """, unsafe_allow_html=True)
