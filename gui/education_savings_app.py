@@ -26,13 +26,6 @@ from gui.data_quality_utils import (
     DataQuality, ConfidenceLevel
 )
 
-# Import mobile responsive components
-from gui.mobile import (
-    get_mobile_detector, get_responsive_manager, apply_responsive_styling,
-    configure_streamlit_for_device
-)
-from gui.components import MobileComponentRenderer, MobileMetric
-from gui.charts import MobileChartRenderer
 
 
 def format_inr(amount):
@@ -67,26 +60,12 @@ def format_percentage(pct):
 
 def main():
     """Main Streamlit application."""
-    # Initialize mobile detection first
-    mobile_detector = get_mobile_detector()
-    device_type = mobile_detector.get_device_type()
-
-    # Configure Streamlit for detected device - always start with sidebar expanded
-    responsive_config = configure_streamlit_for_device(device_type)
-    responsive_config['initial_sidebar_state'] = 'expanded'  # Always start expanded
-    st.set_page_config(**responsive_config)
-
-
-    # Initialize mobile components
-    mobile_renderer = MobileComponentRenderer(device_type)
-    chart_renderer = MobileChartRenderer(device_type)
-
-    # Note: Mobile styles and responsive styling now handled by unified CSS system
-
-    # Apply unified styles (replaces all scattered CSS)
-    from gui.styles import get_unified_styles
-    unified_css = get_unified_styles(device_hint=device_type)
-    st.markdown(f'<style>{unified_css}</style>', unsafe_allow_html=True)
+    st.set_page_config(
+        page_title="Education Savings Calculator",
+        page_icon="🎓",
+        layout="wide",
+        initial_sidebar_state="expanded"
+    )
 
     st.title("🎓 UK Education Savings Calculator")
     st.markdown("**Calculate potential savings from early INR→GBP conversion strategies**")
@@ -104,11 +83,6 @@ def main():
 
         calculator = EducationSavingsCalculator(data_processor)
 
-        # Add mobile navigation if needed
-        if device_type == 'mobile':
-            current_section = mobile_renderer.render_mobile_navigation()
-        else:
-            current_section = "Analysis"
 
         # Sidebar for inputs
         st.sidebar.header("📋 Selection Parameters")
@@ -156,38 +130,29 @@ def main():
                 selected_university, selected_course, conversion_year, education_year
             )
 
-            # Scenarios display - mobile vs desktop
-            if device_type == 'mobile':
-                # For mobile, show scenarios in main area with expandable section
-                def render_mobile_scenarios():
-                    mobile_renderer.render_scenario_cards(scenarios)
-                mobile_renderer.render_expandable_section(
-                    "Saving Scenarios", render_mobile_scenarios, expanded=True
-                )
-            else:
-                # Desktop/tablet: keep in sidebar
-                st.sidebar.header("💼 Saving Scenarios")
-                for i, scenario in enumerate(scenarios):
-                    with st.sidebar.expander(f"{i+1}. {scenario.strategy_name}", expanded=(i==0)):
-                        st.metric("Total Cost", format_inr(scenario.total_cost_inr))
+            # Sidebar scenarios
+            st.sidebar.header("💼 Saving Scenarios")
+            for i, scenario in enumerate(scenarios):
+                with st.sidebar.expander(f"{i+1}. {scenario.strategy_name}", expanded=(i==0)):
+                    st.metric("Total Cost", format_inr(scenario.total_cost_inr))
 
-                        if scenario.savings_vs_payg_inr > 0:
-                            st.metric(
-                                "Savings",
-                                format_inr(scenario.savings_vs_payg_inr),
-                                delta=format_percentage(scenario.savings_percentage)
-                            )
-                        else:
-                            st.info("Baseline comparison")
+                    if scenario.savings_vs_payg_inr > 0:
+                        st.metric(
+                            "Savings",
+                            format_inr(scenario.savings_vs_payg_inr),
+                            delta=format_percentage(scenario.savings_percentage)
+                        )
+                    else:
+                        st.info("Baseline comparison")
 
-                        if scenario.exchange_rate_used > 0:
-                            st.metric("Exchange Rate", f"₹{scenario.exchange_rate_used:.2f}/£")
+                    if scenario.exchange_rate_used > 0:
+                        st.metric("Exchange Rate", f"₹{scenario.exchange_rate_used:.2f}/£")
 
-                        # Additional breakdown
-                        breakdown = scenario.breakdown
-                        if 'uk_earnings' in breakdown and breakdown['uk_earnings']['total_interest_gbp'] > 0:
-                            uk_earnings = breakdown['uk_earnings']
-                            st.caption(f"UK Interest: £{uk_earnings['total_interest_gbp']:.0f} ({uk_earnings['avg_interest_rate']*100:.1f}% avg BoE rate)")
+                    # Additional breakdown
+                    breakdown = scenario.breakdown
+                    if 'uk_earnings' in breakdown and breakdown['uk_earnings']['total_interest_gbp'] > 0:
+                        uk_earnings = breakdown['uk_earnings']
+                        st.caption(f"UK Interest: £{uk_earnings['total_interest_gbp']:.0f} ({uk_earnings['avg_interest_rate']*100:.1f}% avg BoE rate)")
 
             # Data Sources & Terms in Sidebar
             st.sidebar.header("📄 Data Sources & Terms")
@@ -241,30 +206,36 @@ def main():
             cagr_help = ("Calculated from course-specific data" if not course_info.get('is_using_university_average', False)
                         else f"Using {selected_university} average due to limited course data")
 
-            metrics = [
-                MobileMetric(
-                    label=f"3-Year Programme Total ({latest_year})",
-                    value=format_gbp(three_year_total),
-                    help_text=f"Total cost for 3-year programme (UK fees fixed at enrollment from {latest_year})"
-                ),
-                MobileMetric(
-                    label=f"Projected 3-Year Total ({education_year})",
-                    value=format_gbp(projected_three_year_total),
-                    help_text=f"Total programme cost projected using {transparency.calculation_method if transparency else 'CAGR method'}"
-                ),
-                MobileMetric(
-                    label=cagr_label,
-                    value=format_percentage(course_info['cagr_pct']),
-                    help_text=cagr_help
-                ),
-                MobileMetric(
-                    label="Data Points",
-                    value=f"{course_info['data_points']} years",
-                    help_text=f"Historical data: {', '.join(map(str, transparency.actual_data_years)) if transparency else 'Unknown'}"
-                )
-            ]
+            # Display metrics using standard Streamlit columns
+            col1, col2, col3, col4 = st.columns(4)
 
-            mobile_renderer.render_metrics_section(metrics)
+            with col1:
+                st.metric(
+                    f"3-Year Programme Total ({latest_year})",
+                    format_gbp(three_year_total),
+                    help=f"Total cost for 3-year programme (UK fees fixed at enrollment from {latest_year})"
+                )
+
+            with col2:
+                st.metric(
+                    f"Projected 3-Year Total ({education_year})",
+                    format_gbp(projected_three_year_total),
+                    help=f"Total programme cost projected using {transparency.calculation_method if transparency else 'CAGR method'}"
+                )
+
+            with col3:
+                st.metric(
+                    cagr_label,
+                    format_percentage(course_info['cagr_pct']),
+                    help=cagr_help
+                )
+
+            with col4:
+                st.metric(
+                    "Data Points",
+                    f"{course_info['data_points']} years",
+                    help=f"Historical data: {', '.join(map(str, transparency.actual_data_years)) if transparency else 'Unknown'}"
+                )
 
             # Add transparency disclaimer
             if transparency:
@@ -288,79 +259,86 @@ def main():
                 selected_university, selected_course, education_year
             )
 
-            # Mobile-optimized charts section
-            def render_charts():
-                # Fee projection chart
-                fee_chart = chart_renderer.create_mobile_fee_projection_chart(projections_data)
-                config = chart_renderer.get_chart_config()
-                st.plotly_chart(fee_chart, use_container_width=True, config=config)
+            # Charts section
+            st.subheader("📊 Projections")
 
-                # FX projection chart
-                fx_chart = chart_renderer.create_mobile_fx_projection_chart(projections_data)
-                st.plotly_chart(fx_chart, use_container_width=True, config=config)
+            # Create simple charts using legacy chart functions
+            chart_col1, chart_col2 = st.columns(2)
+            with chart_col1:
+                # Fee projection chart (simplified)
+                fee_data = projections_data
+                if fee_data and 'years' in fee_data and 'projected_fees' in fee_data:
+                    fee_fig = go.Figure()
+                    fee_fig.add_trace(go.Scatter(
+                        x=fee_data['years'],
+                        y=fee_data['projected_fees'],
+                        mode='lines+markers',
+                        name='Projected Fees',
+                        line=dict(color='#1f77b4')
+                    ))
+                    fee_fig.update_layout(
+                        title="Fee Projections",
+                        xaxis_title="Year",
+                        yaxis_title="Annual Fee (GBP)",
+                        height=400
+                    )
+                    st.plotly_chart(fee_fig, use_container_width=True)
 
-            if device_type == 'mobile':
-                # Stack charts vertically on mobile
-                mobile_renderer.render_expandable_section(
-                    "Projections", render_charts, expanded=True
+            with chart_col2:
+                # FX projection chart (simplified)
+                if fee_data and 'years' in fee_data and 'fx_rates' in fee_data:
+                    fx_fig = go.Figure()
+                    fx_fig.add_trace(go.Scatter(
+                        x=fee_data['years'],
+                        y=fee_data['fx_rates'],
+                        mode='lines+markers',
+                        name='Exchange Rate',
+                        line=dict(color='#ff7f0e')
+                    ))
+                    fx_fig.update_layout(
+                        title="Exchange Rate Projections",
+                        xaxis_title="Year",
+                        yaxis_title="INR per GBP",
+                        height=400
+                    )
+                    st.plotly_chart(fx_fig, use_container_width=True)
+
+            # Strategy comparison
+            st.subheader("💰 Strategy Comparison")
+            if scenarios:
+                # Create simple bar chart
+                strategy_names = [scenario.strategy_name for scenario in scenarios]
+                total_costs = [scenario.total_cost_inr for scenario in scenarios]
+
+                savings_fig = go.Figure(data=[go.Bar(
+                    x=strategy_names,
+                    y=total_costs,
+                    marker_color=['#2E8B57' if i == 0 else '#4682B4' for i in range(len(scenarios))]
+                )])
+
+                savings_fig.update_layout(
+                    title="Total Cost Comparison (INR)",
+                    xaxis_title="Strategy",
+                    yaxis_title="Total Cost (INR)",
+                    height=400
                 )
-            else:
-                # Side-by-side on larger screens
-                st.subheader("📊 Projections")
-                if device_type == 'desktop':
-                    chart_col1, chart_col2 = st.columns(2)
-                    with chart_col1:
-                        fee_chart = chart_renderer.create_mobile_fee_projection_chart(projections_data)
-                        config = chart_renderer.get_chart_config()
-                        st.plotly_chart(fee_chart, use_container_width=True, config=config)
-                    with chart_col2:
-                        fx_chart = chart_renderer.create_mobile_fx_projection_chart(projections_data)
-                        st.plotly_chart(fx_chart, use_container_width=True, config=config)
-                else:
-                    # Tablet: stack but with normal sections
-                    render_charts()
+                st.plotly_chart(savings_fig, use_container_width=True)
 
-            # Mobile-optimized savings comparison
-            def render_savings_chart():
-                savings_chart = chart_renderer.create_mobile_savings_comparison_chart(scenarios)
-                if savings_chart:
-                    config = chart_renderer.get_chart_config()
-                    st.plotly_chart(savings_chart, use_container_width=True, config=config)
+            # Exchange rate forecast
+            st.subheader("📈 Exchange Rate Forecast")
 
-            if device_type == 'mobile':
-                mobile_renderer.render_expandable_section(
-                    "Strategy Comparison", render_savings_chart, expanded=False
-                )
-            else:
-                st.subheader("💰 Strategy Comparison")
-                render_savings_chart()
+            fx_data = []
+            for year in range(conversion_year, education_year + 3):
+                rate = data_processor.project_fx_rate(year)
+                status = "Historical" if year <= 2025 else "Projected"
+                fx_data.append({
+                    'Year': year,
+                    'Rate (₹/£)': f"₹{rate:.2f}",
+                    'Status': status
+                })
 
-            # Mobile-optimized exchange rate table
-            def render_fx_table():
-                fx_data = []
-                for year in range(conversion_year, education_year + 3):
-                    rate = data_processor.project_fx_rate(year)
-                    status = "Historical" if year <= 2025 else "Projected"
-                    fx_data.append({
-                        'Year': year,
-                        'Rate (₹/£)': f"₹{rate:.2f}",
-                        'Status': status
-                    })
-
-                mobile_renderer.render_data_table(
-                    pd.DataFrame(fx_data),
-                    max_rows=5 if device_type == 'mobile' else None
-                )
-
-                st.caption("📊 FX projections based on 8-year historical CAGR (4.18% annual depreciation, 2017-2025). Actual rates may vary due to economic conditions.")
-
-            if device_type == 'mobile':
-                mobile_renderer.render_expandable_section(
-                    "Exchange Rate Forecast", render_fx_table, expanded=False
-                )
-            else:
-                st.subheader("📈 Exchange Rate Forecast")
-                render_fx_table()
+            st.dataframe(pd.DataFrame(fx_data), use_container_width=True)
+            st.caption("📊 FX projections based on 8-year historical CAGR (4.18% annual depreciation, 2017-2025). Actual rates may vary due to economic conditions.")
 
 
     except Exception as e:
