@@ -154,7 +154,7 @@ def main():
     # Apply responsive styling (which includes mobile/tablet CSS)
     apply_responsive_styling(device_type)
 
-    # Add sidebar toggle for all devices and additional spacing fixes
+    # Add comprehensive styling fixes
     st.markdown("""
     <style>
     /* Additional aggressive white space removal */
@@ -168,64 +168,14 @@ def main():
         display: block !important;
     }
 
-    /* Sidebar toggle button for all devices */
-    .sidebar-toggle {
-            position: fixed;
-            top: 10px;
-            left: 10px;
-            z-index: 999999;
-            background: #ffffff;
-            border: 2px solid #e6e6e6;
-            border-radius: 8px;
-            padding: 10px 14px;
-            cursor: pointer;
-            font-size: 18px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-            font-family: monospace;
-            user-select: none;
-            display: none;
-        }
-
-        /* Show toggle button when sidebar is hidden */
-        .sidebar-toggle.show {
-            display: block;
-        }
-
-        /* Hide default Streamlit sidebar on mobile when collapsed */
-        .css-1d391kg {
-            display: none;
-        }
-        </style>
-
-        <div class="sidebar-toggle" id="sidebarToggle" onclick="toggleSidebar()">☰</div>
-
-        <script>
-        function toggleSidebar() {
-            const sidebar = window.parent.document.querySelector('[data-testid="stSidebar"]');
-            const toggle = document.getElementById('sidebarToggle');
-
-            if (sidebar) {
-                if (sidebar.style.display === 'none' || sidebar.style.display === '') {
-                    sidebar.style.display = 'block';
-                    toggle.classList.remove('show');
-                } else {
-                    sidebar.style.display = 'none';
-                    toggle.classList.add('show');
-                }
-            }
-        }
-
-        // Initialize - show toggle if sidebar is hidden
-        window.addEventListener('load', function() {
-            const sidebar = window.parent.document.querySelector('[data-testid="stSidebar"]');
-            const toggle = document.getElementById('sidebarToggle');
-
-            if (sidebar && (sidebar.style.display === 'none' || getComputedStyle(sidebar).display === 'none')) {
-                toggle.classList.add('show');
-            }
-        });
-        </script>
-        """, unsafe_allow_html=True)
+    /* Simple sidebar styling - remove complex toggle for now */
+    .main .block-container {
+        max-width: 100%;
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+    </style>
+    """, unsafe_allow_html=True)
 
     st.title("🎓 UK Education Savings Calculator")
     st.markdown("**Calculate potential savings from early INR→GBP conversion strategies**")
