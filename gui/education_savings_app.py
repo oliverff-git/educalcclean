@@ -63,6 +63,31 @@ def format_percentage(pct):
 
 
 
+def _inject_top_whitespace_fix():
+    """Remove the big white gap at the very top (mobile & desktop) safely.
+    - Hides Streamlit's header (keeps Streamlit Cloud toolbar, which is outside this header)
+    - Collapses the first container's top padding/margin
+    Uses only stable [data-testid] selectors to avoid version churn.
+    """
+    st.markdown(
+        """
+<style>
+/* Remove default Streamlit header to reclaim vertical space */
+header[data-testid="stHeader"] { display: none; }
+
+/* Bring app content to the top on all viewports */
+.stApp { padding-top: 0 !important; }
+section.main > div:first-child { margin-top: 0 !important; padding-top: 0 !important; }
+.main .block-container { margin-top: 0 !important; padding-top: 0.25rem !important; }
+
+/* Prevent first H1/H2 from re-adding large top margins */
+.main h1:first-child, .main h2:first-child { margin-top: 0.25rem !important; }
+</style>
+        """,
+        unsafe_allow_html=True,
+    )
+
+
 def main():
     """Main Streamlit application."""
     # Initialize mobile detection first
@@ -72,6 +97,9 @@ def main():
     # Configure Streamlit for detected device
     responsive_config = configure_streamlit_for_device(device_type)
     st.set_page_config(**responsive_config)
+
+    # Apply surgical white space fix
+    _inject_top_whitespace_fix()
 
     # Initialize mobile components
     mobile_renderer = MobileComponentRenderer(device_type)
