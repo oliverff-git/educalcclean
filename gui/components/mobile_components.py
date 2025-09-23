@@ -320,7 +320,10 @@ class MobileComponentRenderer:
             <style>
             /* Mobile-optimized styles */
             .main .block-container {
-                padding: 1rem 0.5rem;
+                padding-top: 0rem !important;
+                padding-bottom: 1rem;
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
                 max-width: 100%;
             }
 

@@ -83,17 +83,21 @@ def main():
     # Add mobile-specific styles
     mobile_renderer.add_mobile_styles()
 
-    # Fix white space at top of page (universal CSS for all devices)
+    # Apply responsive styling (which includes mobile/tablet CSS)
+    apply_responsive_styling(device_type)
+
+    # Fix white space at top of page - APPLIED LAST with highest specificity
     st.markdown("""
     <style>
-    /* Remove top padding and margin for all devices - comprehensive approach */
-    .main .block-container {
-        padding-top: 0rem !important;
-        margin-top: 0rem !important;
-    }
+    /* CRITICAL: White space fix - highest priority, applied after all responsive styles */
 
-    /* Target different Streamlit container variations */
-    .block-container {
+    /* Target all possible container variations with maximum specificity */
+    .stApp .main .block-container,
+    .stApp section.main .block-container,
+    .main .block-container,
+    section.main .block-container,
+    .block-container,
+    div.block-container {
         padding-top: 0rem !important;
         margin-top: 0rem !important;
     }
@@ -105,21 +109,38 @@ def main():
     }
 
     /* Remove header/toolbar spacing */
-    .stApp > header {
+    .stApp > header,
+    header[data-testid="stHeader"] {
         background-color: transparent !important;
         height: 0px !important;
+        padding: 0 !important;
+        margin: 0 !important;
     }
 
-    /* Target the main content area directly */
-    section.main {
+    /* Target the main content area with highest specificity */
+    .stApp section.main,
+    section.main,
+    .main {
         padding-top: 0rem !important;
         margin-top: 0rem !important;
     }
 
-    /* Remove any default margins from first elements */
-    .main > div:first-child {
+    /* Ensure first content element has minimal top spacing */
+    .main > div:first-child,
+    .block-container > div:first-child {
         margin-top: 0rem !important;
-        padding-top: 0.5rem !important;
+        padding-top: 0.25rem !important;
+    }
+
+    /* Override any framework defaults */
+    * {
+        margin-top: 0 !important;
+    }
+
+    /* Specific override for the title element */
+    h1:first-child {
+        margin-top: 0rem !important;
+        padding-top: 0rem !important;
     }
     </style>
     """, unsafe_allow_html=True)
