@@ -83,6 +83,26 @@ def main():
     # Add mobile-specific styles
     mobile_renderer.add_mobile_styles()
 
+    # Fix white space at top of page (universal CSS for all devices)
+    st.markdown("""
+    <style>
+    /* Remove top padding for all devices */
+    .main .block-container {
+        padding-top: 0rem !important;
+    }
+
+    /* Ensure proper title spacing */
+    .main .block-container > div:first-child {
+        padding-top: 1rem;
+    }
+
+    /* Fix any header spacing issues */
+    .stApp > header {
+        background-color: transparent;
+    }
+    </style>
+    """, unsafe_allow_html=True)
+
     st.title("🎓 UK Education Savings Calculator")
     st.markdown("**Calculate potential savings from early INR→GBP conversion strategies**")
 
