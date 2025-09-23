@@ -80,7 +80,7 @@ class EducationSavingsCalculator:
         savings_pct = (savings_inr / payg_cost_inr) * 100 if payg_cost_inr > 0 else 0
 
         return SavingsScenario(
-            strategy_name=f"Convert All in {conversion_year}",
+            strategy_name=f"Up Front 100% {conversion_year}",
             total_cost_inr=total_cost_inr,
             total_cost_gbp=total_gbp_needed,
             savings_vs_payg_inr=savings_inr,

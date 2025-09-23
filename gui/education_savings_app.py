@@ -298,7 +298,7 @@ def main():
             )
 
             # Scenario Details in Sidebar
-            st.sidebar.header("💼 Scenario Details")
+            st.sidebar.header("💼 Saving Scenarios")
             for i, scenario in enumerate(scenarios):
                 with st.sidebar.expander(f"{i+1}. {scenario.strategy_name}", expanded=(i==0)):
                     st.metric("Total Cost", format_inr(scenario.total_cost_inr))
