@@ -292,176 +292,176 @@ def main():
                 st.sidebar.error("⚠️ Education start year must be after conversion year")
                 return
 
-            # Main content area
-            col1, col2 = st.columns([2, 1])
+            # Calculate scenarios first for sidebar display
+            scenarios = calculator.compare_all_strategies(
+                selected_university, selected_course, conversion_year, education_year
+            )
 
-            with col1:
-                st.header(f"📊 Analysis: {selected_university} - {selected_course}")
+            # Scenario Details in Sidebar
+            st.sidebar.header("💼 Scenario Details")
+            for i, scenario in enumerate(scenarios):
+                with st.sidebar.expander(f"{i+1}. {scenario.strategy_name}", expanded=(i==0)):
+                    st.metric("Total Cost", format_inr(scenario.total_cost_inr))
 
-                # Get course information
-                course_info = data_processor.get_course_info(selected_university, selected_course)
-
-                # Display course metrics with transparency
-                st.subheader("📈 Course Fee Analysis")
-
-                # Get transparency info
-                transparency = course_info.get('transparency')
-
-                # Data quality badge
-                if transparency:
-                    badge_emoji, badge_color = get_data_quality_badge(transparency.data_quality)
-                    confidence_emoji, confidence_desc = get_confidence_indicator(transparency.confidence_level)
-
-                    st.markdown(f"""
-                    <div style="background-color: {badge_color}20; padding: 10px; border-radius: 5px; margin-bottom: 15px;">
-                        {badge_emoji} <strong>Data Quality:</strong> {transparency.data_quality.value.title()}
-                        &nbsp;&nbsp;{confidence_emoji} <strong>Confidence:</strong> {transparency.confidence_level.value.title()}
-                    </div>
-                    """, unsafe_allow_html=True)
-
-                metric_col1, metric_col2, metric_col3, metric_col4 = st.columns(4)
-
-                with metric_col1:
-                    # Show actual latest year, not misleading "2025"
-                    latest_year = course_info.get('latest_actual_year', 'Unknown')
-                    st.metric(
-                        f"Latest Fee ({latest_year})",
-                        format_gbp(course_info['latest_fee']),
-                        help=f"Most recent fee in dataset (from {latest_year})"
-                    )
-
-                with metric_col2:
-                    projected_fee = data_processor.project_fee(selected_university, selected_course, education_year)
-                    st.metric(
-                        f"Projected Fee ({education_year})",
-                        format_gbp(projected_fee),
-                        help=f"Projected using {transparency.calculation_method if transparency else 'CAGR method'}"
-                    )
-
-                with metric_col3:
-                    # Show whether it's course-specific or university average
-                    cagr_label = "Course CAGR" if not course_info.get('is_using_university_average', False) else "University Avg CAGR"
-                    cagr_help = ("Calculated from course-specific data" if not course_info.get('is_using_university_average', False)
-                                else f"Using {selected_university} average due to limited course data")
-
-                    st.metric(
-                        cagr_label,
-                        format_percentage(course_info['cagr_pct']),
-                        help=cagr_help
-                    )
-
-                with metric_col4:
-                    st.metric(
-                        "Data Points",
-                        f"{course_info['data_points']} years",
-                        help=f"Historical data: {', '.join(map(str, transparency.actual_data_years)) if transparency else 'Unknown'}"
-                    )
-
-                # Add transparency disclaimer
-                if transparency:
-                    disclaimer = get_projection_disclaimer(transparency)
-                    if transparency.confidence_level == ConfidenceLevel.LOW:
-                        st.warning(disclaimer)
+                    if scenario.savings_vs_payg_inr > 0:
+                        st.metric(
+                            "Savings",
+                            format_inr(scenario.savings_vs_payg_inr),
+                            delta=format_percentage(scenario.savings_percentage)
+                        )
                     else:
-                        st.info(disclaimer)
+                        st.info("Baseline comparison")
 
-                # Calculate scenarios
-                scenarios = calculator.compare_all_strategies(
-                    selected_university, selected_course, conversion_year, education_year
+                    if scenario.exchange_rate_used > 0:
+                        st.metric("Exchange Rate", f"₹{scenario.exchange_rate_used:.2f}/£")
+
+                    # Additional breakdown
+                    breakdown = scenario.breakdown
+                    if 'uk_earnings' in breakdown and breakdown['uk_earnings']['total_interest_gbp'] > 0:
+                        uk_earnings = breakdown['uk_earnings']
+                        st.caption(f"UK Interest: £{uk_earnings['total_interest_gbp']:.0f} ({uk_earnings['avg_interest_rate']*100:.1f}% avg BoE rate)")
+
+            # Data Sources & Terms in Sidebar
+            st.sidebar.header("📄 Data Sources & Terms")
+            transparency = data_processor.get_course_info(selected_university, selected_course).get('transparency')
+
+            if transparency:
+                with st.sidebar.expander("📊 How Numbers Are Calculated", expanded=False):
+                    explanation = get_calculation_explanation(transparency)
+                    st.markdown(explanation)
+
+                with st.sidebar.expander("✅ Parent Verification Guide", expanded=False):
+                    st.markdown(transparency.source_verification)
+
+                with st.sidebar.expander("📈 Exchange Rate Verification", expanded=False):
+                    st.markdown("**📈 Exchange Rate Verification:**")
+                    st.markdown("- Visit Bank of England website (www.bankofengland.co.uk)")
+                    st.markdown("- Search for 'Exchange rates' → Historical data")
+                    st.markdown("- Alternative: xe.com for current/historical rates")
+
+            # Main content area (full width)
+            # Remove two-column layout for cleaner interface
+            st.header(f"📊 Analysis: {selected_university} - {selected_course}")
+
+            # Get course information
+            course_info = data_processor.get_course_info(selected_university, selected_course)
+
+            # Display course metrics with transparency
+            st.subheader("📈 Course Fee Analysis")
+
+            # Get transparency info
+            transparency = course_info.get('transparency')
+
+            # Data quality badge
+            if transparency:
+                badge_emoji, badge_color = get_data_quality_badge(transparency.data_quality)
+                confidence_emoji, confidence_desc = get_confidence_indicator(transparency.confidence_level)
+
+                st.markdown(f"""
+                <div style="background-color: {badge_color}20; padding: 10px; border-radius: 5px; margin-bottom: 15px;">
+                    {badge_emoji} <strong>Data Quality:</strong> {transparency.data_quality.value.title()}
+                    &nbsp;&nbsp;{confidence_emoji} <strong>Confidence:</strong> {transparency.confidence_level.value.title()}
+                </div>
+                """, unsafe_allow_html=True)
+
+            metric_col1, metric_col2, metric_col3, metric_col4 = st.columns(4)
+
+            with metric_col1:
+                # Show 3-year programme total (UK fees are fixed at enrollment)
+                latest_year = course_info.get('latest_actual_year', 'Unknown')
+                three_year_total = course_info['latest_fee'] * 3
+                st.metric(
+                    f"3-Year Programme Total ({latest_year})",
+                    format_gbp(three_year_total),
+                    help=f"Total cost for 3-year programme (UK fees fixed at enrollment from {latest_year})"
                 )
 
-                # Display best strategy
-                if scenarios:
-                    best_scenario = scenarios[0]
-                    st.success(
-                        f"💡 **Best Strategy**: {best_scenario.strategy_name} "
-                        f"saves **{format_inr(best_scenario.savings_vs_payg_inr)}** "
-                        f"({format_percentage(best_scenario.savings_percentage)})"
-                    )
-
-                # Get projection details for charts
-                projections_data = calculator.get_projection_details(
-                    selected_university, selected_course, education_year
+            with metric_col2:
+                projected_annual_fee = data_processor.project_fee(selected_university, selected_course, education_year)
+                projected_three_year_total = projected_annual_fee * 3
+                st.metric(
+                    f"Projected 3-Year Total ({education_year})",
+                    format_gbp(projected_three_year_total),
+                    help=f"Total programme cost projected using {transparency.calculation_method if transparency else 'CAGR method'}"
                 )
 
-                # Charts
-                st.subheader("📊 Projections")
+            with metric_col3:
+                # Show whether it's course-specific or university average
+                cagr_label = "Course CAGR" if not course_info.get('is_using_university_average', False) else "University Avg CAGR"
+                cagr_help = ("Calculated from course-specific data" if not course_info.get('is_using_university_average', False)
+                            else f"Using {selected_university} average due to limited course data")
 
-                chart_col1, chart_col2 = st.columns(2)
+                st.metric(
+                    cagr_label,
+                    format_percentage(course_info['cagr_pct']),
+                    help=cagr_help
+                )
 
-                with chart_col1:
-                    fee_chart = create_fee_projection_chart(projections_data)
-                    st.plotly_chart(fee_chart, use_container_width=True)
+            with metric_col4:
+                st.metric(
+                    "Data Points",
+                    f"{course_info['data_points']} years",
+                    help=f"Historical data: {', '.join(map(str, transparency.actual_data_years)) if transparency else 'Unknown'}"
+                )
 
-                with chart_col2:
-                    fx_chart = create_fx_projection_chart(projections_data)
-                    st.plotly_chart(fx_chart, use_container_width=True)
+            # Add transparency disclaimer
+            if transparency:
+                disclaimer = get_projection_disclaimer(transparency)
+                if transparency.confidence_level == ConfidenceLevel.LOW:
+                    st.warning(disclaimer)
+                else:
+                    st.info(disclaimer)
 
-                # Savings comparison
-                st.subheader("💰 Strategy Comparison")
-                savings_chart = create_savings_comparison_chart(scenarios)
-                if savings_chart:
-                    st.plotly_chart(savings_chart, use_container_width=True)
+            # Display best strategy (scenarios already calculated for sidebar)
+            if scenarios:
+                best_scenario = scenarios[0]
+                st.success(
+                    f"💡 **Best Strategy**: {best_scenario.strategy_name} "
+                    f"saves **{format_inr(best_scenario.savings_vs_payg_inr)}** "
+                    f"({format_percentage(best_scenario.savings_percentage)})"
+                )
 
-            with col2:
-                st.header("📋 Scenario Details")
+            # Get projection details for charts
+            projections_data = calculator.get_projection_details(
+                selected_university, selected_course, education_year
+            )
 
-                for i, scenario in enumerate(scenarios):
-                    with st.expander(f"{i+1}. {scenario.strategy_name}", expanded=(i==0)):
-                        st.metric("Total Cost", format_inr(scenario.total_cost_inr))
+            # Charts
+            st.subheader("📊 Projections")
 
-                        if scenario.savings_vs_payg_inr > 0:
-                            st.metric(
-                                "Savings",
-                                format_inr(scenario.savings_vs_payg_inr),
-                                delta=format_percentage(scenario.savings_percentage)
-                            )
-                        else:
-                            st.info("Baseline comparison")
+            chart_col1, chart_col2 = st.columns(2)
 
-                        if scenario.exchange_rate_used > 0:
-                            st.metric("Exchange Rate", f"₹{scenario.exchange_rate_used:.2f}/£")
+            with chart_col1:
+                fee_chart = create_fee_projection_chart(projections_data)
+                st.plotly_chart(fee_chart, use_container_width=True)
 
-                        # Additional breakdown
-                        breakdown = scenario.breakdown
-                        if 'uk_earnings' in breakdown and breakdown['uk_earnings']['total_interest_gbp'] > 0:
-                            uk_earnings = breakdown['uk_earnings']
-                            st.caption(f"UK Interest: £{uk_earnings['total_interest_gbp']:.0f} ({uk_earnings['avg_interest_rate']*100:.1f}% avg BoE rate)")
+            with chart_col2:
+                fx_chart = create_fx_projection_chart(projections_data)
+                st.plotly_chart(fx_chart, use_container_width=True)
 
-                # Data Transparency Section
-                st.subheader("🔍 Data Transparency")
+            # Savings comparison
+            st.subheader("💰 Strategy Comparison")
+            savings_chart = create_savings_comparison_chart(scenarios)
+            if savings_chart:
+                st.plotly_chart(savings_chart, use_container_width=True)
 
-                if transparency:
-                    # Create expandable section for detailed explanation
-                    with st.expander("📊 How These Numbers Are Calculated", expanded=False):
-                        explanation = get_calculation_explanation(transparency)
-                        st.markdown(explanation)
+            # Exchange rate forecast table
+            st.subheader("📈 Exchange Rate Forecast")
+            fx_data = []
+            for year in range(conversion_year, education_year + 3):
+                rate = data_processor.project_fx_rate(year)
+                status = "Historical" if year <= 2025 else "Projected"
+                fx_data.append({
+                    'Year': year,
+                    'Rate (₹/£)': f"₹{rate:.2f}",
+                    'Status': status
+                })
 
-                    # Parent verification guide
-                    with st.expander("✅ How Parents Can Verify This Data", expanded=False):
-                        st.markdown(transparency.source_verification)
+            st.dataframe(pd.DataFrame(fx_data), hide_index=True)
 
-                        st.markdown("**📈 Exchange Rate Verification:**")
-                        st.markdown("- Visit Bank of England website (www.bankofengland.co.uk)")
-                        st.markdown("- Search for 'Exchange rates' → Historical data")
-                        st.markdown("- Alternative: xe.com for current/historical rates")
+            # Add FX disclaimer
+            st.caption("📊 FX projections based on 8-year historical CAGR (4.18% annual depreciation, 2017-2025). Actual rates may vary due to economic conditions.")
 
-                # Exchange rate projections table
-                st.subheader("📈 Exchange Rate Forecast")
-                fx_data = []
-                for year in range(conversion_year, education_year + 3):
-                    rate = data_processor.project_fx_rate(year)
-                    status = "Historical" if year <= 2025 else "Projected"
-                    fx_data.append({
-                        'Year': year,
-                        'Rate (₹/£)': f"₹{rate:.2f}",
-                        'Status': status
-                    })
-
-                st.dataframe(pd.DataFrame(fx_data), hide_index=True)
-
-                # Add FX disclaimer
-                st.caption("📊 FX projections based on 8-year historical CAGR (4.18% annual depreciation, 2017-2025). Actual rates may vary due to economic conditions.")
 
     except Exception as e:
         st.error(f"❌ Error loading data: {str(e)}")

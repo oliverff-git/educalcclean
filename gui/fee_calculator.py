@@ -203,11 +203,9 @@ class EducationSavingsCalculator:
     def calculate_total_programme_cost(self, university: str, programme: str, education_year: int) -> float:
         """Calculate total programme cost for 3 years."""
 
-        total_cost = 0
-        for year_offset in range(3):  # Assuming 3-year programme
-            year = education_year + year_offset
-            annual_fee = self.data_processor.project_fee(university, programme, year)
-            total_cost += annual_fee
+        # UK fees are fixed at enrollment for entire programme duration
+        first_year_fee = self.data_processor.project_fee(university, programme, education_year)
+        total_cost = first_year_fee * 3  # Same fee for all 3 years
 
         return total_cost
 
