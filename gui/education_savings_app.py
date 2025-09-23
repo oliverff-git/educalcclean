@@ -73,15 +73,57 @@ def _inject_top_whitespace_fix():
         """
 <style>
 /* Remove default Streamlit header to reclaim vertical space */
-header[data-testid="stHeader"] { display: none; }
+header[data-testid="stHeader"] {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+}
 
-/* Bring app content to the top on all viewports */
-.stApp { padding-top: 0 !important; }
-section.main > div:first-child { margin-top: 0 !important; padding-top: 0 !important; }
-.main .block-container { margin-top: 0 !important; padding-top: 0.25rem !important; }
+/* Remove all top padding/margin from app container */
+.stApp {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+}
 
-/* Prevent first H1/H2 from re-adding large top margins */
-.main h1:first-child, .main h2:first-child { margin-top: 0.25rem !important; }
+/* Remove padding from main section */
+section.main {
+    padding-top: 0 !important;
+}
+
+/* Collapse first container padding */
+section.main > div {
+    padding-top: 0 !important;
+}
+
+section.main > div:first-child {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+/* Main block container with minimal padding */
+.main .block-container {
+    margin-top: 0 !important;
+    padding-top: 1rem !important;
+    max-width: 100%;
+}
+
+/* Prevent first elements from adding margins */
+.main h1:first-child,
+.main h2:first-child,
+.main > div:first-child,
+.element-container:first-child {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+/* Additional fix for any stray padding */
+[data-testid="stAppViewContainer"] {
+    padding-top: 0 !important;
+}
+
+.appview-container {
+    padding-top: 0 !important;
+}
 </style>
         """,
         unsafe_allow_html=True,
@@ -94,8 +136,9 @@ def main():
     mobile_detector = get_mobile_detector()
     device_type = mobile_detector.get_device_type()
 
-    # Configure Streamlit for detected device
+    # Configure Streamlit for detected device - always start with sidebar expanded
     responsive_config = configure_streamlit_for_device(device_type)
+    responsive_config['initial_sidebar_state'] = 'expanded'  # Always start expanded
     st.set_page_config(**responsive_config)
 
     # Apply surgical white space fix
@@ -111,17 +154,22 @@ def main():
     # Apply responsive styling (which includes mobile/tablet CSS)
     apply_responsive_styling(device_type)
 
-    # Simple and effective white space fix + sidebar toggle
-    if device_type in ['mobile', 'tablet']:
-        st.markdown("""
-        <style>
-        /* Simple white space removal - work WITH Streamlit, not against it */
-        .block-container {
-            padding-top: 0.5rem;
-        }
+    # Add sidebar toggle for all devices and additional spacing fixes
+    st.markdown("""
+    <style>
+    /* Additional aggressive white space removal */
+    .block-container {
+        padding-top: 1rem !important;
+        margin-top: 0 !important;
+    }
 
-        /* Sidebar toggle button for mobile/tablet */
-        .sidebar-toggle {
+    /* Ensure sidebar is visible */
+    section[data-testid="stSidebar"] {
+        display: block !important;
+    }
+
+    /* Sidebar toggle button for all devices */
+    .sidebar-toggle {
             position: fixed;
             top: 10px;
             left: 10px;
@@ -177,15 +225,6 @@ def main():
             }
         });
         </script>
-        """, unsafe_allow_html=True)
-    else:
-        # Desktop - simple minimal CSS
-        st.markdown("""
-        <style>
-        .block-container {
-            padding-top: 1rem;
-        }
-        </style>
         """, unsafe_allow_html=True)
 
     st.title("🎓 UK Education Savings Calculator")
