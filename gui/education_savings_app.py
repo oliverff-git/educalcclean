@@ -63,31 +63,6 @@ def format_percentage(pct):
 
 
 
-def _inject_top_whitespace_fix():
-    """Trim top gap while preserving Streamlit's header/toggle."""
-    st.markdown(
-        """
-<style>
-/* Keep the header (for the native sidebar toggle), but make it compact */
-header[data-testid="stHeader"]{
-  height: 2.75rem; min-height: 0; padding: 0; background: transparent;
-}
-
-/* Remove the extra top padding Streamlit reserves for the header */
-.stApp{ padding-top: 0 !important; }
-
-/* Remove top gap on the main view container + first block */
-[data-testid="stAppViewContainer"] > .main { padding-top: 0 !important; }
-[data-testid="stAppViewContainer"] .block-container{
-  margin-top: 0 !important; padding-top: 0.5rem !important;
-}
-
-/* Ensure big titles don't re-introduce a large margin on top */
-[data-testid="stAppViewContainer"] h1 { margin-top: 0.25rem !important; }
-</style>
-        """,
-        unsafe_allow_html=True,
-    )
 
 
 def main():
@@ -101,36 +76,17 @@ def main():
     responsive_config['initial_sidebar_state'] = 'expanded'  # Always start expanded
     st.set_page_config(**responsive_config)
 
-    # Apply surgical white space fix
-    _inject_top_whitespace_fix()
 
     # Initialize mobile components
     mobile_renderer = MobileComponentRenderer(device_type)
     chart_renderer = MobileChartRenderer(device_type)
 
-    # Add mobile-specific styles
-    mobile_renderer.add_mobile_styles()
+    # Note: Mobile styles and responsive styling now handled by unified CSS system
 
-    # Apply responsive styling (which includes mobile/tablet CSS)
-    apply_responsive_styling(device_type)
-
-    # Device-specific padding adjustments
-    if device_type in ['mobile', 'tablet']:
-        st.markdown("""
-        <style>
-        [data-testid="stAppViewContainer"] .block-container{
-            padding-top: 0.5rem !important;
-        }
-        </style>
-        """, unsafe_allow_html=True)
-    else:
-        st.markdown("""
-        <style>
-        [data-testid="stAppViewContainer"] .block-container{
-            padding-top: 1rem !important;
-        }
-        </style>
-        """, unsafe_allow_html=True)
+    # Apply unified styles (replaces all scattered CSS)
+    from gui.styles import get_unified_styles
+    unified_css = get_unified_styles(device_hint=device_type)
+    st.markdown(f'<style>{unified_css}</style>', unsafe_allow_html=True)
 
     st.title("🎓 UK Education Savings Calculator")
     st.markdown("**Calculate potential savings from early INR→GBP conversion strategies**")

@@ -315,51 +315,6 @@ class MobileComponentRenderer:
 
     def add_mobile_styles(self) -> None:
         """Add mobile-specific CSS styles."""
-        if self.is_mobile:
-            mobile_css = """
-            <style>
-            /* Mobile-optimized styles */
-            .main .block-container {
-                padding-top: 0.5rem;
-                padding-bottom: 1rem;
-                padding-left: 0.5rem;
-                padding-right: 0.5rem;
-                max-width: 100%;
-            }
-
-            /* Larger touch targets */
-            .stSelectbox > div > div {
-                min-height: 44px;
-            }
-
-            .stButton > button {
-                width: 100%;
-                min-height: 44px;
-                font-size: 16px;
-            }
-
-            /* Better mobile metrics */
-            [data-testid="metric-container"] {
-                margin-bottom: 1rem;
-                padding: 1rem;
-                border-radius: 8px;
-                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            }
-
-            /* Responsive charts */
-            .js-plotly-plot {
-                width: 100% !important;
-            }
-
-            /* Mobile-friendly expanders */
-            .streamlit-expander {
-                margin-bottom: 0.5rem;
-            }
-
-            .streamlit-expander > div > div > div {
-                padding: 0.75rem;
-            }
-
-            </style>
-            """
-            st.markdown(mobile_css, unsafe_allow_html=True)
+        # CSS is now handled by the unified styles system
+        # This method now focuses on mobile-specific component behavior only
+        pass

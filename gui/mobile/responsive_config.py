@@ -147,79 +147,9 @@ class ResponsiveConfigManager:
 
     def apply_mobile_css(self, device_type: str) -> None:
         """Apply mobile-specific CSS styling."""
-        if device_type == 'mobile':
-            mobile_css = """
-            <style>
-            /* Mobile-specific styles */
-            .main .block-container {
-                padding-top: 0.5rem;
-                padding-bottom: 1rem;
-                padding-left: 1rem;
-                padding-right: 1rem;
-            }
-
-            /* Smaller margins on mobile */
-            .element-container {
-                margin-bottom: 0.5rem;
-            }
-
-            /* Compact metrics */
-            [data-testid="metric-container"] {
-                background-color: #f0f2f6;
-                border: 1px solid #e6e9ef;
-                padding: 0.5rem;
-                border-radius: 0.25rem;
-                margin-bottom: 0.5rem;
-            }
-
-
-            /* Make expanders more touch-friendly */
-            .streamlit-expander {
-                border-radius: 0.5rem;
-                margin-bottom: 0.5rem;
-            }
-
-            /* Responsive charts */
-            .js-plotly-plot {
-                width: 100% !important;
-            }
-
-            /* Stack columns on mobile */
-            .row-widget.stHorizontal > div {
-                flex: 1 1 100% !important;
-                margin-bottom: 0.5rem;
-            }
-            </style>
-            """
-            st.markdown(mobile_css, unsafe_allow_html=True)
-
-        elif device_type == 'tablet':
-            tablet_css = """
-            <style>
-            /* Tablet-specific styles */
-            .main .block-container {
-                padding-top: 0.75rem;
-                padding-bottom: 1.5rem;
-                padding-left: 1.5rem;
-                padding-right: 1.5rem;
-            }
-
-            /* Responsive metrics */
-            [data-testid="metric-container"] {
-                background-color: #f8f9fa;
-                border: 1px solid #e9ecef;
-                padding: 0.75rem;
-                border-radius: 0.375rem;
-            }
-
-            /* Two-column layout for tablets */
-            .row-widget.stHorizontal > div {
-                flex: 1 1 48% !important;
-                margin: 0 1% 1rem 1%;
-            }
-            </style>
-            """
-            st.markdown(tablet_css, unsafe_allow_html=True)
+        # CSS is now handled by unified styles system
+        # This method now only handles non-CSS responsive behavior
+        pass
 
     def get_metric_layout(self, device_type: str, total_metrics: int) -> Dict[str, Any]:
         """Get optimal metric layout for device."""
