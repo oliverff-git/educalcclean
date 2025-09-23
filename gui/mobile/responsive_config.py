@@ -172,10 +172,6 @@ class ResponsiveConfigManager:
                 margin-bottom: 0.5rem;
             }
 
-            /* Hide sidebar toggle on mobile */
-            .css-1d391kg {
-                display: none;
-            }
 
             /* Make expanders more touch-friendly */
             .streamlit-expander {

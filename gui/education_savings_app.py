@@ -64,66 +64,26 @@ def format_percentage(pct):
 
 
 def _inject_top_whitespace_fix():
-    """Remove the big white gap at the very top (mobile & desktop) safely.
-    - Hides Streamlit's header (keeps Streamlit Cloud toolbar, which is outside this header)
-    - Collapses the first container's top padding/margin
-    Uses only stable [data-testid] selectors to avoid version churn.
-    """
+    """Trim top gap while preserving Streamlit's header/toggle."""
     st.markdown(
         """
 <style>
-/* Remove default Streamlit header to reclaim vertical space */
-header[data-testid="stHeader"] {
-    display: none !important;
-    visibility: hidden !important;
-    height: 0 !important;
+/* Keep the header (for the native sidebar toggle), but make it compact */
+header[data-testid="stHeader"]{
+  height: 2.75rem; min-height: 0; padding: 0; background: transparent;
 }
 
-/* Remove all top padding/margin from app container */
-.stApp {
-    padding-top: 0 !important;
-    margin-top: 0 !important;
+/* Remove the extra top padding Streamlit reserves for the header */
+.stApp{ padding-top: 0 !important; }
+
+/* Remove top gap on the main view container + first block */
+[data-testid="stAppViewContainer"] > .main { padding-top: 0 !important; }
+[data-testid="stAppViewContainer"] .block-container{
+  margin-top: 0 !important; padding-top: 0.5rem !important;
 }
 
-/* Remove padding from main section */
-section.main {
-    padding-top: 0 !important;
-}
-
-/* Collapse first container padding */
-section.main > div {
-    padding-top: 0 !important;
-}
-
-section.main > div:first-child {
-    margin-top: 0 !important;
-    padding-top: 0 !important;
-}
-
-/* Main block container with minimal padding */
-.main .block-container {
-    margin-top: 0 !important;
-    padding-top: 1rem !important;
-    max-width: 100%;
-}
-
-/* Prevent first elements from adding margins */
-.main h1:first-child,
-.main h2:first-child,
-.main > div:first-child,
-.element-container:first-child {
-    margin-top: 0 !important;
-    padding-top: 0 !important;
-}
-
-/* Additional fix for any stray padding */
-[data-testid="stAppViewContainer"] {
-    padding-top: 0 !important;
-}
-
-.appview-container {
-    padding-top: 0 !important;
-}
+/* Ensure big titles don't re-introduce a large margin on top */
+[data-testid="stAppViewContainer"] h1 { margin-top: 0.25rem !important; }
 </style>
         """,
         unsafe_allow_html=True,
@@ -154,28 +114,23 @@ def main():
     # Apply responsive styling (which includes mobile/tablet CSS)
     apply_responsive_styling(device_type)
 
-    # Add comprehensive styling fixes
-    st.markdown("""
-    <style>
-    /* Additional aggressive white space removal */
-    .block-container {
-        padding-top: 1rem !important;
-        margin-top: 0 !important;
-    }
-
-    /* Ensure sidebar is visible */
-    section[data-testid="stSidebar"] {
-        display: block !important;
-    }
-
-    /* Simple sidebar styling - remove complex toggle for now */
-    .main .block-container {
-        max-width: 100%;
-        padding-left: 2rem;
-        padding-right: 2rem;
-    }
-    </style>
-    """, unsafe_allow_html=True)
+    # Device-specific padding adjustments
+    if device_type in ['mobile', 'tablet']:
+        st.markdown("""
+        <style>
+        [data-testid="stAppViewContainer"] .block-container{
+            padding-top: 0.5rem !important;
+        }
+        </style>
+        """, unsafe_allow_html=True)
+    else:
+        st.markdown("""
+        <style>
+        [data-testid="stAppViewContainer"] .block-container{
+            padding-top: 1rem !important;
+        }
+        </style>
+        """, unsafe_allow_html=True)
 
     st.title("🎓 UK Education Savings Calculator")
     st.markdown("**Calculate potential savings from early INR→GBP conversion strategies**")

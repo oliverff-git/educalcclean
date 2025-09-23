@@ -360,12 +360,6 @@ class MobileComponentRenderer:
                 padding: 0.75rem;
             }
 
-            /* Hide sidebar on mobile by default */
-            @media (max-width: 768px) {
-                .css-1d391kg {
-                    display: none;
-                }
-            }
             </style>
             """
             st.markdown(mobile_css, unsafe_allow_html=True)
