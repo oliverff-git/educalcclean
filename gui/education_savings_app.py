@@ -48,6 +48,113 @@ def format_percentage(pct):
     return f"{pct:.1f}%"
 
 
+def create_fee_projection_chart(projections_data):
+    """Create chart showing fee projections over time."""
+    course_info = projections_data['course_info']
+    fee_projections = projections_data['fee_projections']
+
+    # Prepare data for chart
+    years = list(fee_projections.keys())
+    fees = list(fee_projections.values())
+
+    # Historical vs projected
+    historical_years = [y for y in years if y <= 2025]
+    projected_years = [y for y in years if y > 2025]
+
+    fig = go.Figure()
+
+    # Historical data
+    if historical_years:
+        historical_fees = [fee_projections[y] for y in historical_years]
+        fig.add_trace(go.Scatter(
+            x=historical_years,
+            y=historical_fees,
+            mode='lines+markers',
+            name='Historical',
+            line=dict(color='#1f77b4', width=3),
+            marker=dict(size=8)
+        ))
+
+    # Projected data
+    if projected_years:
+        # Connect last historical to first projected
+        connect_years = [historical_years[-1]] + projected_years if historical_years else projected_years
+        connect_fees = [fee_projections[y] for y in connect_years]
+
+        fig.add_trace(go.Scatter(
+            x=connect_years,
+            y=connect_fees,
+            mode='lines+markers',
+            name='Projected',
+            line=dict(color='#ff7f0e', width=3, dash='dash'),
+            marker=dict(size=8)
+        ))
+
+    fig.update_layout(
+        title=f"{course_info['university']} - {course_info['programme']}<br>Fee Projections (CAGR: {course_info['cagr_pct']:.2f}%)",
+        xaxis_title="Year",
+        yaxis_title="Annual Fee (GBP)",
+        height=400,
+        hovermode='x unified'
+    )
+
+    fig.update_yaxes(tickformat='£,.0f')
+
+    return fig
+
+
+def create_fx_projection_chart(projections_data):
+    """Create chart showing exchange rate projections."""
+    fx_projections = projections_data['fx_projections']
+
+    years = list(fx_projections.keys())
+    rates = list(fx_projections.values())
+
+    # Historical vs projected
+    historical_years = [y for y in years if y <= 2025]
+    projected_years = [y for y in years if y > 2025]
+
+    fig = go.Figure()
+
+    # Historical data
+    if historical_years:
+        historical_rates = [fx_projections[y] for y in historical_years]
+        fig.add_trace(go.Scatter(
+            x=historical_years,
+            y=historical_rates,
+            mode='lines+markers',
+            name='Historical',
+            line=dict(color='#2ca02c', width=3),
+            marker=dict(size=8)
+        ))
+
+    # Projected data
+    if projected_years:
+        connect_years = [historical_years[-1]] + projected_years if historical_years else projected_years
+        connect_rates = [fx_projections[y] for y in connect_years]
+
+        fig.add_trace(go.Scatter(
+            x=connect_years,
+            y=connect_rates,
+            mode='lines+markers',
+            name='Projected',
+            line=dict(color='#d62728', width=3, dash='dash'),
+            marker=dict(size=8)
+        ))
+
+    fig.update_layout(
+        title="GBP/INR Exchange Rate Projections<br>(Historical CAGR: 4.18% - Conservative)",
+        xaxis_title="Year",
+        yaxis_title="INR per GBP",
+        height=400,
+        hovermode='x unified'
+    )
+
+    fig.update_yaxes(tickformat='₹,.0f')
+
+    return fig
+
+
 # Legacy chart functions kept for backward compatibility
 # Mobile-optimized versions are used in main app
 
@@ -262,55 +369,17 @@ def main():
             # Charts section
             st.subheader("📊 Projections")
 
-            # Create charts using correct data structure
+            # Create charts using working repository's exact functions
             chart_col1, chart_col2 = st.columns(2)
             with chart_col1:
-                # Fee projection chart
-                if projections_data and 'fee_projections' in projections_data:
-                    fee_projections = projections_data['fee_projections']
-                    if fee_projections:
-                        years = sorted(fee_projections.keys())
-                        fees = [fee_projections[year] for year in years]
-
-                        fee_fig = go.Figure()
-                        fee_fig.add_trace(go.Scatter(
-                            x=years,
-                            y=fees,
-                            mode='lines+markers',
-                            name='Projected Fees',
-                            line=dict(color='#1f77b4')
-                        ))
-                        fee_fig.update_layout(
-                            title="Fee Projections",
-                            xaxis_title="Year",
-                            yaxis_title="Annual Fee (GBP)",
-                            height=400
-                        )
-                        st.plotly_chart(fee_fig, use_container_width=True)
+                # Fee projection chart with historical/projected distinction
+                fee_chart = create_fee_projection_chart(projections_data)
+                st.plotly_chart(fee_chart, use_container_width=True)
 
             with chart_col2:
-                # FX projection chart
-                if projections_data and 'fx_projections' in projections_data:
-                    fx_projections = projections_data['fx_projections']
-                    if fx_projections:
-                        years = sorted(fx_projections.keys())
-                        rates = [fx_projections[year] for year in years]
-
-                        fx_fig = go.Figure()
-                        fx_fig.add_trace(go.Scatter(
-                            x=years,
-                            y=rates,
-                            mode='lines+markers',
-                            name='Exchange Rate',
-                            line=dict(color='#ff7f0e')
-                        ))
-                        fx_fig.update_layout(
-                            title="Exchange Rate Projections",
-                            xaxis_title="Year",
-                            yaxis_title="INR per GBP",
-                            height=400
-                        )
-                        st.plotly_chart(fx_fig, use_container_width=True)
+                # FX projection chart with historical/projected distinction
+                fx_chart = create_fx_projection_chart(projections_data)
+                st.plotly_chart(fx_chart, use_container_width=True)
 
             # Strategy comparison
             st.subheader("💰 Strategy Comparison")
