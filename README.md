@@ -12,7 +12,7 @@ An interactive tool for Indian families to calculate potential savings from earl
 - **Real Data**: Official university fees + Bank of England interest rates + historical GBP/INR rates
 - **Full Transparency**: Data quality indicators and parent verification guides
 
-## 🚀 Quick Start
+## 🚀 Quick Start   
 
 ### Run Locally
 ```bash
