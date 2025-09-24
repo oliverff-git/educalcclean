@@ -247,6 +247,7 @@ def main():
 
             # Calculate ROI scenarios if enabled
             roi_scenarios = []
+            roi_error_message = None
             if roi_config.get("enabled", False):
                 try:
                     roi_scenarios = calculator.calculate_all_roi_scenarios(
@@ -258,7 +259,9 @@ def main():
                         roi_config["selected_strategies"]
                     )
                 except Exception as e:
-                    st.sidebar.error(f"ROI calculation error: {str(e)}")
+                    roi_error_message = str(e)
+                    st.sidebar.error(f"⚠️ Investment analysis unavailable: {roi_error_message}")
+                    st.sidebar.info("💡 This usually means market data files are missing. Investment analysis requires actual historical market data.")
                     roi_scenarios = []
 
             # Sidebar scenarios
@@ -499,7 +502,29 @@ def main():
 
             elif roi_config.get("enabled", False):
                 st.markdown("---")
-                st.warning("💰 Investment analysis enabled but no scenarios calculated. Please check your selections.")
+                st.header("💰 Investment Strategy Analysis")
+
+                if roi_error_message:
+                    st.error(f"⚠️ Investment analysis unavailable: {roi_error_message}")
+
+                    with st.expander("ℹ️ Why is investment analysis unavailable?"):
+                        st.markdown("""
+                        **Common reasons for investment analysis errors:**
+
+                        • **Missing market data files**: Investment calculations require historical price data for assets (Gold, NIFTY, FTSE)
+                        • **Invalid date range**: Requested investment period may not have available data
+                        • **Asset data quality issues**: Market data files may be corrupted or have missing values
+
+                        **To resolve this:**
+                        1. Ensure market data CSV files are present in the `data/markets/` directory
+                        2. Verify the files have the required columns (`month`, `price_close`)
+                        3. Check that data covers your selected investment period
+                        4. Try using different assets or shorter investment periods
+
+                        **Note**: Traditional currency conversion strategies are still available and don't require market data.
+                        """)
+                else:
+                    st.warning("💰 Investment analysis enabled but no scenarios calculated. Please check your selections.")
 
 
     except Exception as e:

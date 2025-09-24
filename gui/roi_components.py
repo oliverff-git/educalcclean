@@ -34,14 +34,14 @@ def render_roi_sidebar(conversion_year: int, education_year: int) -> Dict:
     if not enable_roi:
         return {"enabled": False}
 
-    # Investment amount
+    # Investment amount with more realistic ranges
     investment_amount = st.sidebar.number_input(
         "💵 Investment Amount (₹)",
-        min_value=100000,
-        max_value=100000000,
-        value=5000000,
+        min_value=500000,     # 5 lakhs minimum
+        max_value=50000000,   # 5 crores maximum
+        value=2000000,        # 20 lakhs default
         step=100000,
-        help="Initial amount to invest (in INR)"
+        help="Initial amount to invest (in INR). Typical range: ₹5L - ₹5Cr for education planning."
     )
 
     # Strategy selection
@@ -149,6 +149,9 @@ def render_roi_scenario_cards(scenarios: List):
 
     for i, scenario in enumerate(scenarios):
         with st.expander(f"💎 {scenario.strategy_name}", expanded=(i == 0)):
+            # Data quality indicator at the top
+            render_data_quality_indicator(scenario)
+
             col1, col2 = st.columns(2)
 
             with col1:
@@ -278,6 +281,33 @@ def format_roi_metrics(amount: float, is_currency: bool = True) -> str:
         return f"{amount:.1f}%"
 
 
+def render_data_quality_indicator(scenario):
+    """Render data quality indicator for a scenario.
+
+    Args:
+        scenario: SavingsScenario with conversion_details containing data quality info
+    """
+    if 'data_quality' in scenario.conversion_details:
+        quality_info = scenario.conversion_details['data_quality']
+        quality = quality_info.get('quality', 'UNKNOWN')
+        confidence = quality_info.get('confidence', 'LOW')
+
+        # Color coding
+        color_map = {
+            'EXCELLENT': '🟢',
+            'GOOD': '🟡',
+            'FAIR': '🟠',
+            'POOR': '🔴',
+            'UNAVAILABLE': '⚫'
+        }
+
+        icon = color_map.get(quality, '❓')
+        st.caption(f"{icon} Data Quality: {quality} | Confidence: {confidence}")
+
+        if quality in ['POOR', 'UNAVAILABLE']:
+            st.warning("⚠️ Limited data available for this asset. Projections may be unreliable.")
+
+
 def render_investment_warnings():
     """Render investment risk warnings."""
     with st.expander("⚠️ Important Investment Disclaimers"):
@@ -289,12 +319,14 @@ def render_investment_warnings():
         • **Currency Risk**: FTSE investments involve GBP/INR conversion risk.
         • **Education Planning**: This tool is for planning purposes only. Consult financial advisors for investment decisions.
         • **Data Limitations**: Projections are based on historical trends and may not reflect future market conditions.
+        • **Data Requirements**: Investment analysis requires actual market data files - estimates may be used when data is unavailable.
 
         **Recommendations:**
         • Diversify across multiple asset classes
         • Consider your risk tolerance and investment timeline
         • Review and adjust strategy regularly
         • Seek professional financial advice for significant investments
+        • Verify data quality indicators before making decisions
         """)
 
 

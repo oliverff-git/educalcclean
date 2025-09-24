@@ -374,7 +374,8 @@ class EducationSavingsCalculator:
                     'volatility': growth_result.volatility,
                     'max_drawdown': growth_result.max_drawdown,
                     'investment_period': f"{conversion_year} → {education_year}",
-                    'growth_curve': growth_result.curve.to_dict('records') if hasattr(growth_result.curve, 'to_dict') else []
+                    'growth_curve': growth_result.curve.to_dict('records') if hasattr(growth_result.curve, 'to_dict') else [],
+                    'data_quality': growth_result.data_quality
                 },
                 breakdown={
                     'investment_type': 'Market-based ROI' if asset_type != 'FIXED_5PCT' else 'Fixed rate savings',
@@ -390,11 +391,13 @@ class EducationSavingsCalculator:
             )
 
         except Exception as e:
-            # Fallback scenario if ROI calculation fails
-            payg_scenario = self.calculate_payg_scenario(university, programme, education_year, 0)
-            payg_scenario.strategy_name = f"{asset_type} Investment (Error - using baseline)"
-            payg_scenario.conversion_details = {'error': str(e)}
-            return payg_scenario
+            # Don't silently fall back - raise the error with context
+            error_msg = (
+                f"Investment analysis failed for {asset_type}: {str(e)}. "
+                f"This may be due to missing market data files or calculation errors."
+            )
+            logger.error(error_msg)
+            raise ValueError(error_msg)
 
     def calculate_all_roi_scenarios(
         self,

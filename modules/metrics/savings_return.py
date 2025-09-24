@@ -41,6 +41,7 @@ class SavingsGrowthResult:
     initial_value: float
     max_value: float
     min_value: float
+    data_quality: Dict   # Data quality metrics
 
 
 @jit(nopython=True) if HAS_NUMBA else lambda x: x
@@ -117,6 +118,15 @@ def grow_lump_sum(monthly_prices: pd.DataFrame, start: pd.Timestamp,
     max_value = px["value_native"].max()
     min_value = px["value_native"].min()
 
+    # Basic data quality assessment
+    data_quality = {
+        'data_points': len(px),
+        'date_range': (px["month"].iloc[0], px["month"].iloc[-1]),
+        'years_of_data': years,
+        'quality': 'GOOD' if len(px) >= 24 else 'FAIR' if len(px) >= 12 else 'POOR',
+        'confidence': 'HIGH' if years >= 2 else 'MEDIUM' if years >= 1 else 'LOW'
+    }
+
     return SavingsGrowthResult(
         asset=monthly_prices.get("asset", ["Unknown"])[0] if "asset" in monthly_prices.columns else "Unknown",
         start_month=px["month"].iloc[0],
@@ -130,7 +140,8 @@ def grow_lump_sum(monthly_prices: pd.DataFrame, start: pd.Timestamp,
         currency="INR",  # Default to INR
         initial_value=lump_sum,
         max_value=max_value,
-        min_value=min_value
+        min_value=min_value,
+        data_quality=data_quality
     )
 
 
@@ -175,6 +186,15 @@ def grow_fixed_rate(start: pd.Timestamp, end: pd.Timestamp,
     cagr = calculate_cagr(lump_sum, final_value, years) if years > 0 else 0.0
     total_return = (final_value - lump_sum) / lump_sum if lump_sum > 0 else 0.0
 
+    # Fixed rate has perfect data quality
+    data_quality = {
+        'data_points': len(months),
+        'date_range': (months[0], months[-1]),
+        'years_of_data': years,
+        'quality': 'EXCELLENT',  # Fixed rate is deterministic
+        'confidence': 'HIGH'
+    }
+
     return SavingsGrowthResult(
         asset="FIXED_RATE",
         start_month=months[0],
@@ -188,7 +208,8 @@ def grow_fixed_rate(start: pd.Timestamp, end: pd.Timestamp,
         currency="INR",
         initial_value=lump_sum,
         max_value=final_value,
-        min_value=lump_sum
+        min_value=lump_sum,
+        data_quality=data_quality
     )
 
 
@@ -281,17 +302,26 @@ class ROICalculator:
 
         Returns:
             Dictionary mapping asset to SavingsGrowthResult
+
+        Raises:
+            ValueError: If any asset calculation fails
         """
         results = {}
+        errors = []
 
         for asset in assets:
             try:
                 results[asset] = self.calculate_asset_growth(asset, start_date, end_date, amount)
             except Exception as e:
-                logger.error(f"Error calculating growth for {asset}: {e}")
-                # Create fallback result
-                start = pd.Timestamp(start_date)
-                end = pd.Timestamp(end_date)
-                results[asset] = grow_fixed_rate(start, end, amount, 0.03)  # 3% fallback
+                error_msg = f"Failed to calculate {asset}: {str(e)}"
+                logger.error(error_msg)
+                errors.append(error_msg)
+
+        if errors and not results:
+            # All calculations failed
+            raise ValueError(f"Investment calculations failed for all assets: {'; '.join(errors)}")
+        elif errors:
+            # Some calculations failed - log warnings but continue with successful ones
+            logger.warning(f"Some investment calculations failed: {'; '.join(errors)}")
 
         return results
