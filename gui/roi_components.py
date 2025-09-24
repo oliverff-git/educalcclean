@@ -164,13 +164,13 @@ def render_roi_scenarios_summary(scenarios: List, investment_amount: float):
             f"₹{best_scenario.savings_vs_payg_inr:,.0f} saved"
         )
 
-    # Average savings
-    avg_savings = np.mean([s.savings_vs_payg_inr for s in scenarios])
+    # Average education cost covered
+    avg_coverage = np.mean([s.savings_vs_payg_inr for s in scenarios])
     with col2:
         st.metric(
-            "📊 Average Savings",
-            f"₹{avg_savings:,.0f}",
-            f"{len([s for s in scenarios if s.savings_vs_payg_inr > 0])}/{len(scenarios)} profitable"
+            "📊 Education Cost Covered",
+            f"₹{avg_coverage:,.0f}",
+            f"{len([s for s in scenarios if s.savings_vs_payg_inr > 0])}/{len(scenarios)} strategies work"
         )
 
     # Investment growth
@@ -182,8 +182,9 @@ def render_roi_scenarios_summary(scenarios: List, investment_amount: float):
             f"Over {best_scenario.conversion_details.get('investment_period', 'N/A')}"
         )
 
-    # Return on Investment (ROI) - more meaningful than cost reduction
-    roi = (best_scenario.savings_vs_payg_inr / investment_amount) * 100 if investment_amount > 0 else 0
+    # Return on Investment (ROI) - based on actual profit, not savings
+    actual_profit = best_scenario.conversion_details.get('final_pot_inr', 0) - investment_amount
+    roi = (actual_profit / investment_amount) * 100 if investment_amount > 0 else 0
 
     # Cap ROI display at reasonable levels
     if roi > 500:
@@ -194,7 +195,7 @@ def render_roi_scenarios_summary(scenarios: List, investment_amount: float):
         roi_desc = "⚠️ significant loss"
     else:
         roi_display = f"{roi:.1f}%"
-        roi_desc = "profit on investment"
+        roi_desc = "return on investment"
 
     with col4:
         st.metric(
@@ -221,9 +222,13 @@ def render_roi_scenario_cards(scenarios: List):
 
             with col1:
                 st.markdown("**💰 Investment Results**")
-                st.write(f"Total Cost: ₹{scenario.total_cost_inr:,.0f}")
-                st.write(f"Money Saved: ₹{scenario.savings_vs_payg_inr:,.0f}")
-                st.write(f"Savings Rate: {scenario.savings_percentage:.1f}%")
+                final_value = scenario.conversion_details.get('final_pot_inr', 0)
+                initial_investment = scenario.conversion_details.get('initial_investment_inr', 0)
+                actual_profit = final_value - initial_investment
+
+                st.write(f"Final Portfolio: ₹{final_value:,.0f}")
+                st.write(f"Actual Profit: ₹{actual_profit:,.0f}")
+                st.write(f"Education Coverage: ₹{scenario.savings_vs_payg_inr:,.0f}")
 
                 # Investment details
                 if 'cagr' in scenario.conversion_details:

@@ -374,22 +374,39 @@ class EducationSavingsCalculator:
 
             validation_warnings = []
 
+            # Enhanced sanity checks for realistic investment returns
+
             # Check for unrealistic annual growth rates
-            if annual_growth_rate > 50:
+            if annual_growth_rate > 25:  # >25% annual is extremely optimistic
                 validation_warnings.append(f"Extremely high annual growth: {annual_growth_rate:.1f}%")
+            elif annual_growth_rate > 15:  # >15% annual is optimistic
+                validation_warnings.append(f"High annual growth: {annual_growth_rate:.1f}% - verify assumptions")
             elif annual_growth_rate < -50:
                 validation_warnings.append(f"Extreme annual loss: {annual_growth_rate:.1f}%")
 
-            # Check for unrealistic total returns
-            if total_return > 500:
+            # Check for unrealistic total returns based on investment period
+            max_reasonable_return = investment_years * 20  # Max 20% per year is aggressive but possible
+            if total_return > max_reasonable_return:
+                validation_warnings.append(f"Total return {total_return:.1f}% very high for {investment_years} years")
+            elif total_return > 500:
                 validation_warnings.append(f"Unrealistic total return: {total_return:.1f}%")
             elif total_return < -90:
                 validation_warnings.append(f"Unrealistic total loss: {total_return:.1f}%")
 
+            # Check for ROI sanity (profit-based)
+            actual_profit = final_pot_inr - initial_amount_inr
+            actual_roi = (actual_profit / initial_amount_inr) * 100 if initial_amount_inr > 0 else 0
+
+            # For 3-year investments, ROI >60% is very optimistic
+            if investment_years <= 3 and actual_roi > 60:
+                validation_warnings.append(f"ROI {actual_roi:.1f}% very high for {investment_years}-year investment")
+            elif investment_years <= 5 and actual_roi > 100:
+                validation_warnings.append(f"ROI {actual_roi:.1f}% extremely high for {investment_years}-year investment")
+
             # Check for impossibly high final values
             multiplier = final_pot_inr / initial_amount_inr if initial_amount_inr > 0 else 0
-            if multiplier > 10:
-                validation_warnings.append(f"Investment grew {multiplier:.1f}x - verify calculation")
+            if multiplier > 5:  # 5x growth is very aggressive
+                validation_warnings.append(f"Investment grew {multiplier:.1f}x in {investment_years} years - verify calculation")
 
             # Log warnings but don't fail calculation
             if validation_warnings:
