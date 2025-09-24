@@ -1,4 +1,4 @@
-# 🎓 UK Education Savings Calculator
+# 🎓 UK Education Savings Calculator Hello
 
 An interactive tool for Indian families to calculate potential savings from early INR→GBP conversion strategies for UK university education.
 
