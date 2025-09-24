@@ -238,7 +238,13 @@ def main():
                 return
 
             # ROI Analysis Configuration
-            roi_config = render_roi_sidebar(conversion_year, education_year)
+            roi_config = render_roi_sidebar(
+                conversion_year,
+                education_year,
+                selected_university,
+                selected_course,
+                calculator
+            )
 
             # Calculate scenarios first for sidebar display
             scenarios = calculator.compare_all_strategies(

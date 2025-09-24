@@ -12,12 +12,15 @@ from typing import List, Dict, Optional
 import numpy as np
 
 
-def render_roi_sidebar(conversion_year: int, education_year: int) -> Dict:
+def render_roi_sidebar(conversion_year: int, education_year: int, university: str = None, programme: str = None, calculator = None) -> Dict:
     """Render ROI analysis sidebar components.
 
     Args:
         conversion_year: Year to start investing
         education_year: Year education starts
+        university: University name for fee calculation
+        programme: Programme name for fee calculation
+        calculator: EducationSavingsCalculator instance
 
     Returns:
         Dictionary with ROI configuration
@@ -34,15 +37,65 @@ def render_roi_sidebar(conversion_year: int, education_year: int) -> Dict:
     if not enable_roi:
         return {"enabled": False}
 
-    # Investment amount with more realistic ranges
-    investment_amount = st.sidebar.number_input(
-        "💵 Investment Amount (₹)",
-        min_value=500000,     # 5 lakhs minimum
-        max_value=50000000,   # 5 crores maximum
-        value=2000000,        # 20 lakhs default
-        step=100000,
-        help="Initial amount to invest (in INR). Typical range: ₹5L - ₹5Cr for education planning."
+    # Helper function to format amounts
+    def format_amount(amt):
+        if amt >= 10000000:  # 1 crore
+            return f"₹{amt/10000000:.2f}Cr"
+        elif amt >= 100000:  # 1 lakh
+            return f"₹{amt/100000:.1f}L"
+        else:
+            return f"₹{amt:,.0f}"
+
+    # Calculate investment options based on course fees
+    investment_options = {}
+
+    if calculator and university and programme:
+        try:
+            # Calculate total programme fees
+            total_fees_gbp = calculator.calculate_total_programme_cost(university, programme, education_year)
+            current_fx_rate = calculator.data_processor.get_september_fx_rate(conversion_year)
+            total_fees_inr = total_fees_gbp * current_fx_rate
+
+            # Create year-based options
+            investment_options = {
+                f"📅 3 Years Fees ({format_amount(total_fees_inr)})": total_fees_inr,
+                f"📅 2 Years Fees ({format_amount(total_fees_inr * 2/3)})": total_fees_inr * 2/3,
+                f"📅 1 Year Fees ({format_amount(total_fees_inr / 3)})": total_fees_inr / 3,
+                f"📅 1/2 Year Fees ({format_amount(total_fees_inr / 6)})": total_fees_inr / 6,
+            }
+        except Exception:
+            # Fallback if calculation fails
+            pass
+
+    # Add fixed amount options
+    investment_options.update({
+        f"💰 ₹20 Lakhs": 2000000,
+        f"💰 ₹50 Lakhs": 5000000,
+        f"💰 ₹1 Crore": 10000000,
+        "💡 Custom Amount...": "custom"
+    })
+
+    # Dropdown selection
+    selected_option = st.sidebar.selectbox(
+        "💵 Investment Amount",
+        options=list(investment_options.keys()),
+        index=0,  # Default to first option
+        help="Select investment amount based on programme fees or fixed amounts"
     )
+
+    # Get the investment amount
+    if investment_options[selected_option] == "custom":
+        investment_amount = st.sidebar.number_input(
+            "Enter Custom Amount (₹)",
+            min_value=500000,
+            max_value=50000000,
+            value=2000000,
+            step=100000,
+            help="Custom investment amount in INR"
+        )
+    else:
+        investment_amount = investment_options[selected_option]
+        st.sidebar.info(f"💰 Investment: {format_amount(investment_amount)}")
 
     # Strategy selection
     available_strategies = {
