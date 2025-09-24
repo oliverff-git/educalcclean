@@ -46,10 +46,10 @@ def render_roi_sidebar(conversion_year: int, education_year: int) -> Dict:
 
     # Strategy selection
     available_strategies = {
-        "GOLD_INR": "Gold (INR) - Inflation hedge",
-        "NIFTY_INR": "NIFTY 50 - Indian equity market",
-        "FTSE_GBP": "FTSE 100 - UK equity market",
-        "FIXED_5PCT": "Fixed Rate 5% - Capital protected"
+        "GOLD_INR": "🟡 Gold Investment - Safe, beats inflation",
+        "NIFTY_INR": "🔴 Indian Stock Market (NIFTY) - Higher growth potential",
+        "FTSE_GBP": "🔴 UK Stock Market (FTSE) - International exposure",
+        "FIXED_5PCT": "🟢 Fixed Deposit 5% - Guaranteed returns"
     }
 
     selected_strategies = st.sidebar.multiselect(
@@ -106,7 +106,7 @@ def render_roi_scenarios_summary(scenarios: List, investment_amount: float):
     best_scenario = max(scenarios, key=lambda x: x.savings_vs_payg_inr)
     with col1:
         st.metric(
-            "🏆 Best Strategy",
+            "🏆 Best Option",
             best_scenario.strategy_name.split(' (')[0],  # Remove CAGR from display
             f"₹{best_scenario.savings_vs_payg_inr:,.0f} saved"
         )
@@ -124,18 +124,30 @@ def render_roi_scenarios_summary(scenarios: List, investment_amount: float):
     best_growth = best_scenario.conversion_details.get('total_return', 0) * 100
     with col3:
         st.metric(
-            "📈 Best Return",
+            "📈 Total Growth",
             f"{best_growth:.1f}%",
             f"Over {best_scenario.conversion_details.get('investment_period', 'N/A')}"
         )
 
-    # Effective cost reduction
-    cost_reduction = (best_scenario.savings_vs_payg_inr / investment_amount) * 100
+    # Return on Investment (ROI) - more meaningful than cost reduction
+    roi = (best_scenario.savings_vs_payg_inr / investment_amount) * 100 if investment_amount > 0 else 0
+
+    # Cap ROI display at reasonable levels
+    if roi > 500:
+        roi_display = "500%+"
+        roi_desc = "⚠️ verify calculations"
+    elif roi < -100:
+        roi_display = "-100%"
+        roi_desc = "⚠️ significant loss"
+    else:
+        roi_display = f"{roi:.1f}%"
+        roi_desc = "profit on investment"
+
     with col4:
         st.metric(
-            "💰 Cost Reduction",
-            f"{cost_reduction:.1f}%",
-            "vs initial investment"
+            "📈 Return on Investment",
+            roi_display,
+            roi_desc
         )
 
 
@@ -155,32 +167,39 @@ def render_roi_scenario_cards(scenarios: List):
             col1, col2 = st.columns(2)
 
             with col1:
-                st.markdown("**💰 Financial Metrics**")
+                st.markdown("**💰 Investment Results**")
                 st.write(f"Total Cost: ₹{scenario.total_cost_inr:,.0f}")
-                st.write(f"Savings vs Pay-as-you-go: ₹{scenario.savings_vs_payg_inr:,.0f}")
-                st.write(f"Savings Percentage: {scenario.savings_percentage:.1f}%")
+                st.write(f"Money Saved: ₹{scenario.savings_vs_payg_inr:,.0f}")
+                st.write(f"Savings Rate: {scenario.savings_percentage:.1f}%")
 
                 # Investment details
                 if 'cagr' in scenario.conversion_details:
                     cagr = scenario.conversion_details['cagr'] * 100
-                    st.write(f"CAGR: {cagr:.1f}%")
+                    st.write(f"Annual Growth: {cagr:.1f}%")
 
                 if 'total_return' in scenario.conversion_details:
                     total_return = scenario.conversion_details['total_return'] * 100
-                    st.write(f"Total Return: {total_return:.1f}%")
+                    st.write(f"Total Profit: {total_return:.1f}%")
 
             with col2:
-                st.markdown("**⚖️ Risk Analysis**")
+                st.markdown("**⚖️ Risk Level**")
                 risk_level = scenario.breakdown.get('risk_level', 'Unknown')
-                st.write(f"Risk Level: {risk_level}")
+                st.write(f"Investment Type: {risk_level}")
 
                 if 'volatility' in scenario.conversion_details:
                     volatility = scenario.conversion_details['volatility'] * 100
-                    st.write(f"Volatility: {volatility:.1f}%")
+                    # Simplify volatility explanation
+                    if volatility < 5:
+                        risk_desc = "Very Safe"
+                    elif volatility < 15:
+                        risk_desc = "Moderate Risk"
+                    else:
+                        risk_desc = "Higher Risk"
+                    st.write(f"Risk Level: {risk_desc} ({volatility:.1f}%)")
 
                 if 'max_drawdown' in scenario.conversion_details:
                     max_drawdown = abs(scenario.conversion_details['max_drawdown']) * 100
-                    st.write(f"Max Drawdown: {max_drawdown:.1f}%")
+                    st.write(f"Worst Case Loss: {max_drawdown:.1f}%")
 
             # Performance summary
             performance = scenario.breakdown.get('performance_summary', '')
@@ -287,6 +306,20 @@ def render_data_quality_indicator(scenario):
     Args:
         scenario: SavingsScenario with conversion_details containing data quality info
     """
+    # Check for unrealistic values first
+    warnings = []
+
+    if 'cagr' in scenario.conversion_details:
+        cagr_pct = scenario.conversion_details['cagr'] * 100
+        if cagr_pct < -50 or cagr_pct > 50:
+            warnings.append(f"Unrealistic annual growth: {cagr_pct:.1f}%")
+
+    if 'total_return' in scenario.conversion_details:
+        total_return_pct = scenario.conversion_details['total_return'] * 100
+        if total_return_pct < -90 or total_return_pct > 1000:
+            warnings.append(f"Unrealistic total return: {total_return_pct:.1f}%")
+
+    # Show data quality info
     if 'data_quality' in scenario.conversion_details:
         quality_info = scenario.conversion_details['data_quality']
         quality = quality_info.get('quality', 'UNKNOWN')
@@ -306,6 +339,11 @@ def render_data_quality_indicator(scenario):
 
         if quality in ['POOR', 'UNAVAILABLE']:
             st.warning("⚠️ Limited data available for this asset. Projections may be unreliable.")
+
+    # Show any validation warnings
+    for warning in warnings:
+        st.error(f"⚠️ {warning}")
+        st.info("💡 This may indicate a calculation error or unrealistic market data.")
 
 
 def render_investment_warnings():

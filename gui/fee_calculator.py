@@ -355,7 +355,7 @@ class EducationSavingsCalculator:
             savings_pct = (savings_inr / payg_cost_inr) * 100 if payg_cost_inr > 0 else 0
 
             # Strategy name with performance
-            strategy_name = f"{asset_type.replace('_', ' ')} Investment ({growth_result.cagr:.1f}% CAGR)"
+            strategy_name = f"{asset_type.replace('_', ' ')} Investment ({growth_result.cagr*100:.1f}% CAGR)"
 
             return SavingsScenario(
                 strategy_name=strategy_name,
