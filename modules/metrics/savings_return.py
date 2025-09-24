@@ -223,8 +223,10 @@ def calculate_effective_cost(projected_fee_inr: float, final_pot_inr: float) -> 
     Returns:
         Effective cost (never negative)
     """
-    effective_cost = projected_fee_inr - min(projected_fee_inr, final_pot_inr)
-    return max(0, effective_cost)
+    # If investment covers all education costs, effective cost is 0
+    # If investment is insufficient, effective cost is the shortfall
+    effective_cost = max(0, projected_fee_inr - final_pot_inr)
+    return effective_cost
 
 
 def compare_savings_vs_payg(payg_total_inr: float, effective_cost_inr: float) -> Dict[str, float]:
