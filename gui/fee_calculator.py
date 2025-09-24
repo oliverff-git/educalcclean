@@ -8,6 +8,9 @@ import pandas as pd
 import numpy as np
 from datetime import datetime
 from typing import Dict, List, Optional, Tuple
+import logging
+
+logger = logging.getLogger(__name__)
 from dataclasses import dataclass
 from pathlib import Path
 import sys
@@ -335,16 +338,26 @@ class EducationSavingsCalculator:
                     initial_amount_inr,
                     0.05
                 )
+            elif asset_type == "FTSE_GBP":
+                # FTSE requires currency conversion BEFORE calculation
+                conversion_fx_rate = self.data_processor.get_september_fx_rate(conversion_year)
+                initial_amount_gbp = initial_amount_inr / conversion_fx_rate
+
+                # Calculate growth in GBP
+                growth_result = roi_calc.calculate_asset_growth(
+                    asset_type, start_date, end_date, initial_amount_gbp
+                )
+                # growth_result.final_value_native is now in GBP
             else:
-                # Asset-based growth
+                # Asset-based growth (INR assets)
                 growth_result = roi_calc.calculate_asset_growth(
                     asset_type, start_date, end_date, initial_amount_inr
                 )
 
-            # Currency conversion for FTSE
+            # Handle final pot conversion properly
             final_pot_inr = growth_result.final_value_native
             if asset_type == "FTSE_GBP":
-                # Convert GBP pot to INR using education year rate
+                # Convert GBP result to INR using education year rate
                 final_pot_inr = growth_result.final_value_native * education_fx_rate
 
             # Calculate effective cost after investment
@@ -353,6 +366,34 @@ class EducationSavingsCalculator:
             # Calculate savings
             savings_inr = payg_cost_inr - effective_cost_inr
             savings_pct = (savings_inr / payg_cost_inr) * 100 if payg_cost_inr > 0 else 0
+
+            # Add validation for unrealistic results
+            investment_years = education_year - conversion_year
+            annual_growth_rate = growth_result.cagr * 100
+            total_return = growth_result.total_return * 100
+
+            validation_warnings = []
+
+            # Check for unrealistic annual growth rates
+            if annual_growth_rate > 50:
+                validation_warnings.append(f"Extremely high annual growth: {annual_growth_rate:.1f}%")
+            elif annual_growth_rate < -50:
+                validation_warnings.append(f"Extreme annual loss: {annual_growth_rate:.1f}%")
+
+            # Check for unrealistic total returns
+            if total_return > 500:
+                validation_warnings.append(f"Unrealistic total return: {total_return:.1f}%")
+            elif total_return < -90:
+                validation_warnings.append(f"Unrealistic total loss: {total_return:.1f}%")
+
+            # Check for impossibly high final values
+            multiplier = final_pot_inr / initial_amount_inr if initial_amount_inr > 0 else 0
+            if multiplier > 10:
+                validation_warnings.append(f"Investment grew {multiplier:.1f}x - verify calculation")
+
+            # Log warnings but don't fail calculation
+            if validation_warnings:
+                logger.warning(f"Investment validation warnings for {asset_type}: {'; '.join(validation_warnings)}")
 
             # Strategy name with performance
             strategy_name = f"{asset_type.replace('_', ' ')} Investment ({growth_result.cagr*100:.1f}% CAGR)"
@@ -375,7 +416,15 @@ class EducationSavingsCalculator:
                     'max_drawdown': growth_result.max_drawdown,
                     'investment_period': f"{conversion_year} → {education_year}",
                     'growth_curve': growth_result.curve.to_dict('records') if hasattr(growth_result.curve, 'to_dict') else [],
-                    'data_quality': growth_result.data_quality
+                    'data_quality': growth_result.data_quality,
+                    # Currency conversion info for FTSE
+                    'currency_conversion': {
+                        'initial_fx_rate': self.data_processor.get_september_fx_rate(conversion_year) if asset_type == "FTSE_GBP" else None,
+                        'final_fx_rate': education_fx_rate if asset_type == "FTSE_GBP" else None,
+                        'initial_amount_native': initial_amount_inr / self.data_processor.get_september_fx_rate(conversion_year) if asset_type == "FTSE_GBP" else initial_amount_inr,
+                        'native_currency': 'GBP' if asset_type == "FTSE_GBP" else 'INR'
+                    },
+                    'validation_warnings': validation_warnings
                 },
                 breakdown={
                     'investment_type': 'Market-based ROI' if asset_type != 'FIXED_5PCT' else 'Fixed rate savings',

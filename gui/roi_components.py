@@ -398,6 +398,13 @@ def render_data_quality_indicator(scenario):
         st.error(f"⚠️ {warning}")
         st.info("💡 This may indicate a calculation error or unrealistic market data.")
 
+    # Show validation warnings from conversion details
+    if 'validation_warnings' in scenario.conversion_details:
+        validation_warnings = scenario.conversion_details['validation_warnings']
+        for warning in validation_warnings:
+            st.error(f"⚠️ Validation: {warning}")
+            st.info("💡 Please verify this calculation - results may be unrealistic.")
+
 
 def render_investment_warnings():
     """Render investment risk warnings."""

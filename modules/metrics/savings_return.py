@@ -64,7 +64,7 @@ def calculate_cagr(start_value: float, end_value: float, years: float) -> float:
 
 
 def grow_lump_sum(monthly_prices: pd.DataFrame, start: pd.Timestamp,
-                  end: pd.Timestamp, lump_sum: float) -> SavingsGrowthResult:
+                  end: pd.Timestamp, lump_sum: float, currency: str = "INR") -> SavingsGrowthResult:
     """Calculate growth of lump sum investment based on asset prices.
 
     Args:
@@ -137,7 +137,7 @@ def grow_lump_sum(monthly_prices: pd.DataFrame, start: pd.Timestamp,
         total_return=total_return,
         volatility=volatility,
         max_drawdown=max_drawdown,
-        currency="INR",  # Default to INR
+        currency=currency,
         initial_value=lump_sum,
         max_value=max_value,
         min_value=min_value,
@@ -288,7 +288,9 @@ class ROICalculator:
         if asset == "FIXED_5PCT":
             return grow_fixed_rate(start, end, amount, 0.05)
         else:
-            return grow_lump_sum(asset_data, start, end, amount)
+            # Determine currency based on asset
+            currency = "GBP" if asset == "FTSE_GBP" else "INR"
+            return grow_lump_sum(asset_data, start, end, amount, currency)
 
     def calculate_multiple_scenarios(self, start_date: str, end_date: str,
                                    amount: float, assets: List[str]) -> Dict[str, SavingsGrowthResult]:
