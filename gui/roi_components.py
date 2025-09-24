@@ -199,17 +199,18 @@ def render_roi_scenarios_summary(scenarios: List, investment_amount: float):
             roi_desc
         )
 
-    # Yearly average return - very important for Indian parents
+    # Yearly average return - use actual CAGR, not simple division
+    cagr_annual = best_scenario.conversion_details.get('cagr', 0) * 100
     investment_period = best_scenario.conversion_details.get('investment_period', '2023 → 2026')
+
     try:
         # Extract years from period string
         years = int(investment_period.split(' → ')[1]) - int(investment_period.split(' → ')[0])
-        yearly_roi = roi / years if years > 0 else roi
-        yearly_display = f"{yearly_roi:.1f}%"
-        yearly_desc = f"per year ({years} years)"
+        yearly_display = f"{cagr_annual:.1f}%"
+        yearly_desc = f"CAGR ({years} years)"
     except:
-        yearly_display = f"{roi/3:.1f}%"  # Assume 3 years as fallback
-        yearly_desc = "per year (approx)"
+        yearly_display = f"{cagr_annual:.1f}%"
+        yearly_desc = "annual growth"
 
     with col4:
         st.metric(
@@ -263,15 +264,25 @@ def render_roi_scenario_cards(scenarios: List):
                     cagr = scenario.conversion_details['cagr'] * 100
                     st.write(f"**Annual Growth**: {cagr:.1f}%")
 
-                # Calculate yearly average ROI
-                investment_period = scenario.conversion_details.get('investment_period', '2023 → 2026')
-                try:
-                    years = int(investment_period.split(' → ')[1]) - int(investment_period.split(' → ')[0])
-                    yearly_roi = roi_percent / years if years > 0 else roi_percent
-                    st.write(f"**Per Year**: {yearly_roi:.1f}%")
-                except:
-                    yearly_roi = roi_percent / 3  # Fallback
-                    st.write(f"**Per Year**: {yearly_roi:.1f}% (approx)")
+                # Show actual CAGR (not simple division)
+                if 'cagr' in scenario.conversion_details:
+                    cagr_yearly = scenario.conversion_details['cagr'] * 100
+                    st.write(f"**Per Year (CAGR)**: {cagr_yearly:.1f}%")
+                else:
+                    # Fallback calculation
+                    investment_period = scenario.conversion_details.get('investment_period', '2023 → 2026')
+                    try:
+                        years = int(investment_period.split(' → ')[1]) - int(investment_period.split(' → ')[0])
+                        # Use compound annual growth rate formula
+                        final_val = scenario.conversion_details.get('final_pot_inr', 0)
+                        initial_val = scenario.conversion_details.get('initial_investment_inr', 0)
+                        if initial_val > 0 and years > 0:
+                            cagr_calc = ((final_val / initial_val) ** (1/years) - 1) * 100
+                            st.write(f"**Per Year (CAGR)**: {cagr_calc:.1f}%")
+                        else:
+                            st.write(f"**Per Year**: {roi_percent/3:.1f}% (approx)")
+                    except:
+                        st.write(f"**Per Year**: {roi_percent/3:.1f}% (approx)")
 
             with col2:
                 st.markdown("**⚖️ Risk Level**")
@@ -518,18 +529,17 @@ def create_simple_roi_chart(scenarios: List) -> go.Figure:
         margin=dict(t=60, b=80, l=80, r=40)
     )
 
-    # Format y-axis to show lakhs
-    fig.update_yaxis(
-        tickformat='.1s',
-        ticksuffix='',
-        title_font=dict(size=14),
-        tickfont=dict(size=11)
-    )
-
-    # Format x-axis
-    fig.update_xaxis(
-        title_font=dict(size=14),
-        tickfont=dict(size=11)
+    # Format axes using update_layout (correct method)
+    fig.update_layout(
+        yaxis=dict(
+            tickformat='.1s',
+            title_font=dict(size=14),
+            tickfont=dict(size=11)
+        ),
+        xaxis=dict(
+            title_font=dict(size=14),
+            tickfont=dict(size=11)
+        )
     )
 
     return fig

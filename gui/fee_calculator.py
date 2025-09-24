@@ -376,13 +376,23 @@ class EducationSavingsCalculator:
 
             # Enhanced sanity checks for realistic investment returns
 
+            # Check if this is a future projection (education year > 2025)
+            is_future_projection = education_year > 2025
+
             # Check for unrealistic annual growth rates
             if annual_growth_rate > 25:  # >25% annual is extremely optimistic
                 validation_warnings.append(f"Extremely high annual growth: {annual_growth_rate:.1f}%")
             elif annual_growth_rate > 15:  # >15% annual is optimistic
-                validation_warnings.append(f"High annual growth: {annual_growth_rate:.1f}% - verify assumptions")
+                if is_future_projection:
+                    validation_warnings.append(f"High projected growth: {annual_growth_rate:.1f}% - conservative estimate used")
+                else:
+                    validation_warnings.append(f"High annual growth: {annual_growth_rate:.1f}% - verify assumptions")
             elif annual_growth_rate < -50:
                 validation_warnings.append(f"Extreme annual loss: {annual_growth_rate:.1f}%")
+
+            # Add projection disclaimer for future years
+            if is_future_projection:
+                validation_warnings.append(f"Future projections use conservative estimates - actual returns may vary")
 
             # Check for unrealistic total returns based on investment period
             max_reasonable_return = investment_years * 20  # Max 20% per year is aggressive but possible
