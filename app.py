@@ -6,7 +6,7 @@ It imports and runs the full-featured GUI application.
 """
 
 # Version for cache busting - increment to force reload
-__version__ = "2.0.1"
+__version__ = "2.1.0"
 
 # Import the main GUI application
 from gui.education_savings_app import main

@@ -152,39 +152,34 @@ def render_roi_scenarios_summary(scenarios: List, investment_amount: float):
 
     st.subheader("💼 Investment Strategy Results")
 
-    # Create metrics columns
+    # Create metrics columns - simplified for Indian parents
     col1, col2, col3, col4 = st.columns(4)
 
     # Best strategy
-    best_scenario = max(scenarios, key=lambda x: x.savings_vs_payg_inr)
+    best_scenario = max(scenarios, key=lambda x: x.conversion_details.get('final_pot_inr', 0))
+    best_final_value = best_scenario.conversion_details.get('final_pot_inr', 0)
+    best_profit = best_final_value - investment_amount
+
     with col1:
         st.metric(
             "🏆 Best Option",
-            best_scenario.strategy_name.split(' (')[0],  # Remove CAGR from display
-            f"₹{best_scenario.savings_vs_payg_inr:,.0f} saved"
+            best_scenario.strategy_name.split(' (')[0],
+            f"₹{best_final_value/100000:.1f}L final value"
         )
 
-    # Average education cost covered
-    avg_coverage = np.mean([s.savings_vs_payg_inr for s in scenarios])
+    # Show actual profit in rupees (what parents care about)
+    avg_final_value = np.mean([s.conversion_details.get('final_pot_inr', 0) for s in scenarios])
+    avg_profit = avg_final_value - investment_amount
+
     with col2:
         st.metric(
-            "📊 Education Cost Covered",
-            f"₹{avg_coverage:,.0f}",
-            f"{len([s for s in scenarios if s.savings_vs_payg_inr > 0])}/{len(scenarios)} strategies work"
+            "💰 Total Profit",
+            f"₹{best_profit/100000:.1f}L",
+            f"Average: ₹{avg_profit/100000:.1f}L"
         )
 
-    # Investment growth
-    best_growth = best_scenario.conversion_details.get('total_return', 0) * 100
-    with col3:
-        st.metric(
-            "📈 Total Growth",
-            f"{best_growth:.1f}%",
-            f"Over {best_scenario.conversion_details.get('investment_period', 'N/A')}"
-        )
-
-    # Return on Investment (ROI) - based on actual profit, not savings
-    actual_profit = best_scenario.conversion_details.get('final_pot_inr', 0) - investment_amount
-    roi = (actual_profit / investment_amount) * 100 if investment_amount > 0 else 0
+    # ROI percentage - clear and simple
+    roi = (best_profit / investment_amount) * 100 if investment_amount > 0 else 0
 
     # Cap ROI display at reasonable levels
     if roi > 500:
@@ -195,13 +190,32 @@ def render_roi_scenarios_summary(scenarios: List, investment_amount: float):
         roi_desc = "⚠️ significant loss"
     else:
         roi_display = f"{roi:.1f}%"
-        roi_desc = "return on investment"
+        roi_desc = "total return"
+
+    with col3:
+        st.metric(
+            "📊 ROI",
+            roi_display,
+            roi_desc
+        )
+
+    # Yearly average return - very important for Indian parents
+    investment_period = best_scenario.conversion_details.get('investment_period', '2023 → 2026')
+    try:
+        # Extract years from period string
+        years = int(investment_period.split(' → ')[1]) - int(investment_period.split(' → ')[0])
+        yearly_roi = roi / years if years > 0 else roi
+        yearly_display = f"{yearly_roi:.1f}%"
+        yearly_desc = f"per year ({years} years)"
+    except:
+        yearly_display = f"{roi/3:.1f}%"  # Assume 3 years as fallback
+        yearly_desc = "per year (approx)"
 
     with col4:
         st.metric(
-            "📈 Return on Investment",
-            roi_display,
-            roi_desc
+            "📅 Yearly Average",
+            yearly_display,
+            yearly_desc
         )
 
 
@@ -213,8 +227,18 @@ def render_roi_scenario_cards(scenarios: List):
     """
     st.subheader("📋 Strategy Details")
 
-    for i, scenario in enumerate(scenarios):
-        with st.expander(f"💎 {scenario.strategy_name}", expanded=(i == 0)):
+    # Sort scenarios by final value (best first) for display
+    sorted_scenarios = sorted(scenarios, key=lambda x: x.conversion_details.get('final_pot_inr', 0), reverse=True)
+
+    for i, scenario in enumerate(sorted_scenarios):
+        # Show final value and ROI in expander title
+        final_value = scenario.conversion_details.get('final_pot_inr', 0)
+        initial_investment = scenario.conversion_details.get('initial_investment_inr', 0)
+        roi = ((final_value - initial_investment) / initial_investment * 100) if initial_investment > 0 else 0
+
+        expander_title = f"💎 {scenario.strategy_name.split(' (')[0]} → ₹{final_value/100000:.1f}L ({roi:.1f}% ROI)"
+
+        with st.expander(expander_title, expanded=(i == 0)):
             # Data quality indicator at the top
             render_data_quality_indicator(scenario)
 
@@ -226,18 +250,28 @@ def render_roi_scenario_cards(scenarios: List):
                 initial_investment = scenario.conversion_details.get('initial_investment_inr', 0)
                 actual_profit = final_value - initial_investment
 
-                st.write(f"Final Portfolio: ₹{final_value:,.0f}")
-                st.write(f"Actual Profit: ₹{actual_profit:,.0f}")
-                st.write(f"Education Coverage: ₹{scenario.savings_vs_payg_inr:,.0f}")
+                # Clear display for Indian parents
+                st.write(f"**Final Amount**: ₹{final_value/100000:.1f}L")
+                st.write(f"**Your Profit**: ₹{actual_profit/100000:.1f}L")
+
+                # ROI calculation
+                roi_percent = (actual_profit / initial_investment) * 100 if initial_investment > 0 else 0
+                st.write(f"**ROI**: {roi_percent:.1f}%")
 
                 # Investment details
                 if 'cagr' in scenario.conversion_details:
                     cagr = scenario.conversion_details['cagr'] * 100
-                    st.write(f"Annual Growth: {cagr:.1f}%")
+                    st.write(f"**Annual Growth**: {cagr:.1f}%")
 
-                if 'total_return' in scenario.conversion_details:
-                    total_return = scenario.conversion_details['total_return'] * 100
-                    st.write(f"Total Profit: {total_return:.1f}%")
+                # Calculate yearly average ROI
+                investment_period = scenario.conversion_details.get('investment_period', '2023 → 2026')
+                try:
+                    years = int(investment_period.split(' → ')[1]) - int(investment_period.split(' → ')[0])
+                    yearly_roi = roi_percent / years if years > 0 else roi_percent
+                    st.write(f"**Per Year**: {yearly_roi:.1f}%")
+                except:
+                    yearly_roi = roi_percent / 3  # Fallback
+                    st.write(f"**Per Year**: {yearly_roi:.1f}% (approx)")
 
             with col2:
                 st.markdown("**⚖️ Risk Level**")
@@ -264,21 +298,29 @@ def render_roi_scenario_cards(scenarios: List):
             if performance:
                 st.info(f"📊 {performance}")
 
-            # Investment breakdown
+            # Clear education coverage information
+            st.markdown("**🎓 Education Cost Coverage**")
+
+            # Calculate education cost coverage
+            final_value = scenario.conversion_details.get('final_pot_inr', 0)
+            education_cost = scenario.savings_vs_payg_inr  # This represents the cost saved vs PAYG
+
+            # Try to get actual education cost from breakdown
             if 'effective_cost_breakdown' in scenario.breakdown:
                 breakdown = scenario.breakdown['effective_cost_breakdown']
-                st.markdown("**💼 Cost Breakdown**")
+                actual_education_cost = breakdown.get('total_education_cost', education_cost)
+            else:
+                # Estimate based on scenario data
+                actual_education_cost = final_value - (final_value - scenario.total_cost_inr)
 
-                investment_proceeds = breakdown.get('investment_proceeds', 0)
-                total_cost = breakdown.get('total_education_cost', 0)
-                surplus = breakdown.get('surplus_if_any', 0)
-
-                if surplus > 0:
-                    st.success(f"💰 Surplus after covering education: ₹{surplus:,.0f}")
-                else:
-                    remaining_cost = total_cost - investment_proceeds
-                    if remaining_cost > 0:
-                        st.info(f"💳 Remaining cost to cover: ₹{remaining_cost:,.0f}")
+            if final_value >= actual_education_cost:
+                surplus = final_value - actual_education_cost
+                st.success(f"✅ **Covers Full Education Cost**")
+                st.success(f"💰 Extra Money Left: ₹{surplus/100000:.1f}L")
+            else:
+                shortfall = actual_education_cost - final_value
+                st.warning(f"⚠️ **Partial Coverage Only**")
+                st.warning(f"💳 Additional Needed: ₹{shortfall/100000:.1f}L")
 
 
 def render_risk_tolerance_guide(risk_tolerance: str) -> Dict:
@@ -434,7 +476,7 @@ def render_investment_warnings():
 
 
 def create_simple_roi_chart(scenarios: List) -> go.Figure:
-    """Create simple ROI comparison chart.
+    """Create simple ROI comparison chart showing final values.
 
     Args:
         scenarios: List of SavingsScenario objects
@@ -445,28 +487,49 @@ def create_simple_roi_chart(scenarios: List) -> go.Figure:
     if not scenarios:
         return go.Figure()
 
-    # Prepare data
+    # Prepare data - show final investment values (what parents care about)
     strategy_names = [s.strategy_name.split(' (')[0] for s in scenarios]  # Remove CAGR
-    savings_amounts = [s.savings_vs_payg_inr for s in scenarios]
-    colors = ['green' if x > 0 else 'red' for x in savings_amounts]
+    final_values = [s.conversion_details.get('final_pot_inr', 0) for s in scenarios]
+    colors = ['#2E8B57', '#4169E1', '#FFD700', '#8B0000'][:len(scenarios)]  # Professional colors
 
-    # Create bar chart
+    # Create bar chart with clear labels
     fig = go.Figure(data=[
         go.Bar(
             x=strategy_names,
-            y=savings_amounts,
+            y=final_values,
             marker_color=colors,
-            text=[f"₹{x:,.0f}" for x in savings_amounts],
-            textposition='auto',
+            text=[f"₹{x/100000:.1f}L" for x in final_values],  # Show in lakhs
+            textposition='outside',
+            textfont=dict(size=12, color='black'),
+            hovertemplate='<b>%{x}</b><br>' +
+                         'Final Value: ₹%{y:,.0f}<br>' +
+                         '<extra></extra>'
         )
     ])
 
     fig.update_layout(
-        title="Investment Strategy Comparison",
-        xaxis_title="Strategy",
-        yaxis_title="Savings vs Pay-as-you-go (₹)",
-        height=400,
-        showlegend=False
+        title="Final Investment Values Comparison",
+        xaxis_title="Investment Strategy",
+        yaxis_title="Final Portfolio Value (₹ Lakhs)",
+        height=500,
+        showlegend=False,
+        plot_bgcolor='white',
+        font=dict(size=12),
+        margin=dict(t=60, b=80, l=80, r=40)
+    )
+
+    # Format y-axis to show lakhs
+    fig.update_yaxis(
+        tickformat='.1s',
+        ticksuffix='',
+        title_font=dict(size=14),
+        tickfont=dict(size=11)
+    )
+
+    # Format x-axis
+    fig.update_xaxis(
+        title_font=dict(size=14),
+        tickfont=dict(size=11)
     )
 
     return fig
