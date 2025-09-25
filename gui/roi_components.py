@@ -161,12 +161,21 @@ def render_roi_scenarios_summary(scenarios: List, investment_amount: float):
         profit = final_value - investment_amount
         roi_pct = (profit / investment_amount * 100) if investment_amount > 0 else 0
 
+        # Calculate investment period and yearly rate
+        investment_period = scenario.conversion_details.get('investment_period', '2024 → 2027')
+        try:
+            years = int(investment_period.split(' → ')[1]) - int(investment_period.split(' → ')[0])
+        except:
+            years = 3  # Default fallback
+
+        yearly_rate = ((final_value / investment_amount) ** (1/years) - 1) * 100 if years > 0 and investment_amount > 0 else 0
+
         # Extract strategy name
         strategy_name = scenario.strategy_name.split(' (')[0].replace('Investment', '').strip()
         if 'GOLD' in strategy_name.upper():
             display_name = "🟡 Gold"
             risk_level = "Medium Risk"
-            note = "Price goes up and down ±10-15% each year"
+            note = "Based on recent market performance - can vary significantly"
         elif 'FIXED' in strategy_name.upper() or '5%' in strategy_name:
             display_name = "🟢 Fixed Deposit"
             risk_level = "No Risk"
@@ -181,6 +190,8 @@ def render_roi_scenarios_summary(scenarios: List, investment_amount: float):
             'Final Value': f"₹{final_value/100000:.1f}L",
             'Your Profit': f"₹{profit/100000:.1f}L",
             'Total Return': f"{roi_pct:.0f}%",
+            'Yearly %': f"{yearly_rate:.1f}%",
+            'Years': f"{years}",
             'Risk Level': risk_level,
             'Important Note': note
         })
@@ -196,13 +207,17 @@ def render_roi_scenarios_summary(scenarios: List, investment_amount: float):
             else:
                 st.info(f"**Alternative: {data['Strategy']}**")
 
-            col1, col2, col3 = st.columns(3)
+            col1, col2, col3, col4, col5 = st.columns(5)
             with col1:
                 st.metric("Final Amount", data['Final Value'])
             with col2:
                 st.metric("Your Profit", data['Your Profit'])
             with col3:
-                st.metric("Return", data['Total Return'], data['Risk Level'])
+                st.metric("Return", data['Total Return'])
+            with col4:
+                st.metric("Yearly %", data['Yearly %'])
+            with col5:
+                st.metric("Years", data['Years'], data['Risk Level'])
 
             if data['Important Note']:
                 st.caption(f"ℹ️ {data['Important Note']}")
@@ -214,11 +229,12 @@ def render_roi_scenarios_summary(scenarios: List, investment_amount: float):
     st.warning("""
     **⚠️ Important for Indian Parents:**
 
-    • **Gold**: Prices can go up or down by 10-15% in any year. Historical average is 7% per year, but your experience may be different.
-    • **Fixed Deposit**: Guaranteed returns, but 5% is optimistic - check current rates before investing.
-    • **Future Projections**: All numbers are estimates based on past data. Actual results may vary.
+    • **Gold**: Recent 3-year performance (24.4%) is exceptional - don't expect this to continue!
+      Long-term average is 13-14% per year. Can swing from -20% to +40% in any single year.
+    • **Fixed Deposit**: 5% is optimistic but achievable at top banks. Check current rates before investing.
+    • **Market Reality**: Gold hit ₹102,289 per 10g in Aug 2025 - a huge jump from ₹64,070 in 2024.
 
-    💡 **Recommendation**: Consider your risk comfort level and don't invest money you can't afford to lose in gold.
+    💡 **Smart Approach**: Don't put all money in gold expecting 24% returns. Mix both for balance.
     """)
 
 
@@ -471,12 +487,17 @@ def render_data_quality_indicator(scenario):
         st.info("""
         **Gold Investment Reality Check:**
 
-        📊 **Historical Performance (2020-2025):** 7.1% average per year
-        📊 **Your Investment Period:** May be different - could be higher or lower
-        ⚠️ **Risk:** Gold prices fluctuate ±10-15% each year
-        ✅ **Good for:** Long-term savers who can handle ups and downs
+        📊 **Historical Performance (Gullak data 1950-2025):**
+        • Last 3 years: 24.4% per year (exceptional period)
+        • Last 5 years: 13.5% per year
+        • Last 10 years: 13.6% per year
+        • Long-term (20 years): 14.35% per year
 
-        **Example:** ₹10L invested in gold might become ₹8.5L or ₹11.5L after 1 year
+        ⚠️ **High Risk:** Gold can vary from -20% to +40% in any single year
+        📈 **Recent Surge:** 2025 saw major price jump - may not continue
+
+        **Example:** ₹10L invested might become ₹7L to ₹14L after 1 year
+        **Note:** Recent returns are unusually high - don't expect 24% every year!
         """)
     elif 'FIXED' in strategy_name or '5%' in strategy_name:
         st.success("""

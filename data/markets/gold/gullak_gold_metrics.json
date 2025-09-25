@@ -1,0 +1,48 @@
+{
+  "source": "Gullak blog — Gold CAGR & Historical Rates from 1950 to 2025",
+  "last_updated": "2025-08-21",
+  "region": "India",
+  "unit": "24K INR per 10 grams",
+  "short_term_cagr_pct": {
+    "last_6_months": 15.0,
+    "last_1_year": 39.9,
+    "last_3_years": 24.4,
+    "last_5_years": 13.5,
+    "last_10_years": 13.6
+  },
+  "live_price_snapshot": {
+    "grams": 10,
+    "k24_today_inr": 116203.0,
+    "k24_yesterday_inr": 116772.8,
+    "note": "Values shown exactly as in copy; date/time not specified on page."
+  },
+  "long_term_cagr_pct": {
+    "last_5_years": 13.5,
+    "last_10_years": 13.6,
+    "last_15_years": 12.0,
+    "last_20_years": 14.35,
+    "last_25_years": 13.41,
+    "last_30_years": 10.83
+  },
+  "comparative_asset_class_cagr_pct": {
+    "fixed_deposits_avg": "6–7",
+    "real_estate_20y": 7.7,
+    "nifty50": 9.5,
+    "gold_20y": 14.0
+  },
+  "future_outlook_factors": [
+    "Central banks increasing gold reserves",
+    "Geopolitical uncertainty supports gold demand",
+    "A weakening US dollar typically boosts gold prices",
+    "Some experts expect gold to touch ₹130,000 soon"
+  ],
+  "claims_from_copy": {
+    "1950_to_2025_growth": "₹99 → ~₹100,000 per 10g (24K)",
+    "hypothetical_investment": "₹100,000 in 1950 → ~₹10 Crore today (per copy)"
+  },
+  "coverage_notes": [
+    "Historical prices are annual averages as presented in the blog.",
+    "2025 figure is 'till 21 Aug 2025'.",
+    "All values are 24K gold and per 10 grams, denominated in INR."
+  ]
+}
