@@ -498,7 +498,7 @@ class EducationSavingsCalculator:
             List of SavingsScenario results sorted by savings amount
         """
         if selected_strategies is None:
-            selected_strategies = ["GOLD_INR", "NIFTY_INR", "FTSE_GBP", "FIXED_5PCT"]
+            selected_strategies = ["GOLD_INR", "FIXED_5PCT"]
 
         scenarios = []
 

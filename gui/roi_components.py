@@ -99,18 +99,16 @@ def render_roi_sidebar(conversion_year: int, education_year: int, university: st
 
     # Strategy selection
     available_strategies = {
-        "GOLD_INR": "🟡 Gold Investment - Safe, beats inflation",
-        "NIFTY_INR": "🔴 Indian Stock Market (NIFTY) - Higher growth potential",
-        "FTSE_GBP": "🔴 UK Stock Market (FTSE) - International exposure",
-        "FIXED_5PCT": "🟢 Fixed Deposit 5% - Guaranteed returns"
+        "GOLD_INR": "🟡 Gold (INR) - Inflation hedge, moderate volatility (±10-15% annually)",
+        "FIXED_5PCT": "🟢 Fixed Deposit (5% p.a.) - Capital protected, guaranteed returns"
     }
 
     selected_strategies = st.sidebar.multiselect(
-        "📈 Investment Strategies",
+        "📈 Savings Strategies",
         options=list(available_strategies.keys()),
-        default=["GOLD_INR", "NIFTY_INR", "FIXED_5PCT"],
+        default=["GOLD_INR", "FIXED_5PCT"],
         format_func=lambda x: available_strategies[x],
-        help="Select investment strategies to analyze"
+        help="Choose between conservative fixed deposits and gold for inflation protection"
     )
 
     # Risk tolerance
@@ -218,6 +216,16 @@ def render_roi_scenarios_summary(scenarios: List, investment_amount: float):
             yearly_display,
             yearly_desc
         )
+
+    # Data quality summary for 2-strategy focus
+    st.markdown("---")
+    col1, col2 = st.columns(2)
+
+    with col1:
+        st.caption("🟡 **Gold (INR)** - 6 years data • MEDIUM confidence • Market volatility expected")
+
+    with col2:
+        st.caption("🟢 **Fixed Deposit** - HIGH confidence • Guaranteed returns • No market risk")
 
 
 def render_roi_scenario_cards(scenarios: List):
@@ -356,7 +364,7 @@ def render_risk_tolerance_guide(risk_tolerance: str) -> Dict:
         },
         "Moderate": {
             "description": "Balanced approach with moderate risk",
-            "recommended_strategies": ["GOLD_INR", "NIFTY_INR", "FIXED_5PCT"],
+            "recommended_strategies": ["FIXED_5PCT", "GOLD_INR"],
             "max_equity_allocation": 60,
             "key_points": [
                 "Balanced risk-return profile",
@@ -366,7 +374,7 @@ def render_risk_tolerance_guide(risk_tolerance: str) -> Dict:
         },
         "Aggressive": {
             "description": "Growth-focused with higher risk tolerance",
-            "recommended_strategies": ["NIFTY_INR", "FTSE_GBP", "GOLD_INR"],
+            "recommended_strategies": ["GOLD_INR", "FIXED_5PCT"],
             "max_equity_allocation": 80,
             "key_points": [
                 "Higher growth potential",
@@ -380,12 +388,24 @@ def render_risk_tolerance_guide(risk_tolerance: str) -> Dict:
 
     with st.sidebar.expander(f"ℹ️ {risk_tolerance} Profile Guide"):
         st.write(f"**{profile['description']}**")
-        st.write("**Recommended Strategies:**")
-        for strategy in profile['recommended_strategies']:
-            st.write(f"• {strategy.replace('_', ' ')}")
+        st.write("**Recommended Allocation:**")
+
+        # Show allocation guidance based on risk tolerance
+        if risk_tolerance == "Conservative":
+            st.write("• 🟢 Fixed Deposit: **80%** (Primary safety)")
+            st.write("• 🟡 Gold: **20%** (Inflation protection)")
+        elif risk_tolerance == "Moderate":
+            st.write("• 🟢 Fixed Deposit: **60%** (Stability base)")
+            st.write("• 🟡 Gold: **40%** (Growth potential)")
+        else:  # Aggressive
+            st.write("• 🟡 Gold: **60%** (Growth focus)")
+            st.write("• 🟢 Fixed Deposit: **40%** (Safety anchor)")
+
         st.write("**Key Points:**")
         for point in profile['key_points']:
             st.write(f"• {point}")
+
+        st.caption("💡 Consider your time horizon and risk comfort when choosing allocation")
 
     return profile
 
@@ -451,6 +471,23 @@ def render_data_quality_indicator(scenario):
         if quality in ['POOR', 'UNAVAILABLE']:
             st.warning("⚠️ Limited data available for this asset. Projections may be unreliable.")
 
+    # Asset-specific conservative messaging
+    strategy_name = scenario.strategy_name.upper()
+    if 'GOLD' in strategy_name:
+        st.info("""
+        **Gold Investment Notes:**
+        • Historical 7.1% CAGR (2020-2025) • Data includes future projections
+        • ±10-15% annual volatility expected • No guarantees for future performance
+        • Best for: Long-term inflation hedge (3+ years)
+        """)
+    elif 'FIXED' in strategy_name or '5%' in strategy_name:
+        st.success("""
+        **Fixed Deposit Notes:**
+        • Guaranteed 5.0% annual return • Principal protection assumed
+        • Locked term deposit • 5% is optimistic but achievable at top end
+        • Best for: Capital preservation, predictable growth
+        """)
+
     # Show any validation warnings
     for warning in warnings:
         st.error(f"⚠️ {warning}")
@@ -472,7 +509,6 @@ def render_investment_warnings():
 
         • **Market Risk**: All investments carry risk of loss. Past performance does not guarantee future results.
         • **Volatility**: Asset prices fluctuate. Values shown are estimates based on historical data.
-        • **Currency Risk**: FTSE investments involve GBP/INR conversion risk.
         • **Education Planning**: This tool is for planning purposes only. Consult financial advisors for investment decisions.
         • **Data Limitations**: Projections are based on historical trends and may not reflect future market conditions.
         • **Data Requirements**: Investment analysis requires actual market data files - estimates may be used when data is unavailable.

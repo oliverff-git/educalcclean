@@ -544,7 +544,7 @@ def main():
                         st.markdown("""
                         **Common reasons for investment analysis errors:**
 
-                        • **Missing market data files**: Investment calculations require historical price data for assets (Gold, NIFTY, FTSE)
+                        • **Missing market data files**: Investment calculations require historical price data for Gold investments
                         • **Invalid date range**: Requested investment period may not have available data
                         • **Asset data quality issues**: Market data files may be corrupted or have missing values
 

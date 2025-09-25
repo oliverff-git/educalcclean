@@ -23,7 +23,7 @@ def create_investment_growth_chart(scenarios: List) -> go.Figure:
     """
     fig = go.Figure()
 
-    colors = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd']
+    colors = ['#2E8B57', '#FFD700']  # Green for Fixed, Gold for Gold
 
     for i, scenario in enumerate(scenarios):
         # Extract growth curve data
@@ -206,22 +206,16 @@ def create_allocation_pie_chart(risk_tolerance: str, scenarios: List) -> go.Figu
     # Define allocations based on risk tolerance
     allocations = {
         "Conservative": {
-            "FIXED_5PCT": 50,
-            "GOLD_INR": 40,
-            "NIFTY_INR": 10,
-            "FTSE_GBP": 0
+            "FIXED_5PCT": 80,
+            "GOLD_INR": 20
         },
         "Moderate": {
-            "FIXED_5PCT": 30,
-            "GOLD_INR": 30,
-            "NIFTY_INR": 30,
-            "FTSE_GBP": 10
+            "FIXED_5PCT": 60,
+            "GOLD_INR": 40
         },
         "Aggressive": {
-            "FIXED_5PCT": 10,
-            "GOLD_INR": 20,
-            "NIFTY_INR": 50,
-            "FTSE_GBP": 20
+            "FIXED_5PCT": 40,
+            "GOLD_INR": 60
         }
     }
 
@@ -241,9 +235,7 @@ def create_allocation_pie_chart(risk_tolerance: str, scenarios: List) -> go.Figu
     # Colors for different asset types
     color_map = {
         'FIXED 5PCT': '#2E8B57',    # Green
-        'GOLD INR': '#FFD700',      # Gold
-        'NIFTY INR': '#4169E1',     # Blue
-        'FTSE GBP': '#8B0000'       # Red
+        'GOLD INR': '#FFD700'       # Gold
     }
     colors = [color_map.get(label, '#808080') for label in labels]
 
