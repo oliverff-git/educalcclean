@@ -30,6 +30,10 @@ from gui.roi_components import (
     render_roi_scenario_cards, render_investment_warnings,
     create_simple_roi_chart
 )
+from gui.components.second_child import (
+    SecondChildAdapter, render_second_child_sidebar,
+    render_second_child_results
+)
 
 
 
@@ -246,6 +250,11 @@ def main():
                 calculator
             )
 
+            # 2nd Child Savers Configuration
+            st.session_state.selected_university = selected_university
+            st.session_state.selected_programme = selected_course
+            second_child_config = render_second_child_sidebar(calculator, data_processor)
+
             # Calculate scenarios first for sidebar display
             scenarios = calculator.compare_all_strategies(
                 selected_university, selected_course, conversion_year, education_year
@@ -269,6 +278,24 @@ def main():
                     st.sidebar.error(f"⚠️ Investment analysis unavailable: {roi_error_message}")
                     st.sidebar.info("💡 This usually means market data files are missing. Investment analysis requires actual historical market data.")
                     roi_scenarios = []
+
+            # Calculate 2nd Child scenarios if enabled
+            second_child_scenario = None
+            second_child_metrics = None
+            second_child_error = None
+            if second_child_config.get("enabled", False):
+                try:
+                    adapter = SecondChildAdapter(calculator, data_processor)
+                    second_child_scenario, second_child_metrics = adapter.calculate_savings_for_inr_amount(
+                        inr_amount=second_child_config["amount_inr"],
+                        conversion_year=second_child_config["conversion_year"],
+                        education_year=second_child_config["education_year"],
+                        university=second_child_config.get("university"),
+                        programme=second_child_config.get("programme")
+                    )
+                except Exception as e:
+                    second_child_error = str(e)
+                    st.sidebar.error(f"⚠️ 2nd Child calculation error: {second_child_error}")
 
             # Sidebar scenarios
             st.sidebar.header("💼 Saving Scenarios")
@@ -531,6 +558,20 @@ def main():
                         """)
                 else:
                     st.warning("💰 Investment analysis enabled but no scenarios calculated. Please check your selections.")
+
+            # 2nd Child Savers Results
+            if second_child_config.get("enabled", False):
+                if second_child_scenario and second_child_metrics and not second_child_error:
+                    render_second_child_results(second_child_scenario, second_child_metrics, second_child_config)
+                elif second_child_error:
+                    st.markdown("---")
+                    st.subheader("👶 2nd Child Savings Analysis")
+                    st.error(f"⚠️ Unable to calculate 2nd child savings: {second_child_error}")
+                    st.info("💡 Please check your inputs and ensure all required data is available.")
+                else:
+                    st.markdown("---")
+                    st.subheader("👶 2nd Child Savings Analysis")
+                    st.warning("💭 2nd Child analysis enabled but no calculations available. Please check your configuration.")
 
 
     except Exception as e:
