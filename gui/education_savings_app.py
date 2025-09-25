@@ -495,31 +495,39 @@ def main():
                         chart = create_simple_roi_chart(roi_scenarios)
                         st.plotly_chart(chart, use_container_width=True)
 
-                        # Quick comparison with traditional strategies
-                        st.subheader("🔄 Investment vs Traditional Strategies")
+                        # Simple comparison between currency strategies and savings strategies
+                        st.subheader("💡 Should You Invest or Just Convert Currency?")
+
+                        # Get the best traditional strategy (usually early conversion)
                         best_traditional = min(scenarios, key=lambda x: x.total_cost_inr)
+                        # Get the best investment strategy
                         best_roi = max(roi_scenarios, key=lambda x: x.savings_vs_payg_inr)
 
-                        col1, col2, col3 = st.columns(3)
+                        col1, col2 = st.columns(2)
                         with col1:
-                            st.metric(
-                                "🏛️ Best Traditional",
-                                best_traditional.strategy_name,
-                                format_inr(best_traditional.savings_vs_payg_inr)
-                            )
+                            st.info("**🏦 Currency Exchange Only**")
+                            st.write(f"Strategy: {best_traditional.strategy_name}")
+                            st.write(f"You save: {format_inr(best_traditional.savings_vs_payg_inr)}")
+                            st.write("✅ Simple and safe")
+
                         with col2:
-                            st.metric(
-                                "💎 Best Investment",
-                                best_roi.strategy_name.split(' (')[0],
-                                format_inr(best_roi.savings_vs_payg_inr)
-                            )
-                        with col3:
-                            additional_savings = best_roi.savings_vs_payg_inr - best_traditional.savings_vs_payg_inr
-                            st.metric(
-                                "📈 Additional Benefit",
-                                format_inr(additional_savings),
-                                f"{(additional_savings/roi_config['investment_amount']*100):+.1f}% ROI"
-                            )
+                            st.success("**💰 Investment + Currency Exchange**")
+                            strategy_name = best_roi.strategy_name.split(' (')[0].replace('Investment', '').strip()
+                            if 'GOLD' in strategy_name.upper():
+                                display_name = "Gold Investment"
+                            elif 'FIXED' in strategy_name.upper():
+                                display_name = "Fixed Deposit"
+                            else:
+                                display_name = strategy_name
+                            st.write(f"Strategy: {display_name}")
+                            st.write(f"You save: {format_inr(best_roi.savings_vs_payg_inr)}")
+                            difference = best_roi.savings_vs_payg_inr - best_traditional.savings_vs_payg_inr
+                            if difference > 0:
+                                st.write(f"💚 Extra benefit: {format_inr(difference)}")
+                            else:
+                                st.write("⚠️ May not be better than simple conversion")
+
+                        st.caption("💡 Compare both options and choose what makes you comfortable")
 
                 with tab2:
                     # Detailed scenario cards

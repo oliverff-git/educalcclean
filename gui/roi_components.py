@@ -148,84 +148,78 @@ def render_roi_scenarios_summary(scenarios: List, investment_amount: float):
         st.warning("No investment scenarios available")
         return
 
-    st.subheader("💼 Investment Strategy Results")
+    st.subheader("💰 Simple Comparison for Education Savings")
 
-    # Create metrics columns - simplified for Indian parents
-    col1, col2, col3, col4 = st.columns(4)
+    # Clear comparison table for Indian parents
+    st.markdown("**Your Investment:** ₹{:,.0f} ({:.1f} Lakh)".format(investment_amount, investment_amount/100000))
 
-    # Best strategy
-    best_scenario = max(scenarios, key=lambda x: x.conversion_details.get('final_pot_inr', 0))
-    best_final_value = best_scenario.conversion_details.get('final_pot_inr', 0)
-    best_profit = best_final_value - investment_amount
+    # Create simple comparison
+    comparison_data = []
 
-    with col1:
-        st.metric(
-            "🏆 Best Option",
-            best_scenario.strategy_name.split(' (')[0],
-            f"₹{best_final_value/100000:.1f}L final value"
-        )
+    for scenario in scenarios:
+        final_value = scenario.conversion_details.get('final_pot_inr', 0)
+        profit = final_value - investment_amount
+        roi_pct = (profit / investment_amount * 100) if investment_amount > 0 else 0
 
-    # Show actual profit in rupees (what parents care about)
-    avg_final_value = np.mean([s.conversion_details.get('final_pot_inr', 0) for s in scenarios])
-    avg_profit = avg_final_value - investment_amount
+        # Extract strategy name
+        strategy_name = scenario.strategy_name.split(' (')[0].replace('Investment', '').strip()
+        if 'GOLD' in strategy_name.upper():
+            display_name = "🟡 Gold"
+            risk_level = "Medium Risk"
+            note = "Price goes up and down ±10-15% each year"
+        elif 'FIXED' in strategy_name.upper() or '5%' in strategy_name:
+            display_name = "🟢 Fixed Deposit"
+            risk_level = "No Risk"
+            note = "Guaranteed return, principal protected"
+        else:
+            display_name = strategy_name
+            risk_level = "Unknown"
+            note = ""
 
-    with col2:
-        st.metric(
-            "💰 Total Profit",
-            f"₹{best_profit/100000:.1f}L",
-            f"Average: ₹{avg_profit/100000:.1f}L"
-        )
+        comparison_data.append({
+            'Strategy': display_name,
+            'Final Value': f"₹{final_value/100000:.1f}L",
+            'Your Profit': f"₹{profit/100000:.1f}L",
+            'Total Return': f"{roi_pct:.0f}%",
+            'Risk Level': risk_level,
+            'Important Note': note
+        })
 
-    # ROI percentage - clear and simple
-    roi = (best_profit / investment_amount) * 100 if investment_amount > 0 else 0
+    # Sort by final value (best first)
+    comparison_data.sort(key=lambda x: float(x['Final Value'].replace('₹', '').replace('L', '')), reverse=True)
 
-    # Cap ROI display at reasonable levels
-    if roi > 500:
-        roi_display = "500%+"
-        roi_desc = "⚠️ verify calculations"
-    elif roi < -100:
-        roi_display = "-100%"
-        roi_desc = "⚠️ significant loss"
-    else:
-        roi_display = f"{roi:.1f}%"
-        roi_desc = "total return"
+    # Display as clean table
+    for i, data in enumerate(comparison_data):
+        with st.container():
+            if i == 0:
+                st.success(f"🏆 **Best Option: {data['Strategy']}**")
+            else:
+                st.info(f"**Alternative: {data['Strategy']}**")
 
-    with col3:
-        st.metric(
-            "📊 ROI",
-            roi_display,
-            roi_desc
-        )
+            col1, col2, col3 = st.columns(3)
+            with col1:
+                st.metric("Final Amount", data['Final Value'])
+            with col2:
+                st.metric("Your Profit", data['Your Profit'])
+            with col3:
+                st.metric("Return", data['Total Return'], data['Risk Level'])
 
-    # Yearly average return - use actual CAGR, not simple division
-    cagr_annual = best_scenario.conversion_details.get('cagr', 0) * 100
-    investment_period = best_scenario.conversion_details.get('investment_period', '2023 → 2026')
+            if data['Important Note']:
+                st.caption(f"ℹ️ {data['Important Note']}")
 
-    try:
-        # Extract years from period string
-        years = int(investment_period.split(' → ')[1]) - int(investment_period.split(' → ')[0])
-        yearly_display = f"{cagr_annual:.1f}%"
-        yearly_desc = f"CAGR ({years} years)"
-    except:
-        yearly_display = f"{cagr_annual:.1f}%"
-        yearly_desc = "annual growth"
+            st.markdown("---")
 
-    with col4:
-        st.metric(
-            "📅 Yearly Average",
-            yearly_display,
-            yearly_desc
-        )
-
-    # Data quality summary for 2-strategy focus
+    # Important disclaimer for Indian parents
     st.markdown("---")
-    col1, col2 = st.columns(2)
+    st.warning("""
+    **⚠️ Important for Indian Parents:**
 
-    with col1:
-        st.caption("🟡 **Gold (INR)** - 6 years data • MEDIUM confidence • Market volatility expected")
+    • **Gold**: Prices can go up or down by 10-15% in any year. Historical average is 7% per year, but your experience may be different.
+    • **Fixed Deposit**: Guaranteed returns, but 5% is optimistic - check current rates before investing.
+    • **Future Projections**: All numbers are estimates based on past data. Actual results may vary.
 
-    with col2:
-        st.caption("🟢 **Fixed Deposit** - HIGH confidence • Guaranteed returns • No market risk")
+    💡 **Recommendation**: Consider your risk comfort level and don't invest money you can't afford to lose in gold.
+    """)
 
 
 def render_roi_scenario_cards(scenarios: List):
@@ -475,17 +469,25 @@ def render_data_quality_indicator(scenario):
     strategy_name = scenario.strategy_name.upper()
     if 'GOLD' in strategy_name:
         st.info("""
-        **Gold Investment Notes:**
-        • Historical 7.1% CAGR (2020-2025) • Data includes future projections
-        • ±10-15% annual volatility expected • No guarantees for future performance
-        • Best for: Long-term inflation hedge (3+ years)
+        **Gold Investment Reality Check:**
+
+        📊 **Historical Performance (2020-2025):** 7.1% average per year
+        📊 **Your Investment Period:** May be different - could be higher or lower
+        ⚠️ **Risk:** Gold prices fluctuate ±10-15% each year
+        ✅ **Good for:** Long-term savers who can handle ups and downs
+
+        **Example:** ₹10L invested in gold might become ₹8.5L or ₹11.5L after 1 year
         """)
     elif 'FIXED' in strategy_name or '5%' in strategy_name:
         st.success("""
-        **Fixed Deposit Notes:**
-        • Guaranteed 5.0% annual return • Principal protection assumed
-        • Locked term deposit • 5% is optimistic but achievable at top end
-        • Best for: Capital preservation, predictable growth
+        **Fixed Deposit Reality Check:**
+
+        ✅ **Guaranteed Return:** Exactly 5.0% per year, every year
+        ✅ **No Risk:** Your money is 100% safe
+        ✅ **Predictable:** You know exactly how much you'll get
+        ⚠️ **Requirement:** Money must be locked in (can't withdraw early)
+
+        **Example:** ₹10L becomes exactly ₹11.6L after 3 years (guaranteed)
         """)
 
     # Show any validation warnings
