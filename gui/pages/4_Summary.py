@@ -10,11 +10,21 @@ if parent_dir not in sys.path:
 
 from gui.core.theme import configure_page
 from gui.core.state import get_state
-from gui.core.ui import kpi_row, format_inr, format_percentage
+from gui.core.ui_components import (
+    professional_page_header, professional_kpi_card, professional_dataframe,
+    navigation_buttons, format_inr, format_percentage, format_exchange_rate
+)
 from gui.core.compute import project_fx_rate
 
 configure_page("Summary")
-st.header("Summary")
+
+# Professional page header with breadcrumb
+professional_page_header(
+    title="Analysis Summary",
+    subtitle="Complete overview of your education savings strategy",
+    breadcrumb_steps=["Home", "Course Selection", "Projections", "Strategy", "Summary"],
+    current_step=4
+)
 
 state = get_state()
 
@@ -40,25 +50,68 @@ else:
         if best_scenario:
             st.subheader("Your Education Savings Plan")
 
-            # Main KPIs
-            kpi_row([
-                ("University", state.university, "Selected institution"),
-                ("Course", state.course, "Selected programme"),
-                ("Education Start", str(state.education_year), "When studies begin"),
-                ("Strategy", selected_strategy, "Your chosen approach"),
-            ])
+            # Main overview KPIs
+            st.subheader("Your Education Plan")
+            with st.container(border=True):
+                col1, col2, col3, col4 = st.columns(4)
+                with col1:
+                    professional_kpi_card(
+                        "University",
+                        state.university,
+                        help_text="Selected institution"
+                    )
+                with col2:
+                    professional_kpi_card(
+                        "Course",
+                        state.course,
+                        help_text="Selected programme"
+                    )
+                with col3:
+                    professional_kpi_card(
+                        "Education Start",
+                        str(state.education_year),
+                        help_text="When studies begin"
+                    )
+                with col4:
+                    professional_kpi_card(
+                        "Chosen Strategy",
+                        selected_strategy,
+                        help_text="Your selected approach"
+                    )
 
             st.divider()
 
             # Financial summary
             st.subheader("Financial Summary")
 
-            kpi_row([
-                ("Best Strategy", best_scenario.strategy_name, "Most cost-effective approach"),
-                ("Total Cost (INR)", format_inr(best_scenario.total_cost_inr), "Total education cost in Indian Rupees"),
-                ("Savings vs PAYG", format_inr(best_scenario.savings_vs_payg_inr) if best_scenario.savings_vs_payg_inr > 0 else "Baseline", "Amount saved compared to pay-as-you-go"),
-                ("Savings Percentage", format_percentage(best_scenario.savings_percentage) if best_scenario.savings_percentage > 0 else "0%", "Percentage saved"),
-            ])
+            # Financial summary KPIs
+            with st.container(border=True):
+                col1, col2, col3, col4 = st.columns(4)
+                with col1:
+                    professional_kpi_card(
+                        "Best Strategy",
+                        best_scenario.strategy_name,
+                        help_text="Most cost-effective approach",
+                        highlight=True
+                    )
+                with col2:
+                    professional_kpi_card(
+                        "Total Cost",
+                        format_inr(best_scenario.total_cost_inr),
+                        help_text="Total education cost in Indian Rupees"
+                    )
+                with col3:
+                    professional_kpi_card(
+                        "Total Savings",
+                        format_inr(best_scenario.savings_vs_payg_inr) if best_scenario.savings_vs_payg_inr > 0 else "Baseline",
+                        help_text="Amount saved compared to pay-as-you-go"
+                    )
+                with col4:
+                    professional_kpi_card(
+                        "Savings Percentage",
+                        format_percentage(best_scenario.savings_percentage) if best_scenario.savings_percentage > 0 else "0%",
+                        help_text="Percentage reduction in cost"
+                    )
 
             # Key insights
             st.subheader("Key Insights")
@@ -86,7 +139,8 @@ else:
                     'Impact': 'Lower rates favor early conversion' if rate < 100 else 'Higher rates favor late payment'
                 })
 
-            st.dataframe(pd.DataFrame(fx_data), use_container_width=True)
+            fx_df = pd.DataFrame(fx_data)
+            professional_dataframe(fx_df)
             st.caption("Exchange rate projections based on historical trends. Actual rates may vary due to economic conditions.")
 
             # Next steps
@@ -109,16 +163,20 @@ else:
                 "All calculations use compound annual growth rates (CAGR) derived from official sources."
             )
 
-            st.divider()
+            # Professional navigation
+            navigation_buttons(
+                back_page="pages/3_Saver_Selector.py",
+                back_label="← Back to Strategy"
+            )
 
-            # Navigation
-            col1, col2, col3 = st.columns([1, 1, 1])
-            with col1:
-                if st.button("← Back to Strategy", use_container_width=True):
-                    st.switch_page("pages/3_Saver_Selector.py")
-            with col2:
-                if st.button("Start Over", use_container_width=True):
-                    st.switch_page("gui/education_savings_app.py")
+            # Start over option
+            st.divider()
+            if st.button("Start New Analysis", use_container_width=True):
+                # Clear session state and go to home
+                for key in list(st.session_state.keys()):
+                    if key.startswith('app_state') or key in ['university', 'course', 'scenarios']:
+                        del st.session_state[key]
+                st.switch_page("gui/education_savings_app.py")
 
         else:
             st.error("No strategy analysis available. Please complete the strategy selection first.")

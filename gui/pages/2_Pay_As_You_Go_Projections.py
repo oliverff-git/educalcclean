@@ -10,11 +10,21 @@ if parent_dir not in sys.path:
 
 from gui.core.theme import configure_page
 from gui.core.state import get_state, update_state, init_processors
-from gui.core.ui import kpi_row
+from gui.core.ui_components import (
+    professional_page_header, professional_kpi_card, kpi_row,
+    navigation_buttons, professional_dataframe, format_gbp, format_inr, format_percentage
+)
 from gui.core.compute import get_payg_projection, create_fee_projection_chart, create_fx_projection_chart, project_fx_rate
 
 configure_page("Pay-As-You-Go Projections")
-st.header("Pay-As-You-Go Projections")
+
+# Professional page header with breadcrumb
+professional_page_header(
+    title="Pay-As-You-Go Projections",
+    subtitle="Fee and exchange rate forecasts for your education timeline",
+    breadcrumb_steps=["Home", "Course Selection", "Projections", "Strategy", "Summary"],
+    current_step=2
+)
 
 state = get_state()
 
@@ -68,13 +78,34 @@ else:
                 latest_fee = course_info.get('latest_fee', 0)
                 current_total = latest_fee * duration
 
-                # Display KPIs
-                kpi_row([
-                    (f"{duration}-Year Programme Total (Current)", f"£{current_total:,.0f}", f"Based on {course_info.get('latest_actual_year', 'current')} fees"),
-                    (f"Projected {duration}-Year Total ({edu_start})", f"£{projected_total:,.0f}", "Projected using historical CAGR"),
-                    ("Course CAGR", f"{cagr:.1f}%", "Annual fee growth rate"),
-                    ("Data Points", f"{course_info.get('data_points', 0)} years", "Historical data available"),
-                ])
+                # Display KPIs using professional cards
+                st.subheader("Programme Cost Analysis")
+                with st.container(border=True):
+                    col1, col2, col3, col4 = st.columns(4)
+                    with col1:
+                        professional_kpi_card(
+                            f"{duration}-Year Total (Current)",
+                            format_gbp(current_total),
+                            help_text=f"Based on {course_info.get('latest_actual_year', 'current')} fees"
+                        )
+                    with col2:
+                        professional_kpi_card(
+                            f"Projected Total ({edu_start})",
+                            format_gbp(projected_total),
+                            help_text="Projected using historical CAGR"
+                        )
+                    with col3:
+                        professional_kpi_card(
+                            "Annual Growth Rate",
+                            f"{cagr:.1f}%",
+                            help_text="Course fee compound annual growth rate"
+                        )
+                    with col4:
+                        professional_kpi_card(
+                            "Data Coverage",
+                            f"{course_info.get('data_points', 0)} years",
+                            help_text="Years of historical data available"
+                        )
 
                 # Charts
                 st.subheader("Projections")
@@ -112,14 +143,13 @@ else:
 
                 st.divider()
 
-                # Navigation
-                col1, col2, col3 = st.columns([1, 1, 1])
-                with col1:
-                    if st.button("← Back to Course", use_container_width=True):
-                        st.switch_page("pages/1_Course_Selector.py")
-                with col3:
-                    if st.button("Next → Strategy", use_container_width=True, type="primary"):
-                        st.switch_page("pages/3_Saver_Selector.py")
+                # Professional navigation
+                navigation_buttons(
+                    back_page="pages/1_Course_Selector.py",
+                    next_page="pages/3_Saver_Selector.py",
+                    back_label="← Back to Course",
+                    next_label="Next → Strategy"
+                )
 
             else:
                 st.error("Unable to generate projections. Please check your selections.")

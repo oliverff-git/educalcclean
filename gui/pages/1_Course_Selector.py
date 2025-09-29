@@ -9,11 +9,21 @@ if parent_dir not in sys.path:
 
 from gui.core.theme import configure_page
 from gui.core.state import get_state, update_state, init_processors
-from gui.core.ui import kpi_row
+from gui.core.ui_components import (
+    professional_page_header, professional_kpi_card, kpi_row,
+    navigation_buttons, info_alert, format_gbp
+)
 from gui.core.compute import get_universities, get_courses, get_course_info
 
 configure_page("Course Selector")
-st.header("Course Selector")
+
+# Professional page header with breadcrumb
+professional_page_header(
+    title="Course Selector",
+    subtitle="Select your target university and academic programme",
+    breadcrumb_steps=["Home", "Course Selection", "Projections", "Strategy", "Summary"],
+    current_step=1
+)
 
 # Initialize processors
 try:
@@ -46,13 +56,39 @@ try:
             latest_fee = course_info.get('latest_fee', 0)
             three_year_total = latest_fee * 3
 
-            # Display current fees
-            kpi_row([
-                (f"Current Annual Fee ({latest_year})", f"£{latest_fee:,.0f}", "Official course page"),
-                (f"3-Year Programme Total ({latest_year})", f"£{three_year_total:,.0f}", "Total cost for 3-year programme"),
-                ("Course CAGR", f"{course_info.get('cagr_pct', 0):.1f}%", "Historical fee growth rate"),
-                ("Data Points", f"{course_info.get('data_points', 0)} years", "Years of historical data available"),
-            ])
+            st.subheader("Course Fee Information")
+
+            # Display current fees using professional KPI cards
+            with st.container(border=True):
+                col1, col2, col3, col4 = st.columns(4)
+
+                with col1:
+                    professional_kpi_card(
+                        f"Annual Fee ({latest_year})",
+                        format_gbp(latest_fee),
+                        help_text="Current annual tuition fee from official course page"
+                    )
+
+                with col2:
+                    professional_kpi_card(
+                        f"3-Year Total ({latest_year})",
+                        format_gbp(three_year_total),
+                        help_text="Total cost for standard 3-year programme"
+                    )
+
+                with col3:
+                    professional_kpi_card(
+                        "Annual Growth Rate",
+                        f"{course_info.get('cagr_pct', 0):.1f}%",
+                        help_text="Historical fee compound annual growth rate"
+                    )
+
+                with col4:
+                    professional_kpi_card(
+                        "Data Coverage",
+                        f"{course_info.get('data_points', 0)} years",
+                        help_text="Years of historical data available for analysis"
+                    )
 
             # Data quality information
             transparency = course_info.get('transparency')
@@ -62,15 +98,11 @@ try:
             # Update state
             update_state(university=university, course=course)
 
-            st.divider()
-
-            # Navigation
-            col1, col2, col3 = st.columns([1, 2, 1])
-            with col2:
-                if st.button("Next → Projections", use_container_width=True, type="primary"):
-                    st.switch_page("pages/2_Pay_As_You_Go_Projections.py")
-
-            st.caption("Navigate to the next page to see projections and continue your analysis.")
+            # Professional navigation
+            navigation_buttons(
+                next_page="pages/2_Pay_As_You_Go_Projections.py",
+                next_label="Next → Projections"
+            )
 
 except Exception as e:
     st.error(f"Error loading data: {e}")

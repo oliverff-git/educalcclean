@@ -6,6 +6,10 @@ from pathlib import Path
 sys.path.append(str(Path(__file__).parent))
 from core.theme import configure_page
 from core.state import get_state
+from core.ui_components import (
+    professional_page_header, professional_kpi_card, format_inr,
+    success_alert, info_alert, navigation_buttons
+)
 
 # Configure page
 configure_page("UK Education Savings Calculator", "", "wide")
@@ -13,16 +17,22 @@ configure_page("UK Education Savings Calculator", "", "wide")
 # Initialize state
 state = get_state()
 
-st.title("UK Education Savings Calculator")
-st.markdown("**Professional financial planning for UK university education**")
+# Professional page header
+professional_page_header(
+    title="UK Education Savings Calculator",
+    subtitle="Professional financial planning for UK university education"
+)
 
-st.markdown("""
-This calculator helps Indian families plan and optimize their UK university education savings through:
-- **Course selection** and fee analysis
-- **Exchange rate projections** based on historical data
-- **Strategy comparison** between pay-as-you-go vs early conversion
-- **Comprehensive summaries** with actionable insights
-""")
+# Overview section
+with st.container(border=True):
+    st.markdown("### How This Calculator Helps")
+    st.markdown("""
+    This calculator helps Indian families plan and optimize their UK university education savings through:
+    - **Course selection** and fee analysis from Oxford, Cambridge, and LSE
+    - **Exchange rate projections** based on historical Bank of England data
+    - **Strategy comparison** between pay-as-you-go vs early conversion approaches
+    - **Comprehensive summaries** with actionable financial insights
+    """)
 
 st.divider()
 
@@ -52,24 +62,52 @@ with col2:
 
 st.divider()
 
-# Current status
+# Current Status
+st.subheader("Current Status")
 if state.university and state.course:
-    st.success(f"**Current Selection**: {state.university} - {state.course}")
+    with st.container(border=True):
+        col1, col2 = st.columns(2)
+        with col1:
+            professional_kpi_card("Selected University", state.university)
+        with col2:
+            professional_kpi_card("Selected Course", state.course)
 
-    if state.scenarios:
-        best_scenario = state.scenarios[0]
-        if best_scenario.savings_vs_payg_inr > 0:
-            savings_lakh = best_scenario.savings_vs_payg_inr / 100000
-            st.info(f"**Best Strategy**: {best_scenario.strategy_name} saves ₹{savings_lakh:.1f}L ({best_scenario.savings_percentage:.1f}%)")
+        if hasattr(state, 'scenarios') and state.scenarios:
+            best_scenario = state.scenarios[0]
+            if best_scenario.savings_vs_payg_inr > 0:
+                st.divider()
+                col1, col2, col3 = st.columns(3)
+                with col1:
+                    professional_kpi_card(
+                        "Best Strategy",
+                        best_scenario.strategy_name,
+                        help_text="Most cost-effective approach"
+                    )
+                with col2:
+                    professional_kpi_card(
+                        "Total Savings",
+                        format_inr(best_scenario.savings_vs_payg_inr),
+                        help_text="Savings vs pay-as-you-go"
+                    )
+                with col3:
+                    professional_kpi_card(
+                        "Savings Percentage",
+                        f"{best_scenario.savings_percentage:.1f}%",
+                        help_text="Percentage saved"
+                    )
 else:
-    st.info("**Start by selecting your university and course** in Step 1 above.")
+    info_alert("**Get Started**: Select your university and course using the sidebar navigation to begin your analysis.")
 
 st.divider()
 
-st.subheader("Additional Tools")
-st.markdown("**Investment Strategies** - Explore investment-based approaches:")
-st.code("streamlit run gui/investment_strategies_app.py")
-st.caption("Run the command above in your terminal for detailed investment analysis")
+# Additional Tools Section
+with st.container(border=True):
+    st.markdown("### Additional Tools")
+    st.markdown("**Investment Strategies Analysis** - Explore investment-based savings approaches:")
+    st.code("streamlit run gui/investment_strategies_app.py", language="bash")
+    st.caption("Run this command in your terminal for detailed investment analysis")
 
-st.markdown("---")
-st.caption("Data sources: Official university websites, Bank of England exchange rates. Projections based on historical CAGR analysis.")
+st.divider()
+
+# Data Sources Footer
+st.caption("**Data Sources**: Official university websites (Oxford, Cambridge, LSE), Bank of England exchange rates. All projections based on historical CAGR analysis.")

@@ -1,4 +1,5 @@
 import streamlit as st
+import pandas as pd
 import sys
 from pathlib import Path
 
@@ -9,11 +10,21 @@ if parent_dir not in sys.path:
 
 from gui.core.theme import configure_page
 from gui.core.state import get_state, update_state, init_processors
-from gui.core.ui import kpi_row, success_alert, format_inr, format_percentage
+from gui.core.ui_components import (
+    professional_page_header, professional_kpi_card, professional_dataframe,
+    navigation_buttons, success_alert, format_inr, format_percentage
+)
 from gui.core.compute import compare_strategies, create_strategy_comparison_chart
 
 configure_page("Saver Selector")
-st.header("Saver Selector")
+
+# Professional page header with breadcrumb
+professional_page_header(
+    title="Strategy Selector",
+    subtitle="Compare different savings strategies to optimize your costs",
+    breadcrumb_steps=["Home", "Course Selection", "Projections", "Strategy", "Summary"],
+    current_step=3
+)
 
 state = get_state()
 
@@ -65,13 +76,30 @@ else:
             # Find best scenario
             best_scenario = scenarios[0]  # Scenarios are sorted by savings
 
-            # Display best strategy
+            # Display best strategy using professional KPI
             if best_scenario.savings_vs_payg_inr > 0:
-                success_alert(
-                    f"**Best Strategy**: {best_scenario.strategy_name} "
-                    f"saves **{format_inr(best_scenario.savings_vs_payg_inr)}** "
-                    f"({format_percentage(best_scenario.savings_percentage)})"
-                )
+                st.subheader("Recommended Strategy")
+                with st.container(border=True):
+                    col1, col2, col3 = st.columns(3)
+                    with col1:
+                        professional_kpi_card(
+                            "Best Strategy",
+                            best_scenario.strategy_name,
+                            help_text="Most cost-effective approach",
+                            highlight=True
+                        )
+                    with col2:
+                        professional_kpi_card(
+                            "Total Savings",
+                            format_inr(best_scenario.savings_vs_payg_inr),
+                            help_text="Amount saved vs pay-as-you-go"
+                        )
+                    with col3:
+                        professional_kpi_card(
+                            "Savings Percentage",
+                            format_percentage(best_scenario.savings_percentage),
+                            help_text="Percentage reduction in total cost"
+                        )
 
             # Strategy comparison table
             st.subheader("Detailed Comparison")
@@ -86,7 +114,9 @@ else:
                     'Exchange Rate': f"₹{scenario.exchange_rate_used:.2f}/£" if scenario.exchange_rate_used > 0 else "Variable"
                 })
 
-            st.dataframe(comparison_data, use_container_width=True)
+            # Use professional dataframe with proper column configuration
+            comparison_df = pd.DataFrame(comparison_data)
+            professional_dataframe(comparison_df)
 
             # Strategy details
             for i, scenario in enumerate(scenarios):
@@ -114,16 +144,13 @@ else:
             # Update state with scenarios and selected strategy
             update_state(scenarios=scenarios, selected_strategy=selected_strategy)
 
-            st.divider()
-
-            # Navigation
-            col1, col2, col3 = st.columns([1, 1, 1])
-            with col1:
-                if st.button("← Back to Projections", use_container_width=True):
-                    st.switch_page("pages/2_Pay_As_You_Go_Projections.py")
-            with col3:
-                if st.button("Next → Summary", use_container_width=True, type="primary"):
-                    st.switch_page("pages/4_Summary.py")
+            # Professional navigation
+            navigation_buttons(
+                back_page="pages/2_Pay_As_You_Go_Projections.py",
+                next_page="pages/4_Summary.py",
+                back_label="← Back to Projections",
+                next_label="Next → Summary"
+            )
 
         else:
             st.error("Unable to calculate strategy comparison. Please check your inputs.")
