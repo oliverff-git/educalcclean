@@ -57,6 +57,17 @@ def kpi_row(kpis: List[tuple]) -> None:
             elif len(kpi) == 4:
                 professional_kpi_card(kpi[0], kpi[1], kpi[2], kpi[3])
 
+
+def selected_strategy_card(strategy_name: str) -> None:
+    """
+    Display a highlighted card showing the user's selected strategy
+
+    Args:
+        strategy_name: The name of the selected strategy
+    """
+    st.markdown(f"**CHOSEN STRATEGY**: {strategy_name}")
+    st.caption("This is your selected approach for comparison and summary")
+
 # ===== PROFESSIONAL DATA COMPONENTS =====
 
 def professional_dataframe(data: pd.DataFrame,

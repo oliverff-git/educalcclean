@@ -9,7 +9,7 @@ from .state import get_state, update_state, init_processors
 from .ui_components import (
     professional_page_header, professional_kpi_card, kpi_row,
     professional_dataframe, info_alert, success_alert, format_gbp, format_inr,
-    format_percentage, format_exchange_rate
+    format_percentage, format_exchange_rate, selected_strategy_card
 )
 from .compute import (
     get_universities, get_courses, get_course_info, get_payg_projection,
@@ -273,23 +273,7 @@ def strategy_selector_section():
         # Strategy selection
         st.markdown("**Choose Your Savings Strategy**")
 
-        strategies = [
-            "Pay As You Go",
-            "Early Conversion (2023)",
-            "Early Conversion (2024)",
-            "Early Conversion (2025)"
-        ]
-
-        selected_strategy = st.radio(
-            "Select Strategy",
-            strategies,
-            index=0,
-            horizontal=True,
-            help="Choose between paying at education time vs converting currency early",
-            key="strategy_selection"
-        )
-
-        # Get strategy comparison with loading indicator
+        # Get strategy comparison with loading indicator FIRST
         with st.spinner("Analyzing savings strategies..."):
             scenarios = compare_strategies(
                 state.university,
@@ -297,6 +281,27 @@ def strategy_selector_section():
                 state.conversion_year,
                 state.education_year
             )
+
+        if scenarios:
+            # Generate radio button options from actual scenarios returned by backend
+            strategies = [scenario.strategy_name for scenario in scenarios]
+
+            # Get current selected strategy from session state or default to first
+            current_strategy = getattr(state, 'selected_strategy', strategies[0])
+            current_index = strategies.index(current_strategy) if current_strategy in strategies else 0
+
+            selected_strategy = st.radio(
+                "Select Strategy",
+                strategies,
+                index=current_index,
+                horizontal=True,
+                help="Choose between paying at education time vs converting currency early",
+                key="strategy_selection"
+            )
+
+            # Show selected strategy clearly
+            if selected_strategy:
+                selected_strategy_card(selected_strategy)
 
         if scenarios:
             # Display comparison chart
@@ -397,9 +402,13 @@ def summary_section():
         return
 
     try:
-        # Get best scenario
+        # Get best scenario and user's selected strategy
         best_scenario = state.scenarios[0] if state.scenarios else None
         selected_strategy = getattr(state, 'selected_strategy', 'Pay As You Go')
+
+        # Show the user's actual choice prominently
+        if selected_strategy:
+            selected_strategy_card(selected_strategy)
 
         if best_scenario:
             st.markdown("**Your Education Savings Plan**")
