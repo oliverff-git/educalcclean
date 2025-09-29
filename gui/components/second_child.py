@@ -230,7 +230,7 @@ def render_second_child_sidebar(
         try:
             fx_rate = data_processor.get_september_fx_rate(conversion_year)
             gbp_equiv = amount_inr / fx_rate
-            st.caption(f"🏦 ≈ £{gbp_equiv:,.0f} @ ₹{fx_rate:.2f}/£")
+            st.caption(f"≈ £{gbp_equiv:,.0f} @ ₹{fx_rate:.2f}/£")
         except:
             st.caption("Exchange rate data loading...")
 

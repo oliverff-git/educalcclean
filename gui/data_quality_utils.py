@@ -74,7 +74,7 @@ def get_data_quality_badge(data_quality: DataQuality) -> tuple[str, str]:
 def get_confidence_indicator(confidence_level: ConfidenceLevel) -> tuple[str, str]:
     """Get emoji and description for confidence level"""
     indicators = {
-        ConfidenceLevel.HIGH: ("💎", "High confidence - course-specific data"),
+        ConfidenceLevel.HIGH: ("", "High confidence - course-specific data"),
         ConfidenceLevel.MEDIUM: ("", "Medium confidence - limited course data"),
         ConfidenceLevel.LOW: ("", "Low confidence - university average used")
     }
@@ -97,7 +97,7 @@ def get_projection_disclaimer(transparency: DataTransparency) -> str:
         )
     else:
         return (
-            f"✅ **Reliable Projections**: Based on {transparency.years_of_data} years of course-specific data "
+            f"**Reliable Projections**: Based on {transparency.years_of_data} years of course-specific data "
             f"({min(transparency.actual_data_years)}-{max(transparency.actual_data_years)}). "
             f"Good confidence in projections."
         )

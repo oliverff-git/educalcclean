@@ -77,7 +77,7 @@ def render_roi_sidebar(conversion_year: int, education_year: int, university: st
 
     # Dropdown selection
     selected_option = st.sidebar.selectbox(
-        "💵 Investment Amount",
+        "Investment Amount",
         options=list(investment_options.keys()),
         index=0,  # Default to first option
         help="Select investment amount based on programme fees or fixed amounts"
@@ -255,7 +255,7 @@ def render_roi_scenario_cards(scenarios: List):
         initial_investment = scenario.conversion_details.get('initial_investment_inr', 0)
         roi = ((final_value - initial_investment) / initial_investment * 100) if initial_investment > 0 else 0
 
-        expander_title = f"💎 {scenario.strategy_name.split(' (')[0]} → ₹{final_value/100000:.1f}L ({roi:.1f}% ROI)"
+        expander_title = f"{scenario.strategy_name.split(' (')[0]} → ₹{final_value/100000:.1f}L ({roi:.1f}% ROI)"
 
         with st.expander(expander_title, expanded=(i == 0)):
             # Data quality indicator at the top
@@ -344,12 +344,12 @@ def render_roi_scenario_cards(scenarios: List):
 
             if final_value >= actual_education_cost:
                 surplus = final_value - actual_education_cost
-                st.success(f"✅ **Covers Full Education Cost**")
+                st.success(f"**Covers Full Education Cost**")
                 st.success(f" Extra Money Left: ₹{surplus/100000:.1f}L")
             else:
                 shortfall = actual_education_cost - final_value
                 st.warning(f" **Partial Coverage Only**")
-                st.warning(f"💳 Additional Needed: ₹{shortfall/100000:.1f}L")
+                st.warning(f"Additional Needed: ₹{shortfall/100000:.1f}L")
 
 
 def render_risk_tolerance_guide(risk_tolerance: str) -> Dict:
@@ -503,9 +503,9 @@ def render_data_quality_indicator(scenario):
         st.success("""
         **Fixed Deposit Reality Check:**
 
-        ✅ **Guaranteed Return:** Exactly 5.0% per year, every year
-        ✅ **No Risk:** Your money is 100% safe
-        ✅ **Predictable:** You know exactly how much you'll get
+        **Guaranteed Return:** Exactly 5.0% per year, every year
+        **No Risk:** Your money is 100% safe
+        **Predictable:** You know exactly how much you'll get
          **Requirement:** Money must be locked in (can't withdraw early)
 
         **Example:** ₹10L becomes exactly ₹11.6L after 3 years (guaranteed)
