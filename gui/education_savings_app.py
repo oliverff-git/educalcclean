@@ -35,7 +35,6 @@ from gui.components.second_child import (
     SecondChildAdapter, render_second_child_sidebar,
     render_second_child_results
 )
-from gui.components.professional_styles import apply_professional_styling
 
 
 
@@ -184,9 +183,6 @@ def main():
         layout="wide",
         initial_sidebar_state="expanded"
     )
-
-    # Apply professional financial institution styling
-    apply_professional_styling()
 
     st.title("UK Education Savings Calculator")
     st.markdown("**Calculate potential savings from early INR→GBP conversion strategies**")
