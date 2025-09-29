@@ -5,10 +5,10 @@ import streamlit as st
 @dataclass
 class AppState:
     # Selection state
-    university: Optional[str] = None
-    course: Optional[str] = None
-    conversion_year: int = 2023
-    education_year: int = 2026
+    university: Optional[str] = "Oxford"
+    course: Optional[str] = "Philosophy Politics & Economics"
+    conversion_year: int = 2025
+    education_year: int = 2027
 
     # Calculation results (cached)
     scenarios: List = field(default_factory=list)

@@ -3,6 +3,7 @@ Compute layer for the multipage refactor.
 Contains chart functions and wrapper functions for clean interfaces between pages and calculators.
 """
 
+import streamlit as st
 import plotly.graph_objects as go
 import plotly.express as px
 import pandas as pd
@@ -65,19 +66,23 @@ def create_fee_projection_chart(projections_data):
             x=0.05
         ),
         xaxis=dict(
-            title="Year",
+            title=dict(
+                text="Year",
+                font=dict(color='#374151', size=14)
+            ),
             gridcolor='#E2E8F0',
             showgrid=True,
             linecolor='#E2E8F0',
-            titlefont=dict(color='#374151', size=14),
             tickfont=dict(color='#6B7280', size=12)
         ),
         yaxis=dict(
-            title="Annual Fee (GBP)",
+            title=dict(
+                text="Annual Fee (GBP)",
+                font=dict(color='#374151', size=14)
+            ),
             gridcolor='#E2E8F0',
             showgrid=True,
             linecolor='#E2E8F0',
-            titlefont=dict(color='#374151', size=14),
             tickfont=dict(color='#6B7280', size=12),
             tickformat='£,.0f'
         ),
@@ -147,19 +152,23 @@ def create_fx_projection_chart(projections_data):
             x=0.05
         ),
         xaxis=dict(
-            title="Year",
+            title=dict(
+                text="Year",
+                font=dict(color='#374151', size=14)
+            ),
             gridcolor='#E2E8F0',
             showgrid=True,
             linecolor='#E2E8F0',
-            titlefont=dict(color='#374151', size=14),
             tickfont=dict(color='#6B7280', size=12)
         ),
         yaxis=dict(
-            title="Exchange Rate (₹ per £)",
+            title=dict(
+                text="Exchange Rate (₹ per £)",
+                font=dict(color='#374151', size=14)
+            ),
             gridcolor='#E2E8F0',
             showgrid=True,
             linecolor='#E2E8F0',
-            titlefont=dict(color='#374151', size=14),
             tickfont=dict(color='#6B7280', size=12),
             tickformat='₹,.0f'
         ),
@@ -179,14 +188,12 @@ def create_fx_projection_chart(projections_data):
     return fig
 
 
-@st.cache_data(ttl=3600)  # Cache for 1 hour
 def get_payg_projection(university: str, course: str, start_year: int, edu_year: int, duration: int = 3):
     """Get pay-as-you-go projection data"""
     data_processor, calculator = init_processors()
     return calculator.get_projection_details(university, course, edu_year)
 
 
-@st.cache_data(ttl=1800)  # Cache for 30 minutes
 def compare_strategies(university: str, course: str, conversion_year: int, education_year: int):
     """Compare all savings strategies"""
     data_processor, calculator = init_processors()
@@ -237,20 +244,24 @@ def create_strategy_comparison_chart(scenarios):
             x=0.05
         ),
         xaxis=dict(
-            title="Strategy",
+            title=dict(
+                text="Strategy",
+                font=dict(color='#374151', size=14)
+            ),
             gridcolor='#E2E8F0',
             showgrid=False,
             linecolor='#E2E8F0',
-            titlefont=dict(color='#374151', size=14),
             tickfont=dict(color='#6B7280', size=12),
             tickangle=-45
         ),
         yaxis=dict(
-            title="Total Cost (Lakhs ₹)",
+            title=dict(
+                text="Total Cost (Lakhs ₹)",
+                font=dict(color='#374151', size=14)
+            ),
             gridcolor='#E2E8F0',
             showgrid=True,
             linecolor='#E2E8F0',
-            titlefont=dict(color='#374151', size=14),
             tickfont=dict(color='#6B7280', size=12),
             tickformat='₹.1f'
         ),
@@ -266,7 +277,7 @@ def create_strategy_comparison_chart(scenarios):
     for i, (cost_lakhs, cost_total) in enumerate(zip(formatted_costs, total_costs)):
         fig.add_annotation(
             x=strategy_names[i],
-            y=cost_lakhs + max(formatted_costs) * 0.02,  # Slightly above bar
+            y=cost_lakhs + max(formatted_costs) * 0.08,  # Raised higher above bars for better readability
             text=f"₹{cost_lakhs:.1f}L",
             showarrow=False,
             font=dict(color='#374151', size=12, family="system-ui"),
@@ -276,7 +287,6 @@ def create_strategy_comparison_chart(scenarios):
     return fig
 
 
-@st.cache_data(ttl=7200)  # Cache for 2 hours (course info changes rarely)
 def get_course_info(university: str, course: str):
     """Get course information from data processor"""
     data_processor, calculator = init_processors()

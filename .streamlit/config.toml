@@ -1,19 +1,10 @@
 [theme]
 # Core color scheme - Professional fintech palette
-primaryColor = "#1E40AF"           # Deep blue for CTAs and interactive elements
-backgroundColor = "#FFFFFF"         # Pure white background
-secondaryBackgroundColor = "#F8FAFC"  # Light gray for cards and secondary areas
-textColor = "#0F172A"              # Almost black for maximum contrast
-
-# Typography - Clean, professional system fonts
-font = "system-ui"
-baseFontSize = 16
-baseFontWeight = 400
-
-# Visual refinement for professional appearance
-baseRadius = 6                     # Subtle rounded corners
-
-# Professional UI colors
+primaryColor = "#374151"
+backgroundColor = "#FFFFFF"
+secondaryBackgroundColor = "#F9FAFB"
+textColor = "#111827"
+font = "sans serif"
 base = "light"
 
 [server]
