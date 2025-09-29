@@ -65,11 +65,17 @@ else:
             default_cagr = course_info.get('cagr_pct', 5.0)
             cagr = st.slider("Fee CAGR (%)", 0.0, 15.0, default_cagr, 0.1)
 
+        # Input validation with helpful feedback
         if edu_start <= start_year:
-            st.error("Education start year must be after savings start year")
+            st.error("⚠️ **Invalid Timeline**: Education start year must be after savings start year")
+            st.info("💡 **Suggestion**: Set education start year to at least " + str(start_year + 1))
+        elif (edu_start - start_year) > 10:
+            st.warning("⚠️ **Long Timeline**: Very long savings period detected (" + str(edu_start - start_year) + " years)")
+            st.info("💡 **Note**: Projections become less reliable over extended periods")
         else:
-            # Get projection data
-            projections_data = get_payg_projection(state.university, state.course, start_year, edu_start, duration)
+            # Get projection data with loading indicator
+            with st.spinner("Generating projections..."):
+                projections_data = get_payg_projection(state.university, state.course, start_year, edu_start, duration)
 
             if projections_data:
                 # Calculate key metrics

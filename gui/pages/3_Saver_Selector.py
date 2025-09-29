@@ -58,13 +58,14 @@ else:
             help="Choose between paying at education time vs converting currency early"
         )
 
-        # Get strategy comparison
-        scenarios = compare_strategies(
-            state.university,
-            state.course,
-            state.conversion_year,
-            state.education_year
-        )
+        # Get strategy comparison with loading indicator
+        with st.spinner("Analyzing savings strategies..."):
+            scenarios = compare_strategies(
+                state.university,
+                state.course,
+                state.conversion_year,
+                state.education_year
+            )
 
         if scenarios:
             # Display comparison chart

@@ -31,23 +31,22 @@ def update_state(**kwargs):
     for key, value in kwargs.items():
         setattr(state, key, value)
 
+@st.cache_resource
 def init_processors():
-    """Initialize data processor and calculator (singleton pattern)"""
-    state = get_state()
-    if state.data_processor is None:
-        import sys
-        from pathlib import Path
+    """Initialize data processor and calculator (singleton pattern with caching)"""
+    import sys
+    from pathlib import Path
 
-        # Add parent directory to path to find gui module
-        parent_dir = str(Path(__file__).parent.parent.parent)
-        if parent_dir not in sys.path:
-            sys.path.insert(0, parent_dir)
+    # Add parent directory to path to find gui module
+    parent_dir = str(Path(__file__).parent.parent.parent)
+    if parent_dir not in sys.path:
+        sys.path.insert(0, parent_dir)
 
-        from gui.data_processor import EducationDataProcessor
-        from gui.fee_calculator import EducationSavingsCalculator
+    from gui.data_processor import EducationDataProcessor
+    from gui.fee_calculator import EducationSavingsCalculator
 
-        state.data_processor = EducationDataProcessor()
-        state.data_processor.load_data()
-        state.calculator = EducationSavingsCalculator(state.data_processor)
+    data_processor = EducationDataProcessor()
+    data_processor.load_data()
+    calculator = EducationSavingsCalculator(data_processor)
 
-    return state.data_processor, state.calculator
+    return data_processor, calculator
