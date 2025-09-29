@@ -3,12 +3,15 @@ import pandas as pd
 import sys
 from pathlib import Path
 
-# Import core modules
-sys.path.append(str(Path(__file__).parent.parent))
-from core.theme import configure_page
-from core.state import get_state, update_state, init_processors
-from core.ui import kpi_row
-from core.compute import get_payg_projection, create_fee_projection_chart, create_fx_projection_chart, project_fx_rate
+# Import core modules with correct path
+parent_dir = str(Path(__file__).parent.parent.parent)
+if parent_dir not in sys.path:
+    sys.path.insert(0, parent_dir)
+
+from gui.core.theme import configure_page
+from gui.core.state import get_state, update_state, init_processors
+from gui.core.ui import kpi_row
+from gui.core.compute import get_payg_projection, create_fee_projection_chart, create_fx_projection_chart, project_fx_rate
 
 configure_page("Pay-As-You-Go Projections")
 st.header("Pay-As-You-Go Projections")
@@ -106,6 +109,17 @@ else:
                     education_year=edu_start,
                     projections_data=projections_data
                 )
+
+                st.divider()
+
+                # Navigation
+                col1, col2, col3 = st.columns([1, 1, 1])
+                with col1:
+                    if st.button("← Back to Course", use_container_width=True):
+                        st.switch_page("pages/1_Course_Selector.py")
+                with col3:
+                    if st.button("Next → Strategy", use_container_width=True, type="primary"):
+                        st.switch_page("pages/3_Saver_Selector.py")
 
             else:
                 st.error("Unable to generate projections. Please check your selections.")

@@ -29,22 +29,26 @@ st.divider()
 st.subheader("Get Started")
 st.markdown("Follow these steps to analyze your education savings strategy:")
 
-# Navigation links
+# Navigation instructions
 col1, col2 = st.columns(2)
 
 with col1:
-    st.page_link("pages/1_Course_Selector.py", label="**1. Course Selector**", icon="🎓")
+    st.markdown("**1. Course Selector**")
     st.caption("Select your university and programme")
+    st.markdown("*Navigate to 'Course Selector' page using the sidebar*")
 
-    st.page_link("pages/3_Saver_Selector.py", label="**3. Strategy Selector**", icon="💡")
+    st.markdown("**3. Strategy Selector**")
     st.caption("Compare savings strategies")
+    st.markdown("*Navigate to 'Saver Selector' page using the sidebar*")
 
 with col2:
-    st.page_link("pages/2_Pay_As_You_Go_Projections.py", label="**2. Projections**", icon="📈")
+    st.markdown("**2. Projections**")
     st.caption("View fee and exchange rate forecasts")
+    st.markdown("*Navigate to 'Pay As You Go Projections' page using the sidebar*")
 
-    st.page_link("pages/4_Summary.py", label="**4. Summary**", icon="📋")
+    st.markdown("**4. Summary**")
     st.caption("Review your complete analysis")
+    st.markdown("*Navigate to 'Summary' page using the sidebar*")
 
 st.divider()
 
@@ -64,7 +68,8 @@ st.divider()
 
 st.subheader("Additional Tools")
 st.markdown("**Investment Strategies** - Explore investment-based approaches:")
-st.markdown("Run: `streamlit run gui/investment_strategies_app.py` for detailed investment analysis")
+st.code("streamlit run gui/investment_strategies_app.py")
+st.caption("Run the command above in your terminal for detailed investment analysis")
 
 st.markdown("---")
 st.caption("Data sources: Official university websites, Bank of England exchange rates. Projections based on historical CAGR analysis.")

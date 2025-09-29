@@ -3,12 +3,15 @@ import pandas as pd
 import sys
 from pathlib import Path
 
-# Import core modules
-sys.path.append(str(Path(__file__).parent.parent))
-from core.theme import configure_page
-from core.state import get_state
-from core.ui import kpi_row, format_inr, format_percentage
-from core.compute import project_fx_rate
+# Import core modules with correct path
+parent_dir = str(Path(__file__).parent.parent.parent)
+if parent_dir not in sys.path:
+    sys.path.insert(0, parent_dir)
+
+from gui.core.theme import configure_page
+from gui.core.state import get_state
+from gui.core.ui import kpi_row, format_inr, format_percentage
+from gui.core.compute import project_fx_rate
 
 configure_page("Summary")
 st.header("Summary")
@@ -20,13 +23,13 @@ if not state.university or not state.course or not state.scenarios:
 
     col1, col2, col3 = st.columns(3)
     with col1:
-        if st.button("Course Selector"):
+        if st.button("Course Selector", use_container_width=True):
             st.switch_page("pages/1_Course_Selector.py")
     with col2:
-        if st.button("Projections"):
+        if st.button("Projections", use_container_width=True):
             st.switch_page("pages/2_Pay_As_You_Go_Projections.py")
     with col3:
-        if st.button("Strategy Selector"):
+        if st.button("Strategy Selector", use_container_width=True):
             st.switch_page("pages/3_Saver_Selector.py")
 else:
     try:
@@ -105,6 +108,17 @@ else:
                 "**Projections based on**: Historical university fee data (2020-2026) and Bank of England exchange rates (2017-2025). "
                 "All calculations use compound annual growth rates (CAGR) derived from official sources."
             )
+
+            st.divider()
+
+            # Navigation
+            col1, col2, col3 = st.columns([1, 1, 1])
+            with col1:
+                if st.button("← Back to Strategy", use_container_width=True):
+                    st.switch_page("pages/3_Saver_Selector.py")
+            with col2:
+                if st.button("Start Over", use_container_width=True):
+                    st.switch_page("gui/education_savings_app.py")
 
         else:
             st.error("No strategy analysis available. Please complete the strategy selection first.")

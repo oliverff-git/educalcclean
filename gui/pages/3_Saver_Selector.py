@@ -2,12 +2,15 @@ import streamlit as st
 import sys
 from pathlib import Path
 
-# Import core modules
-sys.path.append(str(Path(__file__).parent.parent))
-from core.theme import configure_page
-from core.state import get_state, update_state, init_processors
-from core.ui import kpi_row, success_alert, format_inr, format_percentage
-from core.compute import compare_strategies, create_strategy_comparison_chart
+# Import core modules with correct path
+parent_dir = str(Path(__file__).parent.parent.parent)
+if parent_dir not in sys.path:
+    sys.path.insert(0, parent_dir)
+
+from gui.core.theme import configure_page
+from gui.core.state import get_state, update_state, init_processors
+from gui.core.ui import kpi_row, success_alert, format_inr, format_percentage
+from gui.core.compute import compare_strategies, create_strategy_comparison_chart
 
 configure_page("Saver Selector")
 st.header("Saver Selector")
@@ -110,6 +113,17 @@ else:
 
             # Update state with scenarios and selected strategy
             update_state(scenarios=scenarios, selected_strategy=selected_strategy)
+
+            st.divider()
+
+            # Navigation
+            col1, col2, col3 = st.columns([1, 1, 1])
+            with col1:
+                if st.button("← Back to Projections", use_container_width=True):
+                    st.switch_page("pages/2_Pay_As_You_Go_Projections.py")
+            with col3:
+                if st.button("Next → Summary", use_container_width=True, type="primary"):
+                    st.switch_page("pages/4_Summary.py")
 
         else:
             st.error("Unable to calculate strategy comparison. Please check your inputs.")

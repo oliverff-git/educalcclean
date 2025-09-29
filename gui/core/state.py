@@ -37,7 +37,11 @@ def init_processors():
     if state.data_processor is None:
         import sys
         from pathlib import Path
-        sys.path.append(str(Path(__file__).parent.parent))
+
+        # Add parent directory to path to find gui module
+        parent_dir = str(Path(__file__).parent.parent.parent)
+        if parent_dir not in sys.path:
+            sys.path.insert(0, parent_dir)
 
         from gui.data_processor import EducationDataProcessor
         from gui.fee_calculator import EducationSavingsCalculator
