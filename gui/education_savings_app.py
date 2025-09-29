@@ -180,7 +180,7 @@ def main():
     """Main Streamlit application."""
     st.set_page_config(
         page_title="Education Savings Calculator",
-        page_icon="",
+        page_icon="⏩",
         layout="wide",
         initial_sidebar_state="expanded"
     )

@@ -16,7 +16,7 @@ def inject_styles():
     .sidebar .sidebar-content,
     div[data-testid="stMarkdown"],
     div[data-testid="stText"],
-    h1, h2, h3, h4, h5, h6,
+    h2, h3, h4, h5, h6,
     p, span, div, label {
         font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
                      Roboto, 'Helvetica Neue', Arial, sans-serif !important;
@@ -24,8 +24,18 @@ def inject_styles():
         line-height: 1.5 !important;
     }
 
+    /* Main title - larger font size */
+    h1 {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+                     Roboto, 'Helvetica Neue', Arial, sans-serif !important;
+        font-size: 28px !important;
+        font-weight: 700 !important;
+        line-height: 1.4 !important;
+        margin-bottom: 1rem !important;
+    }
+
     /* Typography hierarchy using only bold/regular weights */
-    h1, h2, h3, h4, h5, h6,
+    h2, h3, h4, h5, h6,
     strong, b,
     .stMarkdown strong,
     .stMarkdown b {
@@ -48,13 +58,39 @@ def inject_styles():
     div[data-testid="expander"],
     .stSelectbox > div,
     .stSlider > div,
-    .stNumberInput > div,
-    div[data-testid="stAlert"] {
+    .stNumberInput > div {
         border: 1px solid #e5e7eb;
         border-radius: 12px;
         padding: 16px;
         margin: 8px 0;
         background-color: #ffffff;
+    }
+
+    /* Professional metric container styling */
+    div[data-testid="metric-container"] {
+        border: 2px solid #e5e7eb !important;
+        border-radius: 8px !important;
+        padding: 20px !important;
+        margin: 12px 0 !important;
+        background-color: #ffffff !important;
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.08) !important;
+    }
+
+    /* Metric values - make bold */
+    div[data-testid="metric-container"] [data-testid="metric-value"] {
+        font-weight: 700 !important;
+        font-size: 16px !important;
+        color: #1f2937 !important;
+    }
+
+    /* Alert styling - clean borders only */
+    div[data-testid="stAlert"] {
+        border: 1px solid #e5e7eb !important;
+        border-radius: 8px !important;
+        padding: 16px !important;
+        margin: 8px 0 !important;
+        background-color: #ffffff !important;
+        border-left: 4px solid #3b82f6 !important;
     }
 
     /* Subtle hover effects for interactive elements */
@@ -105,30 +141,46 @@ def inject_styles():
         padding-bottom: 2rem !important;
     }
 
-    /* Success/Warning/Error messages with consistent styling */
-    .stAlert {
-        border-radius: 8px !important;
-        border-left: 4px solid !important;
-    }
-
+    /* Success/Warning/Error messages - clean professional styling */
     .stSuccess {
-        border-left-color: #10b981 !important;
-        background-color: #f0fdf4 !important;
+        background-color: #ffffff !important;
+        border: 1px solid #e5e7eb !important;
+        border-left: 4px solid #10b981 !important;
+        border-radius: 8px !important;
+        padding: 16px !important;
+        margin: 8px 0 !important;
     }
 
     .stWarning {
-        border-left-color: #f59e0b !important;
-        background-color: #fffbeb !important;
+        background-color: #ffffff !important;
+        border: 1px solid #e5e7eb !important;
+        border-left: 4px solid #f59e0b !important;
+        border-radius: 8px !important;
+        padding: 16px !important;
+        margin: 8px 0 !important;
     }
 
     .stError {
-        border-left-color: #ef4444 !important;
-        background-color: #fef2f2 !important;
+        background-color: #ffffff !important;
+        border: 1px solid #e5e7eb !important;
+        border-left: 4px solid #ef4444 !important;
+        border-radius: 8px !important;
+        padding: 16px !important;
+        margin: 8px 0 !important;
     }
 
     .stInfo {
-        border-left-color: #3b82f6 !important;
-        background-color: #eff6ff !important;
+        background-color: #ffffff !important;
+        border: 1px solid #e5e7eb !important;
+        border-left: 4px solid #3b82f6 !important;
+        border-radius: 8px !important;
+        padding: 16px !important;
+        margin: 8px 0 !important;
+    }
+
+    /* Remove any residual colored backgrounds */
+    div[data-testid="stAlert"] > div {
+        background-color: transparent !important;
     }
     </style>
     """
