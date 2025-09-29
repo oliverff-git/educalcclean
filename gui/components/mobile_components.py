@@ -92,7 +92,7 @@ class MobileComponentRenderer:
         st.markdown(metric_html, unsafe_allow_html=True)
 
         if metric.help_text:
-            with st.expander("ℹ️ Details", expanded=False):
+            with st.expander(" Details", expanded=False):
                 st.caption(metric.help_text)
 
     def _render_single_metric_tablet(self, metric: MobileMetric) -> None:
@@ -104,7 +104,7 @@ class MobileComponentRenderer:
             help=metric.help_text
         )
 
-    def render_expandable_section(self, title: str, content_func, expanded: bool = False, icon: str = "📊") -> None:
+    def render_expandable_section(self, title: str, content_func, expanded: bool = False, icon: str = "") -> None:
         """Render expandable section optimized for mobile."""
         if self.is_mobile:
             # Always use expanders on mobile
@@ -223,7 +223,7 @@ class MobileComponentRenderer:
         if is_best:
             bg_color = "#e8f5e8"
             border_color = "#4caf50"
-            badge = "🏆 BEST"
+            badge = " BEST"
         else:
             bg_color = "#f8f9fa"
             border_color = "#dee2e6"
@@ -263,7 +263,7 @@ class MobileComponentRenderer:
                 st.metric("Type", "Baseline")
 
         # Additional details in expander
-        with st.expander("💡 Details", expanded=False):
+        with st.expander(" Details", expanded=False):
             self._render_scenario_details(scenario)
 
     def _render_scenario_details(self, scenario: Any) -> None:
@@ -292,14 +292,14 @@ class MobileComponentRenderer:
     def render_mobile_navigation(self) -> str:
         """Render mobile navigation menu."""
         if self.is_mobile:
-            st.sidebar.markdown("### 📱 Quick Navigation")
+            st.sidebar.markdown("###  Quick Navigation")
 
             nav_options = [
-                "📊 Analysis",
-                "💰 Scenarios",
-                "📈 Projections",
-                "📋 Exchange Rates",
-                "ℹ️ Help"
+                " Analysis",
+                " Scenarios",
+                " Projections",
+                " Exchange Rates",
+                " Help"
             ]
 
             selected = st.sidebar.selectbox(

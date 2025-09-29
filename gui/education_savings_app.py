@@ -34,6 +34,7 @@ from gui.components.second_child import (
     SecondChildAdapter, render_second_child_sidebar,
     render_second_child_results
 )
+from gui.components.style_injector import inject_styles
 
 
 
@@ -178,12 +179,15 @@ def main():
     """Main Streamlit application."""
     st.set_page_config(
         page_title="Education Savings Calculator",
-        page_icon="🎓",
+        page_icon="",
         layout="wide",
         initial_sidebar_state="expanded"
     )
 
-    st.title("🎓 UK Education Savings Calculator")
+    # Apply professional styling
+    inject_styles()
+
+    st.title("UK Education Savings Calculator")
     st.markdown("**Calculate potential savings from early INR→GBP conversion strategies**")
 
     # Initialize data processor
@@ -201,12 +205,12 @@ def main():
 
 
         # Sidebar for inputs
-        st.sidebar.header("📋 Selection Parameters")
+        st.sidebar.header(" Selection Parameters")
 
         # University selection
         universities = data_processor.get_universities()
         selected_university = st.sidebar.selectbox(
-            "🏫 Select University",
+            " Select University",
             universities,
             help="Choose from Oxford, Cambridge, or LSE"
         )
@@ -215,30 +219,30 @@ def main():
         if selected_university:
             courses = data_processor.get_courses(selected_university)
             selected_course = st.sidebar.selectbox(
-                "📚 Select Course/Programme",
+                " Select Course/Programme",
                 courses,
                 help="Choose a specific programme"
             )
 
             # Date selections
-            st.sidebar.header("📅 Timeline")
+            st.sidebar.header(" Timeline")
 
             conversion_year = st.sidebar.selectbox(
-                "💰 Savings Start Year",
+                " Savings Start Year",
                 [2023, 2024, 2025, 2026],
                 index=0,
                 help="When to convert INR to GBP"
             )
 
             education_year = st.sidebar.selectbox(
-                "🎓 Education Start Year",
+                " Education Start Year",
                 list(range(2026, 2031)),
                 index=0,
                 help="When your child starts university"
             )
 
             if education_year <= conversion_year:
-                st.sidebar.error("⚠️ Education start year must be after conversion year")
+                st.sidebar.error(" Education start year must be after conversion year")
                 return
 
             # ROI Analysis Configuration
@@ -275,8 +279,8 @@ def main():
                     )
                 except Exception as e:
                     roi_error_message = str(e)
-                    st.sidebar.error(f"⚠️ Investment analysis unavailable: {roi_error_message}")
-                    st.sidebar.info("💡 This usually means market data files are missing. Investment analysis requires actual historical market data.")
+                    st.sidebar.error(f" Investment analysis unavailable: {roi_error_message}")
+                    st.sidebar.info(" This usually means market data files are missing. Investment analysis requires actual historical market data.")
                     roi_scenarios = []
 
             # Calculate 2nd Child scenarios if enabled
@@ -295,10 +299,10 @@ def main():
                     )
                 except Exception as e:
                     second_child_error = str(e)
-                    st.sidebar.error(f"⚠️ 2nd Child calculation error: {second_child_error}")
+                    st.sidebar.error(f" 2nd Child calculation error: {second_child_error}")
 
             # Sidebar scenarios
-            st.sidebar.header("💼 Saving Scenarios")
+            st.sidebar.header(" Saving Scenarios")
             for i, scenario in enumerate(scenarios):
                 with st.sidebar.expander(f"{i+1}. {scenario.strategy_name}", expanded=(i==0)):
                     st.metric("Total Cost", format_inr(scenario.total_cost_inr))
@@ -322,32 +326,32 @@ def main():
                         st.caption(f"UK Interest: £{uk_earnings['total_interest_gbp']:.0f} ({uk_earnings['avg_interest_rate']*100:.1f}% avg BoE rate)")
 
             # Data Sources & Terms in Sidebar
-            st.sidebar.header("📄 Data Sources & Terms")
+            st.sidebar.header(" Data Sources & Terms")
             transparency = data_processor.get_course_info(selected_university, selected_course).get('transparency')
 
             if transparency:
-                with st.sidebar.expander("📊 How Numbers Are Calculated", expanded=False):
+                with st.sidebar.expander(" How Numbers Are Calculated", expanded=False):
                     explanation = get_calculation_explanation(transparency)
                     st.markdown(explanation)
 
                 with st.sidebar.expander("✅ Parent Verification Guide", expanded=False):
                     st.markdown(transparency.source_verification)
 
-                with st.sidebar.expander("📈 Exchange Rate Verification", expanded=False):
-                    st.markdown("**📈 Exchange Rate Verification:**")
+                with st.sidebar.expander(" Exchange Rate Verification", expanded=False):
+                    st.markdown("** Exchange Rate Verification:**")
                     st.markdown("- Visit Bank of England website (www.bankofengland.co.uk)")
                     st.markdown("- Search for 'Exchange rates' → Historical data")
                     st.markdown("- Alternative: xe.com for current/historical rates")
 
             # Main content area (full width)
             # Remove two-column layout for cleaner interface
-            st.header(f"📊 Analysis: {selected_university} - {selected_course}")
+            st.header(f" Analysis: {selected_university} - {selected_course}")
 
             # Get course information
             course_info = data_processor.get_course_info(selected_university, selected_course)
 
             # Display course metrics with transparency
-            st.subheader("📈 Course Fee Analysis")
+            st.subheader(" Course Fee Analysis")
 
             # Get transparency info
             transparency = course_info.get('transparency')
@@ -416,7 +420,7 @@ def main():
             if scenarios:
                 best_scenario = scenarios[0]
                 st.success(
-                    f"💡 **Best Strategy**: {best_scenario.strategy_name} "
+                    f" **Best Strategy**: {best_scenario.strategy_name} "
                     f"saves **{format_inr(best_scenario.savings_vs_payg_inr)}** "
                     f"({format_percentage(best_scenario.savings_percentage)})"
                 )
@@ -427,7 +431,7 @@ def main():
             )
 
             # Charts section
-            st.subheader("📊 Projections")
+            st.subheader(" Projections")
 
             # Create charts using working repository's exact functions
             chart_col1, chart_col2 = st.columns(2)
@@ -442,7 +446,7 @@ def main():
                 st.plotly_chart(fx_chart, use_container_width=True)
 
             # Strategy comparison
-            st.subheader("💰 Strategy Comparison")
+            st.subheader(" Strategy Comparison")
             if scenarios:
                 # Create simple bar chart
                 strategy_names = [scenario.strategy_name for scenario in scenarios]
@@ -463,7 +467,7 @@ def main():
                 st.plotly_chart(savings_fig, use_container_width=True)
 
             # Exchange rate forecast
-            st.subheader("📈 Exchange Rate Forecast")
+            st.subheader(" Exchange Rate Forecast")
 
             fx_data = []
             for year in range(conversion_year, education_year + 3):
@@ -476,18 +480,18 @@ def main():
                 })
 
             st.dataframe(pd.DataFrame(fx_data), use_container_width=True)
-            st.caption("📊 FX projections based on 8-year historical CAGR (4.18% annual depreciation, 2017-2025). Actual rates may vary due to economic conditions.")
+            st.caption(" FX projections based on 8-year historical CAGR (4.18% annual depreciation, 2017-2025). Actual rates may vary due to economic conditions.")
 
             # ROI Analysis Section
             if roi_config.get("enabled", False) and roi_scenarios:
                 st.markdown("---")
-                st.header("💰 Investment Strategy Analysis")
+                st.header(" Investment Strategy Analysis")
 
                 # ROI scenarios summary
                 render_roi_scenarios_summary(roi_scenarios, roi_config["investment_amount"])
 
                 # Create tabs for different views
-                tab1, tab2, tab3 = st.tabs(["📊 Overview", "📋 Detailed Analysis", "⚠️ Risk Information"])
+                tab1, tab2, tab3 = st.tabs([" Overview", " Detailed Analysis", " Risk Information"])
 
                 with tab1:
                     # Simple comparison chart
@@ -496,7 +500,7 @@ def main():
                         st.plotly_chart(chart, use_container_width=True)
 
                         # Simple comparison between currency strategies and savings strategies
-                        st.subheader("💡 Should You Invest or Just Convert Currency?")
+                        st.subheader(" Should You Invest or Just Convert Currency?")
 
                         # Get the best traditional strategy (usually early conversion)
                         best_traditional = min(scenarios, key=lambda x: x.total_cost_inr)
@@ -511,7 +515,7 @@ def main():
                             st.write("✅ Simple and safe")
 
                         with col2:
-                            st.success("**💰 Investment + Currency Exchange**")
+                            st.success("** Investment + Currency Exchange**")
                             strategy_name = best_roi.strategy_name.split(' (')[0].replace('Investment', '').strip()
                             if 'GOLD' in strategy_name.upper():
                                 display_name = "Gold Investment"
@@ -525,9 +529,9 @@ def main():
                             if difference > 0:
                                 st.write(f"💚 Extra benefit: {format_inr(difference)}")
                             else:
-                                st.write("⚠️ May not be better than simple conversion")
+                                st.write(" May not be better than simple conversion")
 
-                        st.caption("💡 Compare both options and choose what makes you comfortable")
+                        st.caption(" Compare both options and choose what makes you comfortable")
 
                 with tab2:
                     # Detailed scenario cards
@@ -539,16 +543,16 @@ def main():
 
                     # Risk tolerance summary
                     risk_tolerance = roi_config.get("risk_tolerance", "Moderate")
-                    st.info(f"💡 Your risk tolerance: **{risk_tolerance}**. This affects strategy recommendations and expected returns.")
+                    st.info(f" Your risk tolerance: **{risk_tolerance}**. This affects strategy recommendations and expected returns.")
 
             elif roi_config.get("enabled", False):
                 st.markdown("---")
-                st.header("💰 Investment Strategy Analysis")
+                st.header(" Investment Strategy Analysis")
 
                 if roi_error_message:
-                    st.error(f"⚠️ Investment analysis unavailable: {roi_error_message}")
+                    st.error(f" Investment analysis unavailable: {roi_error_message}")
 
-                    with st.expander("ℹ️ Why is investment analysis unavailable?"):
+                    with st.expander(" Why is investment analysis unavailable?"):
                         st.markdown("""
                         **Common reasons for investment analysis errors:**
 
@@ -565,7 +569,7 @@ def main():
                         **Note**: Traditional currency conversion strategies are still available and don't require market data.
                         """)
                 else:
-                    st.warning("💰 Investment analysis enabled but no scenarios calculated. Please check your selections.")
+                    st.warning(" Investment analysis enabled but no scenarios calculated. Please check your selections.")
 
             # 2nd Child Savers Results
             if second_child_config.get("enabled", False):
@@ -573,17 +577,17 @@ def main():
                     render_second_child_results(second_child_scenario, second_child_metrics, second_child_config)
                 elif second_child_error:
                     st.markdown("---")
-                    st.subheader("👶 2nd Child Savings Analysis")
-                    st.error(f"⚠️ Unable to calculate 2nd child savings: {second_child_error}")
-                    st.info("💡 Please check your inputs and ensure all required data is available.")
+                    st.subheader(" 2nd Child Savings Analysis")
+                    st.error(f" Unable to calculate 2nd child savings: {second_child_error}")
+                    st.info(" Please check your inputs and ensure all required data is available.")
                 else:
                     st.markdown("---")
-                    st.subheader("👶 2nd Child Savings Analysis")
-                    st.warning("💭 2nd Child analysis enabled but no calculations available. Please check your configuration.")
+                    st.subheader(" 2nd Child Savings Analysis")
+                    st.warning(" 2nd Child analysis enabled but no calculations available. Please check your configuration.")
 
 
     except Exception as e:
-        st.error(f"❌ Error loading data: {str(e)}")
+        st.error(f" Error loading data: {str(e)}")
         st.info("Make sure you're running this from the project root directory with access to the data files.")
 
 

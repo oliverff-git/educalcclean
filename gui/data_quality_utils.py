@@ -63,10 +63,10 @@ def determine_confidence_level(data_quality: DataQuality, using_university_avera
 def get_data_quality_badge(data_quality: DataQuality) -> tuple[str, str]:
     """Get emoji and color for data quality badge"""
     badges = {
-        DataQuality.EXCELLENT: ("🟢", "#22c55e"),
-        DataQuality.GOOD: ("🟡", "#eab308"),
-        DataQuality.LIMITED: ("🟠", "#f97316"),
-        DataQuality.INSUFFICIENT: ("🔴", "#ef4444")
+        DataQuality.EXCELLENT: ("", "#22c55e"),
+        DataQuality.GOOD: ("", "#eab308"),
+        DataQuality.LIMITED: ("", "#f97316"),
+        DataQuality.INSUFFICIENT: ("", "#ef4444")
     }
     return badges[data_quality]
 
@@ -75,8 +75,8 @@ def get_confidence_indicator(confidence_level: ConfidenceLevel) -> tuple[str, st
     """Get emoji and description for confidence level"""
     indicators = {
         ConfidenceLevel.HIGH: ("💎", "High confidence - course-specific data"),
-        ConfidenceLevel.MEDIUM: ("⚡", "Medium confidence - limited course data"),
-        ConfidenceLevel.LOW: ("⚠️", "Low confidence - university average used")
+        ConfidenceLevel.MEDIUM: ("", "Medium confidence - limited course data"),
+        ConfidenceLevel.LOW: ("", "Low confidence - university average used")
     }
     return indicators[confidence_level]
 
@@ -85,13 +85,13 @@ def get_projection_disclaimer(transparency: DataTransparency) -> str:
     """Generate appropriate disclaimer based on data transparency"""
     if transparency.confidence_level == ConfidenceLevel.LOW:
         return (
-            f"⚠️ **Limited Course Data**: Only {transparency.years_of_data} year(s) of data available. "
+            f" **Limited Course Data**: Only {transparency.years_of_data} year(s) of data available. "
             f"Using {transparency.calculation_method.lower()} for projections. "
             f"Actual fees may vary significantly."
         )
     elif transparency.confidence_level == ConfidenceLevel.MEDIUM:
         return (
-            f"ℹ️ **Limited Historical Data**: Based on {transparency.years_of_data} years of course data "
+            f" **Limited Historical Data**: Based on {transparency.years_of_data} years of course data "
             f"({min(transparency.actual_data_years)}-{max(transparency.actual_data_years)}). "
             f"Projections may have higher uncertainty."
         )
@@ -106,7 +106,7 @@ def get_projection_disclaimer(transparency: DataTransparency) -> str:
 def get_calculation_explanation(transparency: DataTransparency) -> str:
     """Generate detailed explanation of how calculations are performed"""
     explanation = f"""
-    **📊 Calculation Methodology:**
+    ** Calculation Methodology:**
 
     **Data Source:** {transparency.years_of_data} years of historical fee data ({min(transparency.actual_data_years) if transparency.actual_data_years else 'N/A'}-{max(transparency.actual_data_years) if transparency.actual_data_years else 'N/A'})
 
@@ -148,7 +148,7 @@ def generate_parent_verification_guide(university: str, programme: str) -> str:
     """Generate verification guide for parents"""
     guides = {
         'Oxford': f"""
-**📋 How to Verify {university} {programme} Fees:**
+** How to Verify {university} {programme} Fees:**
 
 1. **Official Oxford Website:**
    - Visit: www.ox.ac.uk/admissions/undergraduate/fees-and-funding
@@ -165,14 +165,14 @@ def generate_parent_verification_guide(university: str, programme: str) -> str:
    - Phone: +44 (0)1865 288000
    - Request: Current and projected fee information
 
-**🔍 What to Look For:**
+** What to Look For:**
 - "Overseas/International student" fee categories
 - Academic year format (e.g., "2025/26")
 - Any course-specific fee variations
 """,
 
         'Cambridge': f"""
-**📋 How to Verify {university} {programme} Fees:**
+** How to Verify {university} {programme} Fees:**
 
 1. **Official Cambridge Website:**
    - Visit: www.undergraduate.study.cam.ac.uk/fees-and-costs
@@ -189,14 +189,14 @@ def generate_parent_verification_guide(university: str, programme: str) -> str:
    - Phone: +44 (0)1223 333308
    - Request: Detailed fee breakdown for your programme
 
-**🔍 What to Look For:**
+** What to Look For:**
 - "Overseas student" fee schedules
 - College fee supplements
 - Laboratory/practical fees for science courses
 """,
 
         'LSE': f"""
-**📋 How to Verify {university} {programme} Fees:**
+** How to Verify {university} {programme} Fees:**
 
 1. **Official LSE Website:**
    - Visit: info.lse.ac.uk/current-students/services/fees-and-funding
@@ -213,7 +213,7 @@ def generate_parent_verification_guide(university: str, programme: str) -> str:
    - Phone: +44 (0)20 7955 7162
    - Request: Current and projected fee information
 
-**🔍 What to Look For:**
+** What to Look For:**
 - "Non-EU/International" fee categories
 - Programme-specific pricing tiers
 - Additional costs for certain courses
@@ -221,7 +221,7 @@ def generate_parent_verification_guide(university: str, programme: str) -> str:
     }
 
     return guides.get(university, f"""
-**📋 How to Verify {university} {programme} Fees:**
+** How to Verify {university} {programme} Fees:**
 
 1. **Official University Website:**
    - Visit the official {university.lower()}.ac.uk website

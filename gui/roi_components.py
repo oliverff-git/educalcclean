@@ -25,7 +25,7 @@ def render_roi_sidebar(conversion_year: int, education_year: int, university: st
     Returns:
         Dictionary with ROI configuration
     """
-    st.sidebar.header("💰 Investment Analysis")
+    st.sidebar.header(" Investment Analysis")
 
     # Enable ROI analysis
     enable_roi = st.sidebar.checkbox(
@@ -58,10 +58,10 @@ def render_roi_sidebar(conversion_year: int, education_year: int, university: st
 
             # Create year-based options
             investment_options = {
-                f"📅 3 Years Fees ({format_amount(total_fees_inr)})": total_fees_inr,
-                f"📅 2 Years Fees ({format_amount(total_fees_inr * 2/3)})": total_fees_inr * 2/3,
-                f"📅 1 Year Fees ({format_amount(total_fees_inr / 3)})": total_fees_inr / 3,
-                f"📅 1/2 Year Fees ({format_amount(total_fees_inr / 6)})": total_fees_inr / 6,
+                f" 3 Years Fees ({format_amount(total_fees_inr)})": total_fees_inr,
+                f" 2 Years Fees ({format_amount(total_fees_inr * 2/3)})": total_fees_inr * 2/3,
+                f" 1 Year Fees ({format_amount(total_fees_inr / 3)})": total_fees_inr / 3,
+                f" 1/2 Year Fees ({format_amount(total_fees_inr / 6)})": total_fees_inr / 6,
             }
         except Exception:
             # Fallback if calculation fails
@@ -69,10 +69,10 @@ def render_roi_sidebar(conversion_year: int, education_year: int, university: st
 
     # Add fixed amount options
     investment_options.update({
-        f"💰 ₹20 Lakhs": 2000000,
-        f"💰 ₹50 Lakhs": 5000000,
-        f"💰 ₹1 Crore": 10000000,
-        "💡 Custom Amount...": "custom"
+        f" ₹20 Lakhs": 2000000,
+        f" ₹50 Lakhs": 5000000,
+        f" ₹1 Crore": 10000000,
+        " Custom Amount...": "custom"
     })
 
     # Dropdown selection
@@ -95,16 +95,16 @@ def render_roi_sidebar(conversion_year: int, education_year: int, university: st
         )
     else:
         investment_amount = investment_options[selected_option]
-        st.sidebar.info(f"💰 Investment: {format_amount(investment_amount)}")
+        st.sidebar.info(f" Investment: {format_amount(investment_amount)}")
 
     # Strategy selection
     available_strategies = {
-        "GOLD_INR": "🟡 Gold (INR) - Inflation hedge, moderate volatility (±10-15% annually)",
-        "FIXED_5PCT": "🟢 Fixed Deposit (5% p.a.) - Capital protected, guaranteed returns"
+        "GOLD_INR": " Gold (INR) - Inflation hedge, moderate volatility (±10-15% annually)",
+        "FIXED_5PCT": " Fixed Deposit (5% p.a.) - Capital protected, guaranteed returns"
     }
 
     selected_strategies = st.sidebar.multiselect(
-        "📈 Savings Strategies",
+        " Savings Strategies",
         options=list(available_strategies.keys()),
         default=["GOLD_INR", "FIXED_5PCT"],
         format_func=lambda x: available_strategies[x],
@@ -113,7 +113,7 @@ def render_roi_sidebar(conversion_year: int, education_year: int, university: st
 
     # Risk tolerance
     risk_tolerance = st.sidebar.select_slider(
-        "⚖️ Risk Tolerance",
+        " Risk Tolerance",
         options=["Conservative", "Moderate", "Aggressive"],
         value="Moderate",
         help="Your comfort level with investment risk"
@@ -126,7 +126,7 @@ def render_roi_sidebar(conversion_year: int, education_year: int, university: st
         return {"enabled": False}
 
     if investment_years < 2:
-        st.sidebar.warning("⚠️ Short investment period may limit returns")
+        st.sidebar.warning(" Short investment period may limit returns")
 
     return {
         "enabled": True,
@@ -148,7 +148,7 @@ def render_roi_scenarios_summary(scenarios: List, investment_amount: float):
         st.warning("No investment scenarios available")
         return
 
-    st.subheader("💰 Simple Comparison for Education Savings")
+    st.subheader(" Simple Comparison for Education Savings")
 
     # Clear comparison table for Indian parents
     st.markdown("**Your Investment:** ₹{:,.0f} ({:.1f} Lakh)".format(investment_amount, investment_amount/100000))
@@ -173,11 +173,11 @@ def render_roi_scenarios_summary(scenarios: List, investment_amount: float):
         # Extract strategy name
         strategy_name = scenario.strategy_name.split(' (')[0].replace('Investment', '').strip()
         if 'GOLD' in strategy_name.upper():
-            display_name = "🟡 Gold"
+            display_name = " Gold"
             risk_level = "Medium Risk"
             note = "Based on recent market performance - can vary significantly"
         elif 'FIXED' in strategy_name.upper() or '5%' in strategy_name:
-            display_name = "🟢 Fixed Deposit"
+            display_name = " Fixed Deposit"
             risk_level = "No Risk"
             note = "Guaranteed return, principal protected"
         else:
@@ -203,7 +203,7 @@ def render_roi_scenarios_summary(scenarios: List, investment_amount: float):
     for i, data in enumerate(comparison_data):
         with st.container():
             if i == 0:
-                st.success(f"🏆 **Best Option: {data['Strategy']}**")
+                st.success(f" **Best Option: {data['Strategy']}**")
             else:
                 st.info(f"**Alternative: {data['Strategy']}**")
 
@@ -220,21 +220,21 @@ def render_roi_scenarios_summary(scenarios: List, investment_amount: float):
                 st.metric("Years", data['Years'], data['Risk Level'])
 
             if data['Important Note']:
-                st.caption(f"ℹ️ {data['Important Note']}")
+                st.caption(f" {data['Important Note']}")
 
             st.markdown("---")
 
     # Important disclaimer for Indian parents
     st.markdown("---")
     st.warning("""
-    **⚠️ Important for Indian Parents:**
+    ** Important for Indian Parents:**
 
     • **Gold**: Recent 3-year performance (24.4%) is exceptional - don't expect this to continue!
       Long-term average is 13-14% per year. Can swing from -20% to +40% in any single year.
     • **Fixed Deposit**: 5% is optimistic but achievable at top banks. Check current rates before investing.
     • **Market Reality**: Gold hit ₹102,289 per 10g in Aug 2025 - a huge jump from ₹64,070 in 2024.
 
-    💡 **Smart Approach**: Don't put all money in gold expecting 24% returns. Mix both for balance.
+     **Smart Approach**: Don't put all money in gold expecting 24% returns. Mix both for balance.
     """)
 
 
@@ -244,7 +244,7 @@ def render_roi_scenario_cards(scenarios: List):
     Args:
         scenarios: List of SavingsScenario objects
     """
-    st.subheader("📋 Strategy Details")
+    st.subheader(" Strategy Details")
 
     # Sort scenarios by final value (best first) for display
     sorted_scenarios = sorted(scenarios, key=lambda x: x.conversion_details.get('final_pot_inr', 0), reverse=True)
@@ -264,7 +264,7 @@ def render_roi_scenario_cards(scenarios: List):
             col1, col2 = st.columns(2)
 
             with col1:
-                st.markdown("**💰 Investment Results**")
+                st.markdown("** Investment Results**")
                 final_value = scenario.conversion_details.get('final_pot_inr', 0)
                 initial_investment = scenario.conversion_details.get('initial_investment_inr', 0)
                 actual_profit = final_value - initial_investment
@@ -303,7 +303,7 @@ def render_roi_scenario_cards(scenarios: List):
                         st.write(f"**Per Year**: {roi_percent/3:.1f}% (approx)")
 
             with col2:
-                st.markdown("**⚖️ Risk Level**")
+                st.markdown("** Risk Level**")
                 risk_level = scenario.breakdown.get('risk_level', 'Unknown')
                 st.write(f"Investment Type: {risk_level}")
 
@@ -325,10 +325,10 @@ def render_roi_scenario_cards(scenarios: List):
             # Performance summary
             performance = scenario.breakdown.get('performance_summary', '')
             if performance:
-                st.info(f"📊 {performance}")
+                st.info(f" {performance}")
 
             # Clear education coverage information
-            st.markdown("**🎓 Education Cost Coverage**")
+            st.markdown("** Education Cost Coverage**")
 
             # Calculate education cost coverage
             final_value = scenario.conversion_details.get('final_pot_inr', 0)
@@ -345,10 +345,10 @@ def render_roi_scenario_cards(scenarios: List):
             if final_value >= actual_education_cost:
                 surplus = final_value - actual_education_cost
                 st.success(f"✅ **Covers Full Education Cost**")
-                st.success(f"💰 Extra Money Left: ₹{surplus/100000:.1f}L")
+                st.success(f" Extra Money Left: ₹{surplus/100000:.1f}L")
             else:
                 shortfall = actual_education_cost - final_value
-                st.warning(f"⚠️ **Partial Coverage Only**")
+                st.warning(f" **Partial Coverage Only**")
                 st.warning(f"💳 Additional Needed: ₹{shortfall/100000:.1f}L")
 
 
@@ -396,26 +396,26 @@ def render_risk_tolerance_guide(risk_tolerance: str) -> Dict:
 
     profile = risk_profiles.get(risk_tolerance, risk_profiles["Moderate"])
 
-    with st.sidebar.expander(f"ℹ️ {risk_tolerance} Profile Guide"):
+    with st.sidebar.expander(f" {risk_tolerance} Profile Guide"):
         st.write(f"**{profile['description']}**")
         st.write("**Recommended Allocation:**")
 
         # Show allocation guidance based on risk tolerance
         if risk_tolerance == "Conservative":
-            st.write("• 🟢 Fixed Deposit: **80%** (Primary safety)")
-            st.write("• 🟡 Gold: **20%** (Inflation protection)")
+            st.write("•  Fixed Deposit: **80%** (Primary safety)")
+            st.write("•  Gold: **20%** (Inflation protection)")
         elif risk_tolerance == "Moderate":
-            st.write("• 🟢 Fixed Deposit: **60%** (Stability base)")
-            st.write("• 🟡 Gold: **40%** (Growth potential)")
+            st.write("•  Fixed Deposit: **60%** (Stability base)")
+            st.write("•  Gold: **40%** (Growth potential)")
         else:  # Aggressive
-            st.write("• 🟡 Gold: **60%** (Growth focus)")
-            st.write("• 🟢 Fixed Deposit: **40%** (Safety anchor)")
+            st.write("•  Gold: **60%** (Growth focus)")
+            st.write("•  Fixed Deposit: **40%** (Safety anchor)")
 
         st.write("**Key Points:**")
         for point in profile['key_points']:
             st.write(f"• {point}")
 
-        st.caption("💡 Consider your time horizon and risk comfort when choosing allocation")
+        st.caption(" Consider your time horizon and risk comfort when choosing allocation")
 
     return profile
 
@@ -468,18 +468,18 @@ def render_data_quality_indicator(scenario):
 
         # Color coding
         color_map = {
-            'EXCELLENT': '🟢',
-            'GOOD': '🟡',
+            'EXCELLENT': '',
+            'GOOD': '',
             'FAIR': '🟠',
-            'POOR': '🔴',
+            'POOR': '',
             'UNAVAILABLE': '⚫'
         }
 
-        icon = color_map.get(quality, '❓')
+        icon = color_map.get(quality, '')
         st.caption(f"{icon} Data Quality: {quality} | Confidence: {confidence}")
 
         if quality in ['POOR', 'UNAVAILABLE']:
-            st.warning("⚠️ Limited data available for this asset. Projections may be unreliable.")
+            st.warning(" Limited data available for this asset. Projections may be unreliable.")
 
     # Asset-specific conservative messaging
     strategy_name = scenario.strategy_name.upper()
@@ -487,14 +487,14 @@ def render_data_quality_indicator(scenario):
         st.info("""
         **Gold Investment Reality Check:**
 
-        📊 **Historical Performance (Gullak data 1950-2025):**
+         **Historical Performance (Gullak data 1950-2025):**
         • Last 3 years: 24.4% per year (exceptional period)
         • Last 5 years: 13.5% per year
         • Last 10 years: 13.6% per year
         • Long-term (20 years): 14.35% per year
 
-        ⚠️ **High Risk:** Gold can vary from -20% to +40% in any single year
-        📈 **Recent Surge:** 2025 saw major price jump - may not continue
+         **High Risk:** Gold can vary from -20% to +40% in any single year
+         **Recent Surge:** 2025 saw major price jump - may not continue
 
         **Example:** ₹10L invested might become ₹7L to ₹14L after 1 year
         **Note:** Recent returns are unusually high - don't expect 24% every year!
@@ -506,27 +506,27 @@ def render_data_quality_indicator(scenario):
         ✅ **Guaranteed Return:** Exactly 5.0% per year, every year
         ✅ **No Risk:** Your money is 100% safe
         ✅ **Predictable:** You know exactly how much you'll get
-        ⚠️ **Requirement:** Money must be locked in (can't withdraw early)
+         **Requirement:** Money must be locked in (can't withdraw early)
 
         **Example:** ₹10L becomes exactly ₹11.6L after 3 years (guaranteed)
         """)
 
     # Show any validation warnings
     for warning in warnings:
-        st.error(f"⚠️ {warning}")
-        st.info("💡 This may indicate a calculation error or unrealistic market data.")
+        st.error(f" {warning}")
+        st.info(" This may indicate a calculation error or unrealistic market data.")
 
     # Show validation warnings from conversion details
     if 'validation_warnings' in scenario.conversion_details:
         validation_warnings = scenario.conversion_details['validation_warnings']
         for warning in validation_warnings:
-            st.error(f"⚠️ Validation: {warning}")
-            st.info("💡 Please verify this calculation - results may be unrealistic.")
+            st.error(f" Validation: {warning}")
+            st.info(" Please verify this calculation - results may be unrealistic.")
 
 
 def render_investment_warnings():
     """Render investment risk warnings."""
-    with st.expander("⚠️ Important Investment Disclaimers"):
+    with st.expander(" Important Investment Disclaimers"):
         st.warning("""
         **Investment Risk Warnings:**
 

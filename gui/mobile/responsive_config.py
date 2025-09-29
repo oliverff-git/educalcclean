@@ -140,7 +140,7 @@ class ResponsiveConfigManager:
 
         return {
             'page_title': "Education Savings Calculator",
-            'page_icon': "🎓",
+            'page_icon': "",
             'layout': config.layout,
             'initial_sidebar_state': config.sidebar_state
         }

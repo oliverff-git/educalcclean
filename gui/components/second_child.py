@@ -154,7 +154,7 @@ def render_second_child_sidebar(
         Configuration dictionary with user inputs
     """
     st.sidebar.markdown("---")
-    st.sidebar.header("👶 2nd Child Planner")
+    st.sidebar.header(" 2nd Child Planner")
 
     enabled = st.sidebar.checkbox(
         "Enable 2nd Child Savings",
@@ -165,10 +165,10 @@ def render_second_child_sidebar(
     if not enabled:
         return {"enabled": False}
 
-    with st.sidebar.expander("👶 2nd Child Configuration", expanded=True):
+    with st.sidebar.expander(" 2nd Child Configuration", expanded=True):
         # Course selection option
         use_same = st.checkbox(
-            "📚 Use same university/course as 1st child",
+            " Use same university/course as 1st child",
             value=True,
             help="Reuse the selected university and programme from above"
         )
@@ -177,14 +177,14 @@ def render_second_child_sidebar(
             # Get available universities and programmes
             universities = data_processor.get_universities()
             selected_uni = st.selectbox(
-                "🏫 University",
+                " University",
                 options=universities,
                 help="Select university for coverage calculation"
             )
 
             programmes = data_processor.get_courses(selected_uni)
             selected_prog = st.selectbox(
-                "📚 Programme",
+                " Programme",
                 options=programmes,
                 help="Select programme for fee coverage analysis"
             )
@@ -199,14 +199,14 @@ def render_second_child_sidebar(
         # Timeline selection
         current_year = 2024
         conversion_year = st.selectbox(
-            "📅 Start Saving Year",
+            " Start Saving Year",
             options=list(range(current_year, current_year + 4)),
             index=0,
             help="Year when you convert INR to GBP and invest"
         )
 
         education_year = st.selectbox(
-            "🎓 Education Start Year",
+            " Education Start Year",
             options=list(range(conversion_year + 1, current_year + 8)),
             index=2,  # Default to 3 years later
             help="When the child starts university"
@@ -214,7 +214,7 @@ def render_second_child_sidebar(
 
         # Amount input with live formatting
         amount_inr = st.number_input(
-            "💰 Investment Amount (₹)",
+            " Investment Amount (₹)",
             min_value=100000,
             max_value=100000000,
             value=2000000,  # Default 20 lakh
@@ -224,7 +224,7 @@ def render_second_child_sidebar(
         )
 
         # Live formatting display
-        st.caption(f"💵 **{format_inr(amount_inr)}**")
+        st.caption(f" **{format_inr(amount_inr)}**")
 
         # Show basic calculation preview
         try:
@@ -259,14 +259,14 @@ def render_second_child_results(
         config: Configuration from sidebar
     """
     st.markdown("---")
-    st.subheader("👶 2nd Child Education Savings Analysis")
+    st.subheader(" 2nd Child Education Savings Analysis")
 
     # Key metrics in responsive columns
     col1, col2, col3, col4 = st.columns(4)
 
     with col1:
         st.metric(
-            "💵 Your Investment",
+            " Your Investment",
             format_inr(metrics["input_inr"]),
             help="Amount you invest today in INR"
         )
@@ -274,7 +274,7 @@ def render_second_child_results(
     with col2:
         savings_color = "normal" if metrics["savings_inr"] > 0 else "inverse"
         st.metric(
-            "💰 Total Savings",
+            " Total Savings",
             format_inr(metrics["savings_inr"]),
             f"{metrics['savings_percentage']:.1f}%",
             delta_color=savings_color,
@@ -284,7 +284,7 @@ def render_second_child_results(
     with col3:
         fx_benefit_color = "normal" if metrics["fx_benefit_per_pound"] > 0 else "inverse"
         st.metric(
-            "📈 FX Advantage",
+            " FX Advantage",
             f"₹{metrics['fx_benefit_per_pound']:.2f}/£",
             format_inr(metrics["total_fx_benefit"]),
             delta_color=fx_benefit_color,
@@ -295,25 +295,25 @@ def render_second_child_results(
         if metrics.get("coverage_vs_programme"):
             coverage_color = "normal" if metrics["coverage_vs_programme"] >= 80 else "inverse"
             st.metric(
-                "📚 Programme Coverage",
+                " Programme Coverage",
                 f"{metrics['coverage_vs_programme']:.0f}%",
                 delta_color=coverage_color,
                 help="% of 3-year programme fees covered"
             )
         else:
             st.metric(
-                "📊 Planning Horizon",
+                " Planning Horizon",
                 f"{config['education_year'] - config['conversion_year']} years",
                 help="Years between investment and education start"
             )
 
     # Comparison visualization
-    with st.expander("📊 Early vs Late Conversion Comparison", expanded=True):
+    with st.expander(" Early vs Late Conversion Comparison", expanded=True):
         fig = create_second_child_comparison_chart(scenario, metrics, config)
         st.plotly_chart(fig, use_container_width=True)
 
     # Detailed breakdown
-    with st.expander("📋 Calculation Breakdown"):
+    with st.expander(" Calculation Breakdown"):
         col1, col2 = st.columns(2)
 
         with col1:
@@ -331,7 +331,7 @@ def render_second_child_results(
             st.write(f"• **Extra Cost: {format_inr(metrics['payg_total_inr'] - scenario.total_cost_inr)}**")
 
     # Data quality and disclaimers
-    st.info(f"📊 Data Quality: **{metrics['data_quality']}** | " +
+    st.info(f" Data Quality: **{metrics['data_quality']}** | " +
             f"Exchange rates {('historical' if config['education_year'] <= 2026 else 'projected')} | " +
             "Future projections are estimates")
 
