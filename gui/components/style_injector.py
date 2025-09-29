@@ -182,6 +182,63 @@ def inject_styles():
     div[data-testid="stAlert"] > div {
         background-color: transparent !important;
     }
+
+    /* Fix Material Icon fallback text issues */
+    /* Hide keyboard_arrow text fallbacks and replace with Unicode arrows */
+    .streamlit-expanderHeader::before {
+        content: "▶ " !important;
+        font-size: 12px !important;
+        color: #6b7280 !important;
+        margin-right: 8px !important;
+    }
+
+    /* Hide the Material Icon fallback text */
+    .streamlit-expanderHeader span[title*="keyboard"],
+    span:contains("keyboard_arrow_right"),
+    span:contains("keyboard_arrow_down"),
+    span:contains("keyboard_double_arrow_right") {
+        display: none !important;
+    }
+
+    /* Alternative approach - replace text content directly */
+    div[data-testid="stExpander"] summary {
+        position: relative;
+    }
+
+    div[data-testid="stExpander"] summary::before {
+        content: "→ ";
+        position: absolute;
+        left: 0;
+        color: #6b7280;
+        font-size: 14px;
+    }
+
+    /* Hide any text that contains keyboard references */
+    *:contains("keyboard_arrow_right"),
+    *:contains("keyboard_arrow_down"),
+    *:contains("keyboard_double_arrow_right") {
+        font-size: 0 !important;
+    }
+
+    /* Clean replacement for expander arrows */
+    div[data-testid="stExpander"] > div > summary > div > p {
+        position: relative;
+        padding-left: 20px;
+    }
+
+    div[data-testid="stExpander"] > div > summary > div > p::before {
+        content: "▶";
+        position: absolute;
+        left: 0;
+        color: #6b7280;
+        font-size: 12px;
+        top: 2px;
+    }
+
+    /* When expanded, change arrow direction */
+    div[data-testid="stExpander"][open] > div > summary > div > p::before {
+        content: "▼";
+    }
     </style>
     """
 
