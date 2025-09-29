@@ -15,8 +15,9 @@ from datetime import datetime
 import sys
 from pathlib import Path
 
-# Add current directory to path for imports
+# Add current and parent directory to path for imports
 sys.path.append(str(Path(__file__).parent))
+sys.path.append(str(Path(__file__).parent.parent))
 
 from gui.data_processor import EducationDataProcessor
 from gui.fee_calculator import EducationSavingsCalculator
