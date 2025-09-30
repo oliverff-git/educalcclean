@@ -1,137 +1,458 @@
+"""
+Investment Strategies App - Professional Single-Page Application with Smooth Scrolling
+
+This is the main investment strategies application that integrates all components
+created by Agents 1 and 2, providing a smooth scrolling experience with real-time
+dynamic updates.
+
+Architecture:
+- Agent 1: UI components (components.py, state.py, charts.py)
+- Agent 2: Data integration (calculations.py)
+- Agent 3: Main app integration with smooth scrolling
+
+Features:
+- Smooth scrolling navigation between sections
+- Real-time calculations without page reload
+- Professional fintech design
+- Default state: Oxford PPE 2025-2027, ₹10L investment
+"""
+
 import streamlit as st
 import sys
 from pathlib import Path
+from datetime import datetime
+from typing import Dict, Any
 
 # Add paths for imports
 sys.path.append(str(Path(__file__).parent))
 sys.path.append(str(Path(__file__).parent.parent))
 
+# Core imports
 from core.theme import configure_page
-from roi_components import render_risk_tolerance_guide, create_simple_roi_chart
-from fee_calculator import EducationSavingsCalculator
-from data_processor import EducationDataProcessor
 
-configure_page("Investment Strategies", "", "wide")
+# Agent 1 imports - UI Components
+from investment.components import (
+    investment_header,
+    course_selector_section,
+    investment_options_section,
+    investment_kpi_card,
+    show_investment_projections,
+    investment_summary_row,
+    strategy_comparison_table,
+    investment_action_buttons
+)
 
-st.title("Investment Strategies")
-st.markdown("**Explore investment-based approaches to education savings**")
+from investment.state import (
+    get_investment_state,
+    update_investment_state,
+    reset_investment_state,
+    init_investment_defaults,
+    sync_state_from_ui,
+    calculate_investment_projections,
+    get_investment_summary,
+    is_calculation_valid,
+    format_investment_amount
+)
 
-# Initialize processors
-@st.cache_resource
-def init_data():
-    processor = EducationDataProcessor()
-    processor.load_data()
-    calculator = EducationSavingsCalculator(processor)
-    return processor, calculator
+from investment.charts import (
+    display_investment_charts,
+    display_risk_analysis,
+    create_strategy_comparison_chart,
+    create_investment_growth_chart
+)
 
+# Agent 2 imports - Data Integration
+from investment.calculations import (
+    InvestmentCalculator,
+    create_investment_calculator,
+    calculate_investment_roi
+)
+
+# Data sources for CSV downloads
+from core.data_sources import data_sources_section
+
+# Smooth scrolling navigation
 try:
-    data_processor, calculator = init_data()
+    from streamlit_scroll_navigation import scroll_navbar
+    SCROLL_NAVIGATION_AVAILABLE = True
+except ImportError:
+    SCROLL_NAVIGATION_AVAILABLE = False
+    st.warning("Smooth scrolling navigation not available. Install streamlit-scroll-navigation for enhanced experience.")
 
-    # Create tabs for different strategies
-    tab1, tab2 = st.tabs(["5% Saver Account", "Gold Investment"])
 
-    with tab1:
-        st.header("Monthly Save (5% Fixed Returns)")
+# ===== PAGE CONFIGURATION =====
 
-        st.markdown("""
-        **Fixed Deposit Strategy:**
-        - **Guaranteed Return:** Exactly 5.0% per year, every year
-        - **No Risk:** Your money is 100% safe
-        - **Predictable:** You know exactly how much you'll get
-        - **Requirement:** Money must be locked in (cannot withdraw early)
-        """)
+def setup_page():
+    """Setup page configuration with professional theme"""
+    configure_page(
+        title="Investment Strategies Calculator",
+        icon="📊",
+        layout="wide"
+    )
 
-        # Simple calculator for 5% saver
-        col1, col2, col3 = st.columns(3)
 
-        with col1:
-            initial_amount = st.number_input("Initial Investment (₹)", min_value=100000, max_value=50000000, value=1000000, step=100000)
+# ===== SMOOTH SCROLLING NAVIGATION =====
 
-        with col2:
-            years = st.number_input("Investment Period (years)", min_value=1, max_value=10, value=3)
+def setup_scroll_navigation():
+    """Setup smooth scrolling navigation if available"""
+    if not SCROLL_NAVIGATION_AVAILABLE:
+        return None
 
-        with col3:
-            annual_rate = st.slider("Annual Return (%)", min_value=3.0, max_value=8.0, value=5.0, step=0.1)
+    anchor_ids = ["overview", "selection", "investment", "results", "risk"]
+    anchor_labels = ["Overview", "Course & Timeline", "Investment Strategy", "Results & Charts", "Risk Analysis"]
 
-        # Calculate returns
-        final_amount = initial_amount * ((1 + annual_rate/100) ** years)
-        total_returns = final_amount - initial_amount
+    # Create sidebar scroll navigation with proper API
+    with st.sidebar:
+        return scroll_navbar(
+            anchor_ids,
+            anchor_labels=anchor_labels,
+            disable_scroll=True,  # Remove animations for instant navigation
+            override_styles={
+                "nav": {"background": "#1E40AF"},
+                "ul": {"background": "#1E40AF", "backdrop-filter": "none"},
+                "li": {"background": "rgba(0,0,0,0)"},
+                "a": {"color": "#FFFFFF", "background": "rgba(0,0,0,0)"},
+                "a:hover": {"background": "rgba(245,158,11,0.2)"}
+            }
+        )
 
-        # Display results
-        col1, col2, col3 = st.columns(3)
-        with col1:
-            st.metric("Final Amount", f"₹{final_amount/100000:.1f}L")
-        with col2:
-            st.metric("Total Returns", f"₹{total_returns/100000:.1f}L")
-        with col3:
-            st.metric("Annual Growth", f"{annual_rate:.1f}%")
 
-        st.success(f"**Example:** ₹{initial_amount/100000:.0f}L becomes exactly ₹{final_amount/100000:.1f}L after {years} years (guaranteed)")
+# ===== SECTION IMPLEMENTATIONS =====
 
-    with tab2:
-        st.header("Gold Investment Strategy")
+def section_overview():
+    """Section 1: Hero/Overview"""
+    st.markdown('<div id="overview"></div>', unsafe_allow_html=True)
 
-        st.markdown("""
-        **Gold Investment Approach:**
-        - **Hedge against inflation:** Gold typically maintains purchasing power
-        - **Currency protection:** Gold prices in INR often rise with USD/GBP strength
-        - **Liquidity:** Can be sold when needed for education expenses
-        - **Volatility:** Returns can vary significantly year to year
-        """)
+    # Professional header
+    investment_header()
 
-        # Simple gold calculator
-        col1, col2, col3 = st.columns(3)
+    # Key metrics dashboard
+    st.markdown("### Investment Dashboard")
 
-        with col1:
-            gold_investment = st.number_input("Gold Investment (₹)", min_value=100000, max_value=50000000, value=1000000, step=100000)
+    state = get_investment_state()
 
-        with col2:
-            gold_years = st.number_input("Holding Period (years)", min_value=1, max_value=10, value=3)
+    col1, col2, col3, col4 = st.columns(4)
 
-        with col3:
-            gold_cagr = st.slider("Expected Gold CAGR (%)", min_value=5.0, max_value=15.0, value=8.0, step=0.5)
+    with col1:
+        investment_kpi_card(
+            "Default Investment",
+            format_investment_amount(state.investment_amount)
+        )
 
-        # Calculate gold returns
-        gold_final = gold_investment * ((1 + gold_cagr/100) ** gold_years)
-        gold_returns = gold_final - gold_investment
+    with col2:
+        investment_kpi_card(
+            "Selected Strategy",
+            state.selected_strategy.title()
+        )
 
-        # Display results
-        col1, col2, col3 = st.columns(3)
-        with col1:
-            st.metric("Projected Value", f"₹{gold_final/100000:.1f}L")
-        with col2:
-            st.metric("Projected Gains", f"₹{gold_returns/100000:.1f}L")
-        with col3:
-            st.metric("Annual Growth", f"{gold_cagr:.1f}%")
+    with col3:
+        investment_kpi_card(
+            "Expected Return",
+            f"{state.expected_return*100:.1f}%"
+        )
 
-        st.warning(f"**Risk Note:** Gold returns can be volatile. Historical CAGR ranges from 6-12% in INR terms.")
+    with col4:
+        years_to_goal = state.start_year - datetime.now().year
+        investment_kpi_card(
+            "Years to Goal",
+            f"{max(0, years_to_goal)} years"
+        )
 
-    st.divider()
-
-    # Risk warnings
-    st.subheader("Investment Considerations")
+    # Quick overview cards
+    st.markdown("### Strategy Overview")
 
     col1, col2 = st.columns(2)
 
     with col1:
         st.info("""
-        **Conservative Approach:**
-        - Fixed deposits provide guaranteed returns
-        - Suitable for risk-averse families
-        - Returns may not beat inflation long-term
+        **🥇 Gold Investment Strategy**
+        - Historical return: 10-12% annually
+        - Hedge against inflation
+        - Medium-high risk profile
+        - Physical asset backing
         """)
 
     with col2:
-        st.warning("""
-        **Investment Risks:**
-        - Gold/equity returns are not guaranteed
-        - Values can decrease in short term
-        - Consider your risk tolerance carefully
+        st.success("""
+        **🏦 5% Fixed Saver Strategy**
+        - Guaranteed return: 5% annually
+        - Low risk investment
+        - Capital protection
+        - Stable growth pattern
         """)
 
-    st.markdown("---")
-    st.caption("**Note:** NIFTY/FTSE references removed as requested. This app focuses on simpler, more accessible investment strategies.")
 
-except Exception as e:
-    st.error(f"Error loading investment data: {e}")
-    st.info("Please ensure the main education calculator data files are available.")
+def section_course_selection():
+    """Section 2: Course & Timeline Selection"""
+    st.markdown('<div id="selection"></div>', unsafe_allow_html=True)
+
+    st.markdown("## Course & Timeline Selection")
+    st.markdown("Select your target university, course, and timeline for education funding.")
+
+    # Get course selection from components
+    course_details = course_selector_section()
+
+    # Update state with selections
+    sync_state_from_ui()
+
+    # Display selection summary
+    state = get_investment_state()
+    summary = get_investment_summary()
+
+    if summary['projections_ready']:
+        st.success(f"✅ Configuration ready: {summary['course']} starting {summary['years_to_goal']} years from now")
+    else:
+        st.warning("⚠️ Please ensure course start year is in the future for valid projections")
+
+
+def section_investment_strategy():
+    """Section 3: Investment Strategy Options"""
+    st.markdown('<div id="investment"></div>', unsafe_allow_html=True)
+
+    st.markdown("## Investment Strategy")
+    st.markdown("Choose your investment approach and configure funding amount.")
+
+    # Get investment options from components
+    investment_details = investment_options_section()
+
+    # Update state with selections
+    sync_state_from_ui()
+
+    # Display current configuration summary
+    state = get_investment_state()
+
+    st.markdown("### Current Configuration")
+
+    with st.container(border=True):
+        col1, col2, col3 = st.columns(3)
+
+        with col1:
+            investment_kpi_card(
+                "Investment Amount",
+                format_investment_amount(state.investment_amount)
+            )
+
+        with col2:
+            investment_kpi_card(
+                "Strategy",
+                state.selected_strategy.title(),
+                f"{state.risk_level} Risk"
+            )
+
+        with col3:
+            investment_kpi_card(
+                "Expected Return",
+                f"{state.expected_return*100:.1f}%",
+                "per year"
+            )
+
+
+def section_results_and_charts():
+    """Section 4: Results & Charts"""
+    st.markdown('<div id="results"></div>', unsafe_allow_html=True)
+
+    st.markdown("## Results & Projections")
+
+    state = get_investment_state()
+
+    # Action buttons for calculations
+    actions = investment_action_buttons()
+
+    if actions['reset']:
+        reset_investment_state()
+        st.rerun()
+
+    if actions['calculate'] or not state.projections_calculated:
+        if is_calculation_valid():
+            with st.spinner("Calculating investment projections..."):
+                calculate_investment_projections()
+                st.success("Projections calculated successfully!")
+                st.rerun()
+        else:
+            st.error("Please configure valid course and investment settings before calculating.")
+
+    # Display results if available
+    if state.projections_calculated and is_calculation_valid():
+
+        # Summary metrics
+        col1, col2, col3 = st.columns(3)
+
+        with col1:
+            investment_kpi_card(
+                "Projected Value",
+                format_investment_amount(state.final_amount),
+                f"+{state.total_return_percentage:.1f}%"
+            )
+
+        with col2:
+            investment_kpi_card(
+                "Total Growth",
+                format_investment_amount(state.total_growth)
+            )
+
+        with col3:
+            years_to_goal = state.start_year - datetime.now().year
+            investment_kpi_card(
+                "CAGR",
+                f"{state.expected_return*100:.1f}%",
+                f"over {years_to_goal} years"
+            )
+
+        # Charts and visualizations
+        st.markdown("### Investment Growth Analysis")
+
+        if state.projection_data:
+            display_investment_charts(state.projection_data)
+
+        # Detailed projections table
+        st.markdown("### Year-by-Year Projections")
+
+        if state.projection_data:
+            import pandas as pd
+
+            # Create DataFrame for display
+            df_data = []
+            for item in state.projection_data:
+                df_data.append({
+                    "Year": item['year'],
+                    "Investment Value": item['amount'],
+                    "Annual Growth": item['annual_growth'],
+                    "Return %": f"{item['return_percentage']:.1f}%" if item['return_percentage'] > 0 else "Initial"
+                })
+
+            df = pd.DataFrame(df_data)
+
+            st.dataframe(
+                df,
+                column_config={
+                    "Year": st.column_config.NumberColumn("Year", format="%d"),
+                    "Investment Value": st.column_config.NumberColumn("Investment Value", format="₹%d"),
+                    "Annual Growth": st.column_config.NumberColumn("Annual Growth", format="₹%d"),
+                    "Return %": "Annual Return"
+                },
+                hide_index=True,
+                use_container_width=True
+            )
+
+    # Strategy comparison
+    if actions['compare'] or state.show_comparison:
+        st.markdown("### Strategy Comparison")
+        strategy_comparison_table()
+
+        # Visual comparison chart
+        years_to_goal = max(1, state.start_year - datetime.now().year)
+        comparison_chart = create_strategy_comparison_chart(
+            state.investment_amount,
+            years_to_goal
+        )
+        st.plotly_chart(comparison_chart, use_container_width=True)
+
+
+def section_risk_analysis():
+    """Section 5: Risk Information"""
+    st.markdown('<div id="risk"></div>', unsafe_allow_html=True)
+
+    st.markdown("## Risk Analysis & Information")
+
+    # Risk analysis charts
+    display_risk_analysis()
+
+    # Risk education
+    st.markdown("### Investment Risk Guidelines")
+
+    col1, col2 = st.columns(2)
+
+    with col1:
+        st.warning("""
+        **⚠️ Important Risk Considerations**
+
+        - **Gold Investment**: Returns can be volatile year-to-year
+        - **Market Risk**: Past performance doesn't guarantee future results
+        - **Currency Risk**: UK education costs are in GBP, subject to exchange rate fluctuations
+        - **Timing Risk**: Market conditions at education start date may impact final value
+        """)
+
+    with col2:
+        st.info("""
+        **💡 Risk Management Tips**
+
+        - **Diversification**: Consider splitting between strategies
+        - **Time Horizon**: Longer investment periods typically reduce risk
+        - **Regular Review**: Monitor and adjust strategy as needed
+        - **Professional Advice**: Consult financial advisors for personalized guidance
+        """)
+
+    # Disclaimers
+    st.markdown("### Important Disclaimers")
+
+    st.caption("""
+    **Investment Disclaimer**: This calculator provides estimates based on historical data and assumptions.
+    Actual returns may vary significantly. All investments carry risk of loss. This is not financial advice.
+    Consult qualified financial professionals before making investment decisions.
+
+    **Education Cost Disclaimer**: UK university fees and living costs may change. Exchange rates fluctuate.
+    Additional costs (visa, travel, etc.) not included in projections.
+    """)
+
+
+def section_data_sources():
+    """Section 6: Data Sources & Verification"""
+    st.markdown('<div id="data"></div>', unsafe_allow_html=True)
+
+    st.markdown("## Data Sources & Verification")
+    st.markdown("**For complete transparency, download the raw data files used in calculations:**")
+
+    # Call the data sources section
+    data_sources_section()
+
+
+# ===== MAIN APPLICATION =====
+
+def main():
+    """Main application function"""
+
+    # Setup page configuration
+    setup_page()
+
+    # Initialize state with defaults
+    init_investment_defaults()
+
+    # Setup smooth scrolling navigation
+    selected_section = setup_scroll_navigation()
+
+    # Main content container
+    with st.container():
+
+        # Section 1: Overview
+        section_overview()
+        st.divider()
+
+        # Section 2: Course Selection
+        section_course_selection()
+        st.divider()
+
+        # Section 3: Investment Strategy
+        section_investment_strategy()
+        st.divider()
+
+        # Section 4: Results & Charts
+        section_results_and_charts()
+        st.divider()
+
+        # Section 5: Risk Analysis
+        section_risk_analysis()
+        st.divider()
+
+        # Section 6: Data Sources
+        section_data_sources()
+
+    # Footer
+    st.markdown("---")
+    st.caption("Investment Strategies Calculator - Professional Education Funding Analysis")
+    st.caption("Built with Streamlit • Data from UK Universities • Investment projections are estimates")
+
+
+# ===== APP ENTRY POINT =====
+
+if __name__ == "__main__":
+    main()
