@@ -100,6 +100,18 @@ def data_sources_section():
             "help_text": "Raw fee data scraped from official university websites. Used for CAGR calculations and projections."
         },
         {
+            "file_path": data_dir / "hesa" / "processed" / "courses_unified.csv",
+            "label": "HESA Course Catalog (Top 50 Universities)",
+            "description": "Complete course listings for top 50 UK universities from HESA Discover Uni dataset. Includes ~10,700 courses with HECoS subject classifications and CAH mappings.",
+            "help_text": "Official HESA data providing comprehensive course discovery. Courses marked with ✅ have fee data; 📋 indicates HESA-only courses awaiting fee integration."
+        },
+        {
+            "file_path": data_dir / "hesa" / "processed" / "subject_mappings.csv",
+            "label": "HECoS/CAH Subject Classifications",
+            "description": "Official UK subject classification system mapping 1,092 HECoS codes to 166 CAH categories across 3 hierarchical levels.",
+            "help_text": "Standard subject taxonomy used by all UK universities for consistent course categorization."
+        },
+        {
             "file_path": data_dir / "fx" / "twelvedata" / "GBPINR_monthly_twelvedata.csv",
             "label": "GBP/INR Exchange Rates",
             "description": "Monthly GBP/INR exchange rates from TwelveData API. Historical data used for exchange rate projections and CAGR analysis.",

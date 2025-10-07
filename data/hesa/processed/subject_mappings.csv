@@ -1,0 +1,1093 @@
+hecos_code,hecos_name,cah_l1_code,cah_l1_name,cah_l2_code,cah_l2_name,cah_l3_code,cah_l3_name
+100270,medical sciences,CAH01,medicine and dentistry,CAH01-01,medicine and dentistry,CAH01-01-01,medical sciences (non-specific)
+100267,clinical medicine,CAH01,medicine and dentistry,CAH01-01,medicine and dentistry,CAH01-01-02,medicine (non-specific)
+100271,medicine,CAH01,medicine and dentistry,CAH01-01,medicine and dentistry,CAH01-01-02,medicine (non-specific)
+100276,pre-clinical medicine,CAH01,medicine and dentistry,CAH01-01,medicine and dentistry,CAH01-01-02,medicine (non-specific)
+101334,allergy,CAH01,medicine and dentistry,CAH01-01,medicine and dentistry,CAH01-01-03,medicine by specialism
+101336,anaesthesia,CAH01,medicine and dentistry,CAH01-01,medicine and dentistry,CAH01-01-03,medicine by specialism
+100748,cardiology,CAH01,medicine and dentistry,CAH01-01,medicine and dentistry,CAH01-01-03,medicine by specialism
+101339,dermatology,CAH01,medicine and dentistry,CAH01-01,medicine and dentistry,CAH01-01-03,medicine by specialism
+101338,diabetes,CAH01,medicine and dentistry,CAH01-01,medicine and dentistry,CAH01-01-03,medicine by specialism
+101337,endocrinology,CAH01,medicine and dentistry,CAH01-01,medicine and dentistry,CAH01-01-03,medicine by specialism
+101331,gastroenterology,CAH01,medicine and dentistry,CAH01-01,medicine and dentistry,CAH01-01-03,medicine by specialism
+101309,obstetrics and gynaecology,CAH01,medicine and dentistry,CAH01-01,medicine and dentistry,CAH01-01-03,medicine by specialism
+101327,oncology,CAH01,medicine and dentistry,CAH01-01,medicine and dentistry,CAH01-01-03,medicine by specialism
+100261,ophthalmology,CAH01,medicine and dentistry,CAH01-01,medicine and dentistry,CAH01-01-03,medicine by specialism
+101324,orthopaedics,CAH01,medicine and dentistry,CAH01-01,medicine and dentistry,CAH01-01-03,medicine by specialism
+101325,paediatrics,CAH01,medicine and dentistry,CAH01-01,medicine and dentistry,CAH01-01-03,medicine by specialism
+100131,radiology,CAH01,medicine and dentistry,CAH01-01,medicine and dentistry,CAH01-01-03,medicine by specialism
+100266,clinical dentistry,CAH01,medicine and dentistry,CAH01-01,medicine and dentistry,CAH01-01-04,dentistry
+100268,dentistry,CAH01,medicine and dentistry,CAH01-01,medicine and dentistry,CAH01-01-04,dentistry
+100275,pre-clinical dentistry,CAH01,medicine and dentistry,CAH01-01,medicine and dentistry,CAH01-01-04,dentistry
+100290,nursing,CAH02,subjects allied to medicine,CAH02-04,nursing and midwifery,CAH02-04-01,nursing (non-specific)
+100279,adult nursing,CAH02,subjects allied to medicine,CAH02-04,nursing and midwifery,CAH02-04-02,adult nursing
+100281,community nursing,CAH02,subjects allied to medicine,CAH02-04,nursing and midwifery,CAH02-04-03,community nursing
+100285,general practice nursing,CAH02,subjects allied to medicine,CAH02-04,nursing and midwifery,CAH02-04-03,community nursing
+100295,health visiting,CAH02,subjects allied to medicine,CAH02-04,nursing and midwifery,CAH02-04-03,community nursing
+100293,school nursing,CAH02,subjects allied to medicine,CAH02-04,nursing and midwifery,CAH02-04-03,community nursing
+100288,midwifery,CAH02,subjects allied to medicine,CAH02-04,nursing and midwifery,CAH02-04-04,midwifery
+100280,children's nursing,CAH02,subjects allied to medicine,CAH02-04,nursing and midwifery,CAH02-04-05,children's nursing
+100283,dental nursing,CAH02,subjects allied to medicine,CAH02-04,nursing and midwifery,CAH02-04-06,dental nursing
+100287,mental health nursing,CAH02,subjects allied to medicine,CAH02-04,nursing and midwifery,CAH02-04-07,mental health nursing
+100286,learning disabilities nursing,CAH02,subjects allied to medicine,CAH02-04,nursing and midwifery,CAH02-04-08,learning disabilities nursing
+100746,clinical practice nursing,CAH02,subjects allied to medicine,CAH02-04,nursing and midwifery,CAH02-04-09,others in nursing
+100282,critical care nursing,CAH02,subjects allied to medicine,CAH02-04,nursing and midwifery,CAH02-04-09,others in nursing
+100284,emergency nursing,CAH02,subjects allied to medicine,CAH02-04,nursing and midwifery,CAH02-04-09,others in nursing
+101333,epilepsy care,CAH02,subjects allied to medicine,CAH02-04,nursing and midwifery,CAH02-04-09,others in nursing
+100747,medical nursing,CAH02,subjects allied to medicine,CAH02-04,nursing and midwifery,CAH02-04-09,others in nursing
+100289,neonatal nursing,CAH02,subjects allied to medicine,CAH02-04,nursing and midwifery,CAH02-04-09,others in nursing
+100291,older people nursing,CAH02,subjects allied to medicine,CAH02-04,nursing and midwifery,CAH02-04-09,others in nursing
+100292,palliative care nursing,CAH02,subjects allied to medicine,CAH02-04,nursing and midwifery,CAH02-04-09,others in nursing
+100294,theatre nursing,CAH02,subjects allied to medicine,CAH02-04,nursing and midwifery,CAH02-04-09,others in nursing
+100250,pharmacology,CAH02,subjects allied to medicine,CAH02-02,"pharmacology, toxicology and pharmacy",CAH02-02-01,pharmacology
+100277,toxicology,CAH02,subjects allied to medicine,CAH02-02,"pharmacology, toxicology and pharmacy",CAH02-02-02,toxicology
+100251,pharmacy,CAH02,subjects allied to medicine,CAH02-02,"pharmacology, toxicology and pharmacy",CAH02-02-03,pharmacy
+100246,health sciences,CAH02,subjects allied to medicine,CAH02-06,allied health,CAH02-06-01,health sciences (non-specific)
+101289,rehabilitation studies,CAH02,subjects allied to medicine,CAH02-06,allied health,CAH02-06-01,health sciences (non-specific)
+101329,dementia studies,CAH02,subjects allied to medicine,CAH02-06,allied health,CAH02-06-01,health sciences (non-specific)
+100273,operating department practice,CAH02,subjects allied to medicine,CAH02-06,allied health,CAH02-06-01,health sciences (non-specific)
+100749,paramedic science,CAH02,subjects allied to medicine,CAH02-06,allied health,CAH02-06-01,health sciences (non-specific)
+100750,physician associate studies,CAH02,subjects allied to medicine,CAH02-06,allied health,CAH02-06-01,health sciences (non-specific)
+100255,speech and language therapy,CAH02,subjects allied to medicine,CAH02-06,allied health,CAH02-06-01,health sciences (non-specific)
+101291,cardiovascular rehabilitation,CAH02,subjects allied to medicine,CAH02-06,allied health,CAH02-06-01,health sciences (non-specific)
+100744,dietetics,CAH02,subjects allied to medicine,CAH02-06,allied health,CAH02-06-02,nutrition and dietetics
+100247,nutrition,CAH02,subjects allied to medicine,CAH02-06,allied health,CAH02-06-02,nutrition and dietetics
+101511,ophthalmic dispensing,CAH02,subjects allied to medicine,CAH02-06,allied health,CAH02-06-03,ophthalmics
+100036,optometry,CAH02,subjects allied to medicine,CAH02-06,allied health,CAH02-06-03,ophthalmics
+100037,orthoptics,CAH02,subjects allied to medicine,CAH02-06,allied health,CAH02-06-03,ophthalmics
+101332,drug and alcohol studies,CAH02,subjects allied to medicine,CAH02-06,allied health,CAH02-06-04,environmental and public health
+101317,environmental and public health,CAH02,subjects allied to medicine,CAH02-06,allied health,CAH02-06-04,environmental and public health
+101335,epidemiology,CAH02,subjects allied to medicine,CAH02-06,allied health,CAH02-06-04,environmental and public health
+100248,occupational health,CAH02,subjects allied to medicine,CAH02-06,allied health,CAH02-06-04,environmental and public health
+101290,neurological rehabilitation,CAH02,subjects allied to medicine,CAH02-06,allied health,CAH02-06-05,physiotherapy
+100252,physiotherapy,CAH02,subjects allied to medicine,CAH02-06,allied health,CAH02-06-05,physiotherapy
+100233,acupuncture,CAH02,subjects allied to medicine,CAH02-06,allied health,CAH02-06-06,complementary and alternative medicine
+100234,alternative medicines and therapies,CAH02,subjects allied to medicine,CAH02-06,allied health,CAH02-06-06,complementary and alternative medicine
+100235,aromatherapy,CAH02,subjects allied to medicine,CAH02-06,allied health,CAH02-06-06,complementary and alternative medicine
+100739,beauty therapy,CAH02,subjects allied to medicine,CAH02-06,allied health,CAH02-06-06,complementary and alternative medicine
+100236,Chinese medical techniques,CAH02,subjects allied to medicine,CAH02-06,allied health,CAH02-06-06,complementary and alternative medicine
+100241,chiropractic,CAH02,subjects allied to medicine,CAH02-06,allied health,CAH02-06-06,complementary and alternative medicine
+100242,complementary medicines and therapies,CAH02,subjects allied to medicine,CAH02-06,allied health,CAH02-06-06,complementary and alternative medicine
+100237,herbal medicine,CAH02,subjects allied to medicine,CAH02-06,allied health,CAH02-06-06,complementary and alternative medicine
+101340,hypnotherapy,CAH02,subjects allied to medicine,CAH02-06,allied health,CAH02-06-06,complementary and alternative medicine
+101241,music therapy,CAH02,subjects allied to medicine,CAH02-06,allied health,CAH02-06-06,complementary and alternative medicine
+100243,osteopathy,CAH02,subjects allied to medicine,CAH02-06,allied health,CAH02-06-06,complementary and alternative medicine
+100253,podiatry,CAH02,subjects allied to medicine,CAH02-06,allied health,CAH02-06-06,complementary and alternative medicine
+100239,reflexology,CAH02,subjects allied to medicine,CAH02-06,allied health,CAH02-06-06,complementary and alternative medicine
+101375,spa and water-based therapies,CAH02,subjects allied to medicine,CAH02-06,allied health,CAH02-06-06,complementary and alternative medicine
+100129,diagnostic imaging,CAH02,subjects allied to medicine,CAH02-05,medical sciences,CAH02-05-01,medical technology
+100132,therapeutic imaging,CAH02,subjects allied to medicine,CAH02-05,medical sciences,CAH02-05-01,medical technology
+101330,ultrasound,CAH02,subjects allied to medicine,CAH02-05,medical sciences,CAH02-05-01,medical technology
+101320,art psychotherapy,CAH02,subjects allied to medicine,CAH02-06,allied health,CAH02-06-07,"counselling, psychotherapy and occupational therapy"
+100495,counselling,CAH02,subjects allied to medicine,CAH02-06,allied health,CAH02-06-07,"counselling, psychotherapy and occupational therapy"
+100249,occupational therapy,CAH02,subjects allied to medicine,CAH02-06,allied health,CAH02-06-07,"counselling, psychotherapy and occupational therapy"
+100254,psychotherapy,CAH02,subjects allied to medicine,CAH02-06,allied health,CAH02-06-07,"counselling, psychotherapy and occupational therapy"
+100260,healthcare science,CAH02,subjects allied to medicine,CAH02-05,medical sciences,CAH02-05-02,healthcare science (non-specific)
+100257,audiology,CAH02,subjects allied to medicine,CAH02-05,medical sciences,CAH02-05-02,healthcare science (non-specific)
+100265,biomedical sciences,CAH02,subjects allied to medicine,CAH02-05,medical sciences,CAH02-05-03,biomedical sciences (non-specific)
+101382,affective neuroscience,CAH02,subjects allied to medicine,CAH02-05,medical sciences,CAH02-05-03,biomedical sciences (non-specific)
+100912,blood sciences,CAH02,subjects allied to medicine,CAH02-05,medical sciences,CAH02-05-03,biomedical sciences (non-specific)
+100272,neuroscience,CAH02,subjects allied to medicine,CAH02-05,medical sciences,CAH02-05-03,biomedical sciences (non-specific)
+100264,anatomy,CAH02,subjects allied to medicine,CAH02-05,medical sciences,CAH02-05-04,"anatomy, physiology and pathology"
+100540,cellular pathology,CAH02,subjects allied to medicine,CAH02-05,medical sciences,CAH02-05-04,"anatomy, physiology and pathology"
+100258,clinical physiology,CAH02,subjects allied to medicine,CAH02-05,medical sciences,CAH02-05-04,"anatomy, physiology and pathology"
+100038,pathobiology,CAH02,subjects allied to medicine,CAH02-05,medical sciences,CAH02-05-04,"anatomy, physiology and pathology"
+100274,pathology,CAH02,subjects allied to medicine,CAH02-05,medical sciences,CAH02-05-04,"anatomy, physiology and pathology"
+100262,physiology,CAH02,subjects allied to medicine,CAH02-05,medical sciences,CAH02-05-04,"anatomy, physiology and pathology"
+100345,biological sciences,CAH03,biological and sport sciences,CAH03-01,biosciences,CAH03-01-01,biosciences (non-specific)
+100346,biology,CAH03,biological and sport sciences,CAH03-01,biosciences,CAH03-01-02,biology (non-specific)
+100848,aquatic biology,CAH03,biological and sport sciences,CAH03-01,biosciences,CAH03-01-03,ecology and environmental biology
+101318,biodiversity conservation,CAH03,biological and sport sciences,CAH03-01,biosciences,CAH03-01-03,ecology and environmental biology
+101457,community ecology,CAH03,biological and sport sciences,CAH03-01,biosciences,CAH03-01-03,ecology and environmental biology
+100347,ecology,CAH03,biological and sport sciences,CAH03-01,biosciences,CAH03-01-03,ecology and environmental biology
+100864,ecosystem ecology and land use,CAH03,biological and sport sciences,CAH03-01,biosciences,CAH03-01-03,ecology and environmental biology
+101459,ecotoxicology,CAH03,biological and sport sciences,CAH03-01,biosciences,CAH03-01-03,ecology and environmental biology
+100348,environmental biology,CAH03,biological and sport sciences,CAH03-01,biosciences,CAH03-01-03,ecology and environmental biology
+100849,freshwater biology,CAH03,biological and sport sciences,CAH03-01,biosciences,CAH03-01-03,ecology and environmental biology
+100351,marine biology,CAH03,biological and sport sciences,CAH03-01,biosciences,CAH03-01-03,ecology and environmental biology
+100850,population biology,CAH03,biological and sport sciences,CAH03-01,biosciences,CAH03-01-03,ecology and environmental biology
+101458,population ecology,CAH03,biological and sport sciences,CAH03-01,biosciences,CAH03-01-03,ecology and environmental biology
+100906,applied microbiology,CAH03,biological and sport sciences,CAH03-01,biosciences,CAH03-01-04,microbiology and cell science
+100909,bacteriology,CAH03,biological and sport sciences,CAH03-01,biosciences,CAH03-01-04,microbiology and cell science
+100822,cell biology,CAH03,biological and sport sciences,CAH03-01,biosciences,CAH03-01-04,microbiology and cell science
+100881,cell zoology,CAH03,biological and sport sciences,CAH03-01,biosciences,CAH03-01-04,microbiology and cell science
+100911,immunology,CAH03,biological and sport sciences,CAH03-01,biosciences,CAH03-01-04,microbiology and cell science
+100907,medical microbiology,CAH03,biological and sport sciences,CAH03-01,biosciences,CAH03-01-04,microbiology and cell science
+100353,microbiology,CAH03,biological and sport sciences,CAH03-01,biosciences,CAH03-01-04,microbiology and cell science
+100872,mycology,CAH03,biological and sport sciences,CAH03-01,biosciences,CAH03-01-04,microbiology and cell science
+100826,parasitology,CAH03,biological and sport sciences,CAH03-01,biosciences,CAH03-01-04,microbiology and cell science
+100873,plant cell science,CAH03,biological and sport sciences,CAH03-01,biosciences,CAH03-01-04,microbiology and cell science
+100874,plant pathology,CAH03,biological and sport sciences,CAH03-01,biosciences,CAH03-01-04,microbiology and cell science
+100910,virology,CAH03,biological and sport sciences,CAH03-01,biosciences,CAH03-01-04,microbiology and cell science
+101376,applied botany,CAH03,biological and sport sciences,CAH03-01,biosciences,CAH03-01-05,plant sciences
+101460,plant physiology,CAH03,biological and sport sciences,CAH03-01,biosciences,CAH03-01-05,plant sciences
+100355,plant sciences,CAH03,biological and sport sciences,CAH03-01,biosciences,CAH03-01-05,plant sciences
+100937,animal physiology,CAH03,biological and sport sciences,CAH03-01,biosciences,CAH03-01-06,zoology
+100880,applied zoology,CAH03,biological and sport sciences,CAH03-01,biosciences,CAH03-01-06,zoology
+100829,behavioural biology,CAH03,biological and sport sciences,CAH03-01,biosciences,CAH03-01-06,zoology
+100834,developmental biology,CAH03,biological and sport sciences,CAH03-01,biosciences,CAH03-01-06,zoology
+100882,entomology,CAH03,biological and sport sciences,CAH03-01,biosciences,CAH03-01-06,zoology
+100883,marine zoology,CAH03,biological and sport sciences,CAH03-01,biosciences,CAH03-01-06,zoology
+100356,zoology,CAH03,biological and sport sciences,CAH03-01,biosciences,CAH03-01-06,zoology
+101378,genetic engineering,CAH03,biological and sport sciences,CAH03-01,biosciences,CAH03-01-07,genetics
+100259,genetics,CAH03,biological and sport sciences,CAH03-01,biosciences,CAH03-01-07,genetics
+100901,genomics,CAH03,biological and sport sciences,CAH03-01,biosciences,CAH03-01-07,genetics
+100898,human genetics,CAH03,biological and sport sciences,CAH03-01,biosciences,CAH03-01-07,genetics
+100899,medical genetics,CAH03,biological and sport sciences,CAH03-01,biosciences,CAH03-01-07,genetics
+100900,molecular genetics,CAH03,biological and sport sciences,CAH03-01,biosciences,CAH03-01-07,genetics
+100902,population genetics,CAH03,biological and sport sciences,CAH03-01,biosciences,CAH03-01-07,genetics
+101377,transcriptomics,CAH03,biological and sport sciences,CAH03-01,biosciences,CAH03-01-07,genetics
+100344,biochemistry,CAH03,biological and sport sciences,CAH03-01,biosciences,CAH03-01-08,"molecular biology, biophysics and biochemistry"
+100948,biomolecular science,CAH03,biological and sport sciences,CAH03-01,biosciences,CAH03-01-08,"molecular biology, biophysics and biochemistry"
+100949,biophysical science,CAH03,biological and sport sciences,CAH03-01,biosciences,CAH03-01-08,"molecular biology, biophysics and biochemistry"
+100352,medical biochemistry,CAH03,biological and sport sciences,CAH03-01,biosciences,CAH03-01-08,"molecular biology, biophysics and biochemistry"
+101380,metabolic biochemistry,CAH03,biological and sport sciences,CAH03-01,biosciences,CAH03-01-08,"molecular biology, biophysics and biochemistry"
+100354,molecular biology,CAH03,biological and sport sciences,CAH03-01,biosciences,CAH03-01-08,"molecular biology, biophysics and biochemistry"
+100932,plant biochemistry,CAH03,biological and sport sciences,CAH03-01,biosciences,CAH03-01-08,"molecular biology, biophysics and biochemistry"
+101373,hair and beauty sciences,CAH03,biological and sport sciences,CAH03-01,biosciences,CAH03-01-09,hair and beauty sciences
+100343,applied biology,CAH03,biological and sport sciences,CAH03-01,biosciences,CAH03-01-10,others in biosciences
+100865,biometry,CAH03,biological and sport sciences,CAH03-01,biosciences,CAH03-01-10,others in biosciences
+100858,evolution,CAH03,biological and sport sciences,CAH03-01,biosciences,CAH03-01-10,others in biosciences
+100350,human biology,CAH03,biological and sport sciences,CAH03-01,biosciences,CAH03-01-10,others in biosciences
+100847,reproductive biology,CAH03,biological and sport sciences,CAH03-01,biosciences,CAH03-01-10,others in biosciences
+101319,exercise for health,CAH03,biological and sport sciences,CAH03-02,sport and exercise sciences,CAH03-02-01,sport and exercise sciences
+100433,sport and exercise sciences,CAH03,biological and sport sciences,CAH03-02,sport and exercise sciences,CAH03-02-01,sport and exercise sciences
+101379,sport technology,CAH03,biological and sport sciences,CAH03-02,sport and exercise sciences,CAH03-02-01,sport and exercise sciences
+100095,sports coaching,CAH03,biological and sport sciences,CAH03-02,sport and exercise sciences,CAH03-02-01,sport and exercise sciences
+100096,sports development,CAH03,biological and sport sciences,CAH03-02,sport and exercise sciences,CAH03-02-01,sport and exercise sciences
+100098,sports studies,CAH03,biological and sport sciences,CAH03-02,sport and exercise sciences,CAH03-02-01,sport and exercise sciences
+100475,sports therapy,CAH03,biological and sport sciences,CAH03-02,sport and exercise sciences,CAH03-02-01,sport and exercise sciences
+100497,psychology,CAH04,psychology,CAH04-01,psychology,CAH04-01-01,psychology (non-specific)
+100493,applied psychology,CAH04,psychology,CAH04-01,psychology,CAH04-01-02,applied psychology
+100954,business psychology,CAH04,psychology,CAH04-01,psychology,CAH04-01-02,applied psychology
+101294,coaching psychology,CAH04,psychology,CAH04-01,psychology,CAH04-01-02,applied psychology
+100387,forensic psychology,CAH04,psychology,CAH04-01,psychology,CAH04-01-02,applied psychology
+100950,occupational psychology,CAH04,psychology,CAH04-01,psychology,CAH04-01-02,applied psychology
+101383,psychometrics,CAH04,psychology,CAH04-01,psychology,CAH04-01-02,applied psychology
+100499,sport and exercise psychology,CAH04,psychology,CAH04-01,psychology,CAH04-01-02,applied psychology
+100953,child psychology,CAH04,psychology,CAH04-01,psychology,CAH04-01-03,developmental psychology
+100952,developmental psychology,CAH04,psychology,CAH04-01,psychology,CAH04-01-03,developmental psychology
+100496,educational psychology,CAH04,psychology,CAH04-01,psychology,CAH04-01-03,developmental psychology
+101342,psychology of memory and learning,CAH04,psychology,CAH04-01,psychology,CAH04-01-03,developmental psychology
+100494,clinical psychology,CAH04,psychology,CAH04-01,psychology,CAH04-01-04,psychology and health
+100985,health psychology,CAH04,psychology,CAH04-01,psychology,CAH04-01-04,psychology and health
+101464,psychopharmacology,CAH04,psychology,CAH04-01,psychology,CAH04-01-04,psychology and health
+101381,cognitive neuroscience,CAH04,psychology,CAH04-01,psychology,CAH04-01-05,others in psychology
+100993,cognitive psychology,CAH04,psychology,CAH04-01,psychology,CAH04-01-05,others in psychology
+101345,evolutionary psychology,CAH04,psychology,CAH04-01,psychology,CAH04-01-05,others in psychology
+101344,psychobiology,CAH04,psychology,CAH04-01,psychology,CAH04-01-05,others in psychology
+100958,psychology of ageing,CAH04,psychology,CAH04-01,psychology,CAH04-01-05,others in psychology
+101341,psychology of communication,CAH04,psychology,CAH04-01,psychology,CAH04-01-05,others in psychology
+101363,psychology of music,CAH04,psychology,CAH04-01,psychology,CAH04-01-05,others in psychology
+101003,psychology of religion,CAH04,psychology,CAH04-01,psychology,CAH04-01-05,others in psychology
+101463,qualitative psychology,CAH04,psychology,CAH04-01,psychology,CAH04-01-05,others in psychology
+101462,quantitative psychology,CAH04,psychology,CAH04-01,psychology,CAH04-01-05,others in psychology
+100959,research methods in psychology,CAH04,psychology,CAH04-01,psychology,CAH04-01-05,others in psychology
+100498,social psychology,CAH04,psychology,CAH04-01,psychology,CAH04-01-05,others in psychology
+101343,transpersonal psychology,CAH04,psychology,CAH04-01,psychology,CAH04-01-05,others in psychology
+101384,pre-clinical veterinary medicine,CAH05,veterinary sciences,CAH05-01,veterinary sciences,CAH05-01-01,veterinary medicine and dentistry
+101347,veterinary dentistry,CAH05,veterinary sciences,CAH05-01,veterinary sciences,CAH05-01-01,veterinary medicine and dentistry
+100531,veterinary medicine,CAH05,veterinary sciences,CAH05-01,veterinary sciences,CAH05-01-01,veterinary medicine and dentistry
+101461,veterinary biochemistry,CAH05,veterinary sciences,CAH05-01,veterinary sciences,CAH05-01-02,others in veterinary sciences
+101220,veterinary epidemiology,CAH05,veterinary sciences,CAH05-01,veterinary sciences,CAH05-01-02,others in veterinary sciences
+100908,veterinary microbiology,CAH05,veterinary sciences,CAH05-01,veterinary sciences,CAH05-01-02,others in veterinary sciences
+100532,veterinary nursing,CAH05,veterinary sciences,CAH05-01,veterinary sciences,CAH05-01-02,others in veterinary sciences
+100938,veterinary pathology,CAH05,veterinary sciences,CAH05-01,veterinary sciences,CAH05-01-02,others in veterinary sciences
+100939,veterinary pharmacology,CAH05,veterinary sciences,CAH05-01,veterinary sciences,CAH05-01-02,others in veterinary sciences
+100941,veterinary pharmacy,CAH05,veterinary sciences,CAH05-01,veterinary sciences,CAH05-01-02,others in veterinary sciences
+100942,veterinary public health,CAH05,veterinary sciences,CAH05-01,veterinary sciences,CAH05-01-02,others in veterinary sciences
+100522,animal behaviour,CAH06,"agriculture, food and related studies",CAH06-01,"agriculture, food and related studies",CAH06-01-01,animal science
+100936,animal health,CAH06,"agriculture, food and related studies",CAH06-01,"agriculture, food and related studies",CAH06-01-01,animal science
+100940,animal nutrition,CAH06,"agriculture, food and related studies",CAH06-01,"agriculture, food and related studies",CAH06-01-01,animal science
+100523,animal science,CAH06,"agriculture, food and related studies",CAH06-01,"agriculture, food and related studies",CAH06-01-01,animal science
+100519,equine studies,CAH06,"agriculture, food and related studies",CAH06-01,"agriculture, food and related studies",CAH06-01-01,animal science
+101025,agricultural botany,CAH06,"agriculture, food and related studies",CAH06-01,"agriculture, food and related studies",CAH06-01-02,agricultural sciences
+101024,agricultural chemistry,CAH06,"agriculture, food and related studies",CAH06-01,"agriculture, food and related studies",CAH06-01-02,agricultural sciences
+100516,agricultural sciences,CAH06,"agriculture, food and related studies",CAH06-01,"agriculture, food and related studies",CAH06-01-02,agricultural sciences
+100884,pest management,CAH06,"agriculture, food and related studies",CAH06-01,"agriculture, food and related studies",CAH06-01-02,agricultural sciences
+101385,agricultural irrigation and drainage,CAH06,"agriculture, food and related studies",CAH06-01,"agriculture, food and related studies",CAH06-01-03,agriculture
+101010,agricultural machinery,CAH06,"agriculture, food and related studies",CAH06-01,"agriculture, food and related studies",CAH06-01-03,agriculture
+101006,agricultural technology,CAH06,"agriculture, food and related studies",CAH06-01,"agriculture, food and related studies",CAH06-01-03,agriculture
+100517,agriculture,CAH06,"agriculture, food and related studies",CAH06-01,"agriculture, food and related studies",CAH06-01-03,agriculture
+100518,animal management,CAH06,"agriculture, food and related studies",CAH06-01,"agriculture, food and related studies",CAH06-01-03,agriculture
+100976,aquaculture,CAH06,"agriculture, food and related studies",CAH06-01,"agriculture, food and related studies",CAH06-01-03,agriculture
+100946,crop nutrition,CAH06,"agriculture, food and related studies",CAH06-01,"agriculture, food and related studies",CAH06-01-03,agriculture
+100947,crop production,CAH06,"agriculture, food and related studies",CAH06-01,"agriculture, food and related studies",CAH06-01-03,agriculture
+100945,crop protection,CAH06,"agriculture, food and related studies",CAH06-01,"agriculture, food and related studies",CAH06-01-03,agriculture
+101348,exotic plants and crops,CAH06,"agriculture, food and related studies",CAH06-01,"agriculture, food and related studies",CAH06-01-03,agriculture
+100978,farm management,CAH06,"agriculture, food and related studies",CAH06-01,"agriculture, food and related studies",CAH06-01-03,agriculture
+100529,horticulture,CAH06,"agriculture, food and related studies",CAH06-01,"agriculture, food and related studies",CAH06-01-03,agriculture
+101001,international agriculture,CAH06,"agriculture, food and related studies",CAH06-01,"agriculture, food and related studies",CAH06-01-03,agriculture
+100974,livestock,CAH06,"agriculture, food and related studies",CAH06-01,"agriculture, food and related studies",CAH06-01-03,agriculture
+101004,organic farming,CAH06,"agriculture, food and related studies",CAH06-01,"agriculture, food and related studies",CAH06-01-03,agriculture
+100998,sustainable agriculture and landscape development,CAH06,"agriculture, food and related studies",CAH06-01,"agriculture, food and related studies",CAH06-01-03,agriculture
+100468,countryside management,CAH06,"agriculture, food and related studies",CAH06-01,"agriculture, food and related studies",CAH06-01-04,rural estate management
+100979,game keeping management,CAH06,"agriculture, food and related studies",CAH06-01,"agriculture, food and related studies",CAH06-01-04,rural estate management
+100990,land management for recreation,CAH06,"agriculture, food and related studies",CAH06-01,"agriculture, food and related studies",CAH06-01-04,rural estate management
+100977,rural estate management,CAH06,"agriculture, food and related studies",CAH06-01,"agriculture, food and related studies",CAH06-01-04,rural estate management
+101014,community forestry,CAH06,"agriculture, food and related studies",CAH06-01,"agriculture, food and related studies",CAH06-01-05,forestry and arboriculture
+100520,forestry and arboriculture,CAH06,"agriculture, food and related studies",CAH06-01,"agriculture, food and related studies",CAH06-01-05,forestry and arboriculture
+101017,food and beverage studies,CAH06,"agriculture, food and related studies",CAH06-01,"agriculture, food and related studies",CAH06-01-06,food and beverage studies (non-specific)
+101388,cereal science,CAH06,"agriculture, food and related studies",CAH06-01,"agriculture, food and related studies",CAH06-01-07,food sciences
+100527,food science,CAH06,"agriculture, food and related studies",CAH06-01,"agriculture, food and related studies",CAH06-01-07,food sciences
+101387,meat science,CAH06,"agriculture, food and related studies",CAH06-01,"agriculture, food and related studies",CAH06-01-07,food sciences
+101021,baking technology management,CAH06,"agriculture, food and related studies",CAH06-01,"agriculture, food and related studies",CAH06-01-08,food and beverage production
+101022,brewing,CAH06,"agriculture, food and related studies",CAH06-01,"agriculture, food and related studies",CAH06-01-08,food and beverage production
+100526,food and beverage production,CAH06,"agriculture, food and related studies",CAH06-01,"agriculture, food and related studies",CAH06-01-08,food and beverage production
+101018,food safety,CAH06,"agriculture, food and related studies",CAH06-01,"agriculture, food and related studies",CAH06-01-08,food and beverage production
+100427,acoustics,CAH07,physical sciences,CAH07-01,physics and astronomy,CAH07-01-01,physics
+100580,acoustics and vibration,CAH07,physical sciences,CAH07-01,physics and astronomy,CAH07-01-01,physics
+101060,applied physics,CAH07,physical sciences,CAH07-01,physics and astronomy,CAH07-01-01,physics
+101068,atmospheric physics,CAH07,physical sciences,CAH07-01,physics and astronomy,CAH07-01-01,physics
+100416,chemical physics,CAH07,physical sciences,CAH07-01,physics and astronomy,CAH07-01-01,physics
+101071,computational physics,CAH07,physical sciences,CAH07-01,physics and astronomy,CAH07-01-01,physics
+101223,condensed matter physics,CAH07,physical sciences,CAH07-01,physics and astronomy,CAH07-01-01,physics
+101391,electromagnetism,CAH07,physical sciences,CAH07-01,physics and astronomy,CAH07-01-01,physics
+101061,engineering physics,CAH07,physical sciences,CAH07-01,physics and astronomy,CAH07-01-01,physics
+100577,fluid mechanics,CAH07,physical sciences,CAH07-01,physics and astronomy,CAH07-01-01,physics
+101076,laser physics,CAH07,physical sciences,CAH07-01,physics and astronomy,CAH07-01-01,physics
+101390,marine physics,CAH07,physical sciences,CAH07-01,physics and astronomy,CAH07-01-01,physics
+100430,mechanics,CAH07,physical sciences,CAH07-01,physics and astronomy,CAH07-01-01,physics
+100419,medical physics,CAH07,physical sciences,CAH07-01,physics and astronomy,CAH07-01-01,physics
+101077,nuclear and particle physics,CAH07,physical sciences,CAH07-01,physics and astronomy,CAH07-01-01,physics
+101075,photonics and optical physics,CAH07,physical sciences,CAH07-01,physics and astronomy,CAH07-01-01,physics
+100425,physics,CAH07,physical sciences,CAH07-01,physics and astronomy,CAH07-01-01,physics
+101300,quantum theory and applications,CAH07,physical sciences,CAH07-01,physics and astronomy,CAH07-01-01,physics
+101074,radiation physics,CAH07,physical sciences,CAH07-01,physics and astronomy,CAH07-01-01,physics
+101396,solid mechanics,CAH07,physical sciences,CAH07-01,physics and astronomy,CAH07-01-01,physics
+100579,structural mechanics,CAH07,physical sciences,CAH07-01,physics and astronomy,CAH07-01-01,physics
+100426,theoretical physics,CAH07,physical sciences,CAH07-01,physics and astronomy,CAH07-01-01,physics
+100431,thermodynamics,CAH07,physical sciences,CAH07-01,physics and astronomy,CAH07-01-01,physics
+100414,astronomy,CAH07,physical sciences,CAH07-01,physics and astronomy,CAH07-01-02,astronomy
+100415,astrophysics,CAH07,physical sciences,CAH07-01,physics and astronomy,CAH07-01-02,astronomy
+101103,planetary science,CAH07,physical sciences,CAH07-01,physics and astronomy,CAH07-01-02,astronomy
+101102,space science,CAH07,physical sciences,CAH07-01,physics and astronomy,CAH07-01-02,astronomy
+100413,analytical chemistry,CAH07,physical sciences,CAH07-02,chemistry,CAH07-02-01,chemistry
+101038,applied chemistry,CAH07,physical sciences,CAH07-02,chemistry,CAH07-02-01,chemistry
+100417,chemistry,CAH07,physical sciences,CAH07-02,chemistry,CAH07-02-01,chemistry
+101042,colour chemistry,CAH07,physical sciences,CAH07-02,chemistry,CAH07-02-01,chemistry
+101044,crystallography,CAH07,physical sciences,CAH07-02,chemistry,CAH07-02-01,chemistry
+101045,environmental chemistry,CAH07,physical sciences,CAH07-02,chemistry,CAH07-02-01,chemistry
+101041,industrial chemistry,CAH07,physical sciences,CAH07-02,chemistry,CAH07-02-01,chemistry
+101043,inorganic chemistry,CAH07,physical sciences,CAH07-02,chemistry,CAH07-02-01,chemistry
+101046,marine chemistry,CAH07,physical sciences,CAH07-02,chemistry,CAH07-02-01,chemistry
+100420,medicinal chemistry,CAH07,physical sciences,CAH07-02,chemistry,CAH07-02-01,chemistry
+101054,oil and gas chemistry,CAH07,physical sciences,CAH07-02,chemistry,CAH07-02-01,chemistry
+100422,organic chemistry,CAH07,physical sciences,CAH07-02,chemistry,CAH07-02-01,chemistry
+101389,organometallic chemistry,CAH07,physical sciences,CAH07-02,chemistry,CAH07-02-01,chemistry
+100423,pharmaceutical chemistry,CAH07,physical sciences,CAH07-02,chemistry,CAH07-02-01,chemistry
+101050,physical chemistry,CAH07,physical sciences,CAH07-02,chemistry,CAH07-02-01,chemistry
+101053,polymer chemistry,CAH07,physical sciences,CAH07-02,chemistry,CAH07-02-01,chemistry
+100424,physical sciences,CAH07,physical sciences,CAH07-04,"general, applied and forensic sciences",CAH07-04-01,physical sciences (non-specific)
+100384,archaeological sciences,CAH07,physical sciences,CAH07-04,"general, applied and forensic sciences",CAH07-04-02,forensic and archaeological sciences
+101222,crime scene investigation,CAH07,physical sciences,CAH07-04,"general, applied and forensic sciences",CAH07-04-02,forensic and archaeological sciences
+101219,forensic archaeology,CAH07,physical sciences,CAH07-04,"general, applied and forensic sciences",CAH07-04-02,forensic and archaeological sciences
+100386,forensic biology,CAH07,physical sciences,CAH07-04,"general, applied and forensic sciences",CAH07-04-02,forensic and archaeological sciences
+100388,forensic science,CAH07,physical sciences,CAH07-04,"general, applied and forensic sciences",CAH07-04-02,forensic and archaeological sciences
+100392,applied science,CAH07,physical sciences,CAH07-04,"general, applied and forensic sciences",CAH07-04-03,sciences (non-specific)
+100390,general science,CAH07,physical sciences,CAH07-04,"general, applied and forensic sciences",CAH07-04-03,sciences (non-specific)
+100391,natural sciences,CAH07,physical sciences,CAH07-04,"general, applied and forensic sciences",CAH07-04-04,natural sciences (non-specific)
+100400,applied mathematics,CAH09,mathematical sciences,CAH09-01,mathematical sciences,CAH09-01-01,mathematics
+101029,computational mathematics,CAH09,mathematical sciences,CAH09-01,mathematical sciences,CAH09-01-01,mathematics
+101028,engineering and industrial mathematics,CAH09,mathematical sciences,CAH09-01,mathematical sciences,CAH09-01-01,mathematics
+100401,financial mathematics,CAH09,mathematical sciences,CAH09-01,mathematical sciences,CAH09-01-01,mathematics
+100402,mathematical modelling,CAH09,mathematical sciences,CAH09-01,mathematical sciences,CAH09-01-01,mathematics
+100403,mathematics,CAH09,mathematical sciences,CAH09-01,mathematical sciences,CAH09-01-01,mathematics
+101027,numerical analysis,CAH09,mathematical sciences,CAH09-01,mathematical sciences,CAH09-01-01,mathematics
+100405,pure mathematics,CAH09,mathematical sciences,CAH09-01,mathematical sciences,CAH09-01-01,mathematics
+100404,operational research,CAH09,mathematical sciences,CAH09-01,mathematical sciences,CAH09-01-02,operational research
+101030,applied statistics,CAH09,mathematical sciences,CAH09-01,mathematical sciences,CAH09-01-03,statistics
+101031,medical statistics,CAH09,mathematical sciences,CAH09-01,mathematical sciences,CAH09-01-03,statistics
+101032,probability,CAH09,mathematical sciences,CAH09-01,mathematical sciences,CAH09-01-03,statistics
+101034,statistical modelling,CAH09,mathematical sciences,CAH09-01,mathematical sciences,CAH09-01-03,statistics
+100406,statistics,CAH09,mathematical sciences,CAH09-01,mathematical sciences,CAH09-01-03,statistics
+101033,stochastic processes,CAH09,mathematical sciences,CAH09-01,mathematical sciences,CAH09-01-03,statistics
+100160,computer aided engineering,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-01,engineering (non-specific)
+100182,engineering design,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-01,engineering (non-specific)
+100184,general or integrated engineering,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-01,engineering (non-specific)
+100429,dynamics,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-02,mechanical engineering
+100192,electromechanical engineering,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-02,mechanical engineering
+100190,mechanical engineering,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-02,mechanical engineering
+100201,automotive engineering,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-03,production and manufacturing engineering
+100109,clothing production,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-03,production and manufacturing engineering
+100211,fabrication,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-03,production and manufacturing engineering
+100110,footwear production,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-03,production and manufacturing engineering
+100193,maintenance engineering,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-03,production and manufacturing engineering
+100202,manufacturing engineering,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-03,production and manufacturing engineering
+100170,mechatronics and robotics,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-03,production and manufacturing engineering
+100205,motorcycle engineering,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-03,production and manufacturing engineering
+100206,motorsport engineering,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-03,production and manufacturing engineering
+100152,offshore engineering,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-03,production and manufacturing engineering
+100209,production and manufacturing engineering,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-03,production and manufacturing engineering
+100213,quality management,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-03,production and manufacturing engineering
+101398,rail vehicle engineering,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-03,production and manufacturing engineering
+101397,turbine technology,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-03,production and manufacturing engineering
+100428,aerodynamics,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-04,aeronautical and aerospace engineering
+100114,aeronautical engineering,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-04,aeronautical and aerospace engineering
+100115,aerospace engineering,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-04,aeronautical and aerospace engineering
+100564,aerospace propulsion systems,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-04,aeronautical and aerospace engineering
+100229,aviation studies,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-04,aeronautical and aerospace engineering
+100117,avionics,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-04,aeronautical and aerospace engineering
+100116,space technology,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-04,aeronautical and aerospace engineering
+100207,naval architecture,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-05,naval architecture
+100568,ship design,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-05,naval architecture
+101216,bioelectronics,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-06,"bioengineering, medical and biomedical engineering"
+101243,bioengineering,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-06,"bioengineering, medical and biomedical engineering"
+101210,biomaterials,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-06,"bioengineering, medical and biomedical engineering"
+100126,biomechanics,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-06,"bioengineering, medical and biomedical engineering"
+100127,biomedical engineering,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-06,"bioengineering, medical and biomedical engineering"
+100005,clinical engineering,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-06,"bioengineering, medical and biomedical engineering"
+100128,dental technology,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-06,"bioengineering, medical and biomedical engineering"
+100138,medical biotechnology,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-06,"bioengineering, medical and biomedical engineering"
+100130,prosthetics and orthotics,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-06,"bioengineering, medical and biomedical engineering"
+100572,tissue engineering and regenerative medicine,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-06,"bioengineering, medical and biomedical engineering"
+100120,architectural engineering,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-07,civil engineering
+100148,civil engineering,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-07,civil engineering
+100548,engineering surveying,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-07,civil engineering
+100180,environmental engineering,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-07,civil engineering
+100549,environmental impact assessment,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-07,civil engineering
+101048,environmental risk,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-07,civil engineering
+100551,geotechnical engineering,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-07,civil engineering
+100156,highways engineering,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-07,civil engineering
+100565,public health engineering,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-07,civil engineering
+100157,railway engineering,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-07,civil engineering
+100153,structural engineering,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-07,civil engineering
+100219,surveying,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-07,civil engineering
+100154,transport engineering,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-07,civil engineering
+101399,analogue circuit engineering,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-08,electrical and electronic engineering
+100539,broadcast engineering,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-08,electrical and electronic engineering
+100162,computer systems engineering,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-08,electrical and electronic engineering
+100166,control systems,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-08,electrical and electronic engineering
+101355,cybernetics,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-08,electrical and electronic engineering
+100546,digital circuit engineering,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-08,electrical and electronic engineering
+100163,electrical and electronic engineering,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-08,electrical and electronic engineering
+100164,electrical engineering,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-08,electrical and electronic engineering
+100581,electrical power,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-08,electrical and electronic engineering
+101354,electrical power distribution,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-08,electrical and electronic engineering
+101353,electrical power generation,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-08,electrical and electronic engineering
+100165,electronic engineering,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-08,electrical and electronic engineering
+100553,integrated circuit design,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-08,electrical and electronic engineering
+100168,microelectronic engineering,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-08,electrical and electronic engineering
+100177,microwave engineering,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-08,electrical and electronic engineering
+101234,nanotechnology,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-08,electrical and electronic engineering
+100169,optoelectronic engineering,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-08,electrical and electronic engineering
+100118,satellite engineering,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-08,electrical and electronic engineering
+100188,systems engineering,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-08,electrical and electronic engineering
+100159,telecommunications engineering,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-08,electrical and electronic engineering
+100141,biochemical engineering,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-09,"chemical, process and energy engineering"
+100135,bioprocessing,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-09,"chemical, process and energy engineering"
+100143,chemical engineering,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-09,"chemical, process and energy engineering"
+100175,energy engineering,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-09,"chemical, process and energy engineering"
+100176,gas engineering,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-09,"chemical, process and energy engineering"
+100172,nuclear engineering,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-09,"chemical, process and energy engineering"
+100178,petroleum engineering,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-09,"chemical, process and energy engineering"
+100144,pharmaceutical engineering,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-09,"chemical, process and energy engineering"
+100183,fire safety engineering,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-10,others in engineering
+100204,mining engineering,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-10,others in engineering
+100185,safety engineering,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-10,others in engineering
+101013,timber engineering,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-10,others in engineering
+100573,water quality control,CAH10,engineering and technology,CAH10-01,engineering,CAH10-01-10,others in engineering
+100550,gemmology,CAH10,engineering and technology,CAH10-03,materials and technology,CAH10-03-01,minerals technology
+100212,minerals processing,CAH10,engineering and technology,CAH10-03,materials and technology,CAH10-03-01,minerals technology
+100155,minerals technology,CAH10,engineering and technology,CAH10-03,materials and technology,CAH10-03-01,minerals technology
+100566,quarrying,CAH10,engineering and technology,CAH10-03,materials and technology,CAH10-03-01,minerals technology
+101217,composite materials,CAH10,engineering and technology,CAH10-03,materials and technology,CAH10-03-02,materials technology
+100545,corrosion technology,CAH10,engineering and technology,CAH10-03,materials and technology,CAH10-03-02,materials technology
+100203,materials engineering,CAH10,engineering and technology,CAH10-03,materials and technology,CAH10-03-02,materials technology
+100033,metallurgy,CAH10,engineering and technology,CAH10-03,materials and technology,CAH10-03-02,materials technology
+100210,leather technology,CAH10,engineering and technology,CAH10-03,materials and technology,CAH10-03-03,polymers and textiles
+100145,polymer science and technology,CAH10,engineering and technology,CAH10-03,materials and technology,CAH10-03-03,polymers and textiles
+100214,textiles technology,CAH10,engineering and technology,CAH10-03,materials and technology,CAH10-03-03,polymers and textiles
+100544,marine engineering,CAH10,engineering and technology,CAH10-03,materials and technology,CAH10-03-04,maritime technology
+100194,marine technology,CAH10,engineering and technology,CAH10-03,materials and technology,CAH10-03-04,maritime technology
+100134,biotechnology,CAH10,engineering and technology,CAH10-03,materials and technology,CAH10-03-05,biotechnology
+100136,environmental biotechnology,CAH10,engineering and technology,CAH10-03,materials and technology,CAH10-03-05,biotechnology
+100137,industrial biotechnology,CAH10,engineering and technology,CAH10-03,materials and technology,CAH10-03-05,biotechnology
+100139,plant biotechnology,CAH10,engineering and technology,CAH10-03,materials and technology,CAH10-03-05,biotechnology
+100222,audio technology,CAH10,engineering and technology,CAH10-03,materials and technology,CAH10-03-06,others in technology
+100186,emergency and disaster technologies,CAH10,engineering and technology,CAH10-03,materials and technology,CAH10-03-06,others in technology
+100093,logistics,CAH10,engineering and technology,CAH10-03,materials and technology,CAH10-03-06,others in technology
+100560,musical instrument manufacture,CAH10,engineering and technology,CAH10-03,materials and technology,CAH10-03-06,others in technology
+100230,navigation,CAH10,engineering and technology,CAH10-03,materials and technology,CAH10-03-06,others in technology
+101356,paper technology,CAH10,engineering and technology,CAH10-03,materials and technology,CAH10-03-06,others in technology
+100225,materials science,CAH10,engineering and technology,CAH10-03,materials and technology,CAH10-03-07,materials science
+100734,computer architectures,CAH11,computing,CAH11-01,computing,CAH11-01-01,computer science
+100365,computer networks,CAH11,computing,CAH11-01,computing,CAH11-01-01,computer science
+100366,computer science,CAH11,computing,CAH11-01,computing,CAH11-01-01,computer science
+100741,high performance computing,CAH11,computing,CAH11-01,computing,CAH11-01-01,computer science
+100736,human-computer interaction,CAH11,computing,CAH11-01,computing,CAH11-01-01,computer science
+100737,multimedia computing science,CAH11,computing,CAH11-01,computing,CAH11-01-01,computer science
+100735,operating systems,CAH11,computing,CAH11-01,computing,CAH11-01-01,computer science
+101400,parallel computing,CAH11,computing,CAH11-01,computing,CAH11-01-01,computer science
+100367,computing and information technology,CAH11,computing,CAH11-01,computing,CAH11-01-02,information technology
+100372,information technology,CAH11,computing,CAH11-01,computing,CAH11-01-02,information technology
+100373,internet technologies,CAH11,computing,CAH11-01,computing,CAH11-01-02,information technology
+100869,bioinformatics,CAH11,computing,CAH11-01,computing,CAH11-01-03,information systems
+100755,data management,CAH11,computing,CAH11-01,computing,CAH11-01-03,information systems
+100754,databases,CAH11,computing,CAH11-01,computing,CAH11-01-03,information systems
+100994,health informatics,CAH11,computing,CAH11-01,computing,CAH11-01-03,information systems
+100751,information modelling,CAH11,computing,CAH11-01,computing,CAH11-01-03,information systems
+100371,information systems,CAH11,computing,CAH11-01,computing,CAH11-01-03,information systems
+100757,intelligent systems,CAH11,computing,CAH11-01,computing,CAH11-01-03,information systems
+100963,knowledge and information systems,CAH11,computing,CAH11-01,computing,CAH11-01-03,information systems
+100753,systems analysis and design,CAH11,computing,CAH11-01,computing,CAH11-01-03,information systems
+100756,systems auditing,CAH11,computing,CAH11-01,computing,CAH11-01-03,information systems
+100376,computer and information security,CAH11,computing,CAH11-01,computing,CAH11-01-04,software engineering
+100960,object-oriented programming,CAH11,computing,CAH11-01,computing,CAH11-01-04,software engineering
+100956,programming,CAH11,computing,CAH11-01,computing,CAH11-01-04,software engineering
+100821,requirements engineering,CAH11,computing,CAH11-01,computing,CAH11-01-04,software engineering
+100374,software engineering,CAH11,computing,CAH11-01,computing,CAH11-01-04,software engineering
+100359,artificial intelligence,CAH11,computing,CAH11-01,computing,CAH11-01-05,artificial intelligence
+100989,cognitive modelling,CAH11,computing,CAH11-01,computing,CAH11-01-05,artificial intelligence
+100968,computer vision,CAH11,computing,CAH11-01,computing,CAH11-01-05,artificial intelligence
+100992,machine learning,CAH11,computing,CAH11-01,computing,CAH11-01-05,artificial intelligence
+100961,natural language processing,CAH11,computing,CAH11-01,computing,CAH11-01-05,artificial intelligence
+100966,neural computing,CAH11,computing,CAH11-01,computing,CAH11-01-05,artificial intelligence
+100363,computer animation and visual effects,CAH11,computing,CAH11-01,computing,CAH11-01-06,computer games and animation
+101267,computer games,CAH11,computing,CAH11-01,computing,CAH11-01-06,computer games and animation
+101268,computer games design,CAH11,computing,CAH11-01,computing,CAH11-01-06,computer games and animation
+101019,computer games graphics,CAH11,computing,CAH11-01,computing,CAH11-01-06,computer games and animation
+101020,computer games programming,CAH11,computing,CAH11-01,computing,CAH11-01-06,computer games and animation
+100360,business computing,CAH11,computing,CAH11-01,computing,CAH11-01-07,business computing
+100361,business information systems,CAH11,computing,CAH11-01,computing,CAH11-01-07,business computing
+100362,business information technology,CAH11,computing,CAH11-01,computing,CAH11-01-07,business computing
+100738,e-business,CAH11,computing,CAH11-01,computing,CAH11-01-07,business computing
+100358,applied computing,CAH11,computing,CAH11-01,computing,CAH11-01-08,others in computing
+100385,computer forensics,CAH11,computing,CAH11-01,computing,CAH11-01-08,others in computing
+100368,creative computing,CAH11,computing,CAH11-01,computing,CAH11-01-08,others in computing
+100409,geography,CAH26,"geography, earth and environmental studies",CAH26-01,"geography, earth and environmental studies",CAH26-01-01,geography (non-specific)
+101352,biogeography,CAH26,"geography, earth and environmental studies",CAH26-01,"geography, earth and environmental studies",CAH26-01-02,physical geographical sciences
+101070,climate change,CAH26,"geography, earth and environmental studies",CAH26-01,"geography, earth and environmental studies",CAH26-01-02,physical geographical sciences
+100408,environmental geography,CAH26,"geography, earth and environmental studies",CAH26-01,"geography, earth and environmental studies",CAH26-01-02,physical geographical sciences
+101064,geomorphology,CAH26,"geography, earth and environmental studies",CAH26-01,"geography, earth and environmental studies",CAH26-01-02,physical geographical sciences
+101394,glaciology and cryospheric systems,CAH26,"geography, earth and environmental studies",CAH26-01,"geography, earth and environmental studies",CAH26-01-02,physical geographical sciences
+101079,hydrology,CAH26,"geography, earth and environmental studies",CAH26-01,"geography, earth and environmental studies",CAH26-01-02,physical geographical sciences
+101058,mapping science,CAH26,"geography, earth and environmental studies",CAH26-01,"geography, earth and environmental studies",CAH26-01-02,physical geographical sciences
+101065,maritime geography,CAH26,"geography, earth and environmental studies",CAH26-01,"geography, earth and environmental studies",CAH26-01-02,physical geographical sciences
+100410,physical geography,CAH26,"geography, earth and environmental studies",CAH26-01,"geography, earth and environmental studies",CAH26-01-02,physical geographical sciences
+101091,quaternary studies,CAH26,"geography, earth and environmental studies",CAH26-01,"geography, earth and environmental studies",CAH26-01-02,physical geographical sciences
+101067,soil science,CAH26,"geography, earth and environmental studies",CAH26-01,"geography, earth and environmental studies",CAH26-01-02,physical geographical sciences
+101407,agricultural geography,CAH26,"geography, earth and environmental studies",CAH26-01,"geography, earth and environmental studies",CAH26-01-03,human geography
+100671,cultural geography,CAH26,"geography, earth and environmental studies",CAH26-01,"geography, earth and environmental studies",CAH26-01-03,human geography
+100665,economic geography,CAH26,"geography, earth and environmental studies",CAH26-01,"geography, earth and environmental studies",CAH26-01-03,human geography
+100469,environmental management,CAH26,"geography, earth and environmental studies",CAH26-01,"geography, earth and environmental studies",CAH26-01-03,human geography
+101408,human demography,CAH26,"geography, earth and environmental studies",CAH26-01,"geography, earth and environmental studies",CAH26-01-03,human geography
+100478,human geography,CAH26,"geography, earth and environmental studies",CAH26-01,"geography, earth and environmental studies",CAH26-01-03,human geography
+100668,political geography,CAH26,"geography, earth and environmental studies",CAH26-01,"geography, earth and environmental studies",CAH26-01-03,human geography
+100669,transport geography,CAH26,"geography, earth and environmental studies",CAH26-01,"geography, earth and environmental studies",CAH26-01-03,human geography
+100666,urban geography,CAH26,"geography, earth and environmental studies",CAH26-01,"geography, earth and environmental studies",CAH26-01-03,human geography
+101078,applied environmental sciences,CAH26,"geography, earth and environmental studies",CAH26-01,"geography, earth and environmental studies",CAH26-01-04,environmental sciences
+100381,environmental sciences,CAH26,"geography, earth and environmental studies",CAH26-01,"geography, earth and environmental studies",CAH26-01-04,environmental sciences
+101072,pollution control,CAH26,"geography, earth and environmental studies",CAH26-01,"geography, earth and environmental studies",CAH26-01-04,environmental sciences
+100986,water resource management,CAH26,"geography, earth and environmental studies",CAH26-01,"geography, earth and environmental studies",CAH26-01-04,environmental sciences
+100369,geographical information systems,CAH26,"geography, earth and environmental studies",CAH26-01,"geography, earth and environmental studies",CAH26-01-05,others in geographical studies
+101056,remote sensing,CAH26,"geography, earth and environmental studies",CAH26-01,"geography, earth and environmental studies",CAH26-01-05,others in geographical studies
+101104,applied geology,CAH26,"geography, earth and environmental studies",CAH26-01,"geography, earth and environmental studies",CAH26-01-06,earth sciences
+101351,atmosphere-ocean interactions,CAH26,"geography, earth and environmental studies",CAH26-01,"geography, earth and environmental studies",CAH26-01-06,earth sciences
+100379,climate science,CAH26,"geography, earth and environmental studies",CAH26-01,"geography, earth and environmental studies",CAH26-01-06,earth sciences
+100394,earth sciences,CAH26,"geography, earth and environmental studies",CAH26-01,"geography, earth and environmental studies",CAH26-01-06,earth sciences
+101106,engineering geology,CAH26,"geography, earth and environmental studies",CAH26-01,"geography, earth and environmental studies",CAH26-01-06,earth sciences
+100380,environmental geoscience,CAH26,"geography, earth and environmental studies",CAH26-01,"geography, earth and environmental studies",CAH26-01-06,earth sciences
+101093,exploration geology,CAH26,"geography, earth and environmental studies",CAH26-01,"geography, earth and environmental studies",CAH26-01-06,earth sciences
+101084,exploration geophysics,CAH26,"geography, earth and environmental studies",CAH26-01,"geography, earth and environmental studies",CAH26-01-06,earth sciences
+101083,geochemistry,CAH26,"geography, earth and environmental studies",CAH26-01,"geography, earth and environmental studies",CAH26-01-06,earth sciences
+101082,geological hazards,CAH26,"geography, earth and environmental studies",CAH26-01,"geography, earth and environmental studies",CAH26-01-06,earth sciences
+101086,geological oceanography,CAH26,"geography, earth and environmental studies",CAH26-01,"geography, earth and environmental studies",CAH26-01-06,earth sciences
+100395,geology,CAH26,"geography, earth and environmental studies",CAH26-01,"geography, earth and environmental studies",CAH26-01-06,earth sciences
+100396,geophysics,CAH26,"geography, earth and environmental studies",CAH26-01,"geography, earth and environmental studies",CAH26-01-06,earth sciences
+101089,hydrogeology,CAH26,"geography, earth and environmental studies",CAH26-01,"geography, earth and environmental studies",CAH26-01-06,earth sciences
+101073,hydrography,CAH26,"geography, earth and environmental studies",CAH26-01,"geography, earth and environmental studies",CAH26-01-06,earth sciences
+100418,marine sciences,CAH26,"geography, earth and environmental studies",CAH26-01,"geography, earth and environmental studies",CAH26-01-06,earth sciences
+100382,meteorology,CAH26,"geography, earth and environmental studies",CAH26-01,"geography, earth and environmental studies",CAH26-01-06,earth sciences
+100421,ocean sciences,CAH26,"geography, earth and environmental studies",CAH26-01,"geography, earth and environmental studies",CAH26-01-06,earth sciences
+100398,palaeontology,CAH26,"geography, earth and environmental studies",CAH26-01,"geography, earth and environmental studies",CAH26-01-06,earth sciences
+101105,petroleum geology,CAH26,"geography, earth and environmental studies",CAH26-01,"geography, earth and environmental studies",CAH26-01-06,earth sciences
+101081,volcanology,CAH26,"geography, earth and environmental studies",CAH26-01,"geography, earth and environmental studies",CAH26-01-06,earth sciences
+100583,architectural design,CAH13,"architecture, building and planning",CAH13-01,"architecture, building and planning",CAH13-01-01,architecture
+100121,architectural technology,CAH13,"architecture, building and planning",CAH13-01,"architecture, building and planning",CAH13-01-01,architecture
+100122,architecture,CAH13,"architecture, building and planning",CAH13-01,"architecture, building and planning",CAH13-01-01,architecture
+100147,building services engineering,CAH13,"architecture, building and planning",CAH13-01,"architecture, building and planning",CAH13-01-02,building
+100216,building surveying,CAH13,"architecture, building and planning",CAH13-01,"architecture, building and planning",CAH13-01-02,building
+100584,building technology,CAH13,"architecture, building and planning",CAH13-01,"architecture, building and planning",CAH13-01-02,building
+100585,conservation of buildings,CAH13,"architecture, building and planning",CAH13-01,"architecture, building and planning",CAH13-01-02,building
+100149,construction,CAH13,"architecture, building and planning",CAH13-01,"architecture, building and planning",CAH13-01-02,building
+100150,construction and the built environment,CAH13,"architecture, building and planning",CAH13-01,"architecture, building and planning",CAH13-01-02,building
+100151,construction management,CAH13,"architecture, building and planning",CAH13-01,"architecture, building and planning",CAH13-01-02,building
+100586,property development,CAH13,"architecture, building and planning",CAH13-01,"architecture, building and planning",CAH13-01-02,building
+100825,property valuation and auctioneering,CAH13,"architecture, building and planning",CAH13-01,"architecture, building and planning",CAH13-01-02,building
+100217,quantity surveying,CAH13,"architecture, building and planning",CAH13-01,"architecture, building and planning",CAH13-01-02,building
+100590,garden design,CAH13,"architecture, building and planning",CAH13-01,"architecture, building and planning",CAH13-01-03,landscape design
+100124,landscape architecture and design,CAH13,"architecture, building and planning",CAH13-01,"architecture, building and planning",CAH13-01-03,landscape design
+100588,landscape studies,CAH13,"architecture, building and planning",CAH13-01,"architecture, building and planning",CAH13-01-03,landscape design
+100196,housing,CAH13,"architecture, building and planning",CAH13-01,"architecture, building and planning",CAH13-01-04,"planning (urban, rural and regional)"
+100197,planning,CAH13,"architecture, building and planning",CAH13-01,"architecture, building and planning",CAH13-01-04,"planning (urban, rural and regional)"
+100593,rural planning,CAH13,"architecture, building and planning",CAH13-01,"architecture, building and planning",CAH13-01-04,"planning (urban, rural and regional)"
+100198,transport planning,CAH13,"architecture, building and planning",CAH13-01,"architecture, building and planning",CAH13-01-04,"planning (urban, rural and regional)"
+100199,urban and regional planning,CAH13,"architecture, building and planning",CAH13-01,"architecture, building and planning",CAH13-01-04,"planning (urban, rural and regional)"
+100594,urban studies,CAH13,"architecture, building and planning",CAH13-01,"architecture, building and planning",CAH13-01-04,"planning (urban, rural and regional)"
+101307,applied social science,CAH15,social sciences,CAH15-01,"sociology, social policy and anthropology",CAH15-01-01,social sciences (non-specific)
+100471,social sciences,CAH15,social sciences,CAH15-01,"sociology, social policy and anthropology",CAH15-01-01,social sciences (non-specific)
+100619,applied sociology,CAH15,social sciences,CAH15-01,"sociology, social policy and anthropology",CAH15-01-02,sociology
+100484,criminology,CAH15,social sciences,CAH15-01,"sociology, social policy and anthropology",CAH15-01-02,sociology
+100625,disability studies,CAH15,social sciences,CAH15-01,"sociology, social policy and anthropology",CAH15-01-02,sociology
+100624,ethnicity,CAH15,social sciences,CAH15-01,"sociology, social policy and anthropology",CAH15-01-02,sociology
+100621,gender studies,CAH15,social sciences,CAH15-01,"sociology, social policy and anthropology",CAH15-01-02,sociology
+101326,gerontology,CAH15,social sciences,CAH15-01,"sociology, social policy and anthropology",CAH15-01-02,sociology
+100623,men's studies,CAH15,social sciences,CAH15-01,"sociology, social policy and anthropology",CAH15-01-02,sociology
+100629,political sociology,CAH15,social sciences,CAH15-01,"sociology, social policy and anthropology",CAH15-01-02,sociology
+100626,religion in society,CAH15,social sciences,CAH15-01,"sociology, social policy and anthropology",CAH15-01-02,sociology
+100628,social theory,CAH15,social sciences,CAH15-01,"sociology, social policy and anthropology",CAH15-01-02,sociology
+100627,socio-economics,CAH15,social sciences,CAH15-01,"sociology, social policy and anthropology",CAH15-01-02,sociology
+100505,sociology,CAH15,social sciences,CAH15-01,"sociology, social policy and anthropology",CAH15-01-02,sociology
+101465,sociology of law,CAH15,social sciences,CAH15-01,"sociology, social policy and anthropology",CAH15-01-02,sociology
+100631,sociology of science and technology,CAH15,social sciences,CAH15-01,"sociology, social policy and anthropology",CAH15-01-02,sociology
+101405,victimology,CAH15,social sciences,CAH15-01,"sociology, social policy and anthropology",CAH15-01-02,sociology
+100622,women's studies,CAH15,social sciences,CAH15-01,"sociology, social policy and anthropology",CAH15-01-02,sociology
+100483,criminal justice,CAH15,social sciences,CAH15-01,"sociology, social policy and anthropology",CAH15-01-03,social policy
+100651,education policy,CAH15,social sciences,CAH15-01,"sociology, social policy and anthropology",CAH15-01-03,social policy
+100648,health policy,CAH15,social sciences,CAH15-01,"sociology, social policy and anthropology",CAH15-01-03,social policy
+100645,international social policy,CAH15,social sciences,CAH15-01,"sociology, social policy and anthropology",CAH15-01-03,social policy
+100647,public policy,CAH15,social sciences,CAH15-01,"sociology, social policy and anthropology",CAH15-01-03,social policy
+100652,security policy,CAH15,social sciences,CAH15-01,"sociology, social policy and anthropology",CAH15-01-03,social policy
+100502,social policy,CAH15,social sciences,CAH15-01,"sociology, social policy and anthropology",CAH15-01-03,social policy
+101406,transport policy,CAH15,social sciences,CAH15-01,"sociology, social policy and anthropology",CAH15-01-03,social policy
+100649,welfare policy,CAH15,social sciences,CAH15-01,"sociology, social policy and anthropology",CAH15-01-03,social policy
+100436,anthropology,CAH15,social sciences,CAH15-01,"sociology, social policy and anthropology",CAH15-01-04,anthropology
+101218,forensic anthropology,CAH15,social sciences,CAH15-01,"sociology, social policy and anthropology",CAH15-01-04,anthropology
+100663,physical and biological anthropology,CAH15,social sciences,CAH15-01,"sociology, social policy and anthropology",CAH15-01-04,anthropology
+100437,social anthropology,CAH15,social sciences,CAH15-01,"sociology, social policy and anthropology",CAH15-01-04,anthropology
+101358,development in Africa,CAH15,social sciences,CAH15-01,"sociology, social policy and anthropology",CAH15-01-05,development studies
+101359,development in the Americas,CAH15,social sciences,CAH15-01,"sociology, social policy and anthropology",CAH15-01-05,development studies
+100488,international development,CAH15,social sciences,CAH15-01,"sociology, social policy and anthropology",CAH15-01-05,development studies
+101233,cultural studies,CAH15,social sciences,CAH15-01,"sociology, social policy and anthropology",CAH15-01-06,cultural studies
+100600,agricultural economics,CAH15,social sciences,CAH15-02,economics,CAH15-02-01,economics
+100597,applied economics,CAH15,social sciences,CAH15-02,economics,CAH15-02-01,economics
+100449,business economics,CAH15,social sciences,CAH15-02,economics,CAH15-02-01,economics
+100604,econometrics,CAH15,social sciences,CAH15-02,economics,CAH15-02-01,economics
+100601,economic policy,CAH15,social sciences,CAH15-02,economics,CAH15-02-01,economics
+100606,economic systems,CAH15,social sciences,CAH15-02,economics,CAH15-02-01,economics
+100450,economics,CAH15,social sciences,CAH15-02,economics,CAH15-02-01,economics
+100451,financial economics,CAH15,social sciences,CAH15-02,economics,CAH15-02-01,economics
+100452,international economics,CAH15,social sciences,CAH15-02,economics,CAH15-02-01,economics
+101402,macroeconomics,CAH15,social sciences,CAH15-02,economics,CAH15-02-01,economics
+101401,microeconomics,CAH15,social sciences,CAH15-02,economics,CAH15-02-01,economics
+101404,anarchism,CAH15,social sciences,CAH15-03,politics,CAH15-03-01,politics
+100618,comparative politics,CAH15,social sciences,CAH15-03,politics,CAH15-03-01,politics
+101507,conservatism,CAH15,social sciences,CAH15-03,politics,CAH15-03-01,politics
+100609,democracy,CAH15,social sciences,CAH15-03,politics,CAH15-03-01,politics
+101510,environmentalism,CAH15,social sciences,CAH15-03,politics,CAH15-03-01,politics
+100612,European Union politics,CAH15,social sciences,CAH15-03,politics,CAH15-03-01,politics
+101509,fascism,CAH15,social sciences,CAH15-03,politics,CAH15-03-01,politics
+101403,feminism,CAH15,social sciences,CAH15-03,politics,CAH15-03-01,politics
+100489,international politics,CAH15,social sciences,CAH15-03,politics,CAH15-03-01,politics
+100490,international relations,CAH15,social sciences,CAH15-03,politics,CAH15-03-01,politics
+101288,international studies,CAH15,social sciences,CAH15-03,politics,CAH15-03-01,politics
+101506,liberalism,CAH15,social sciences,CAH15-03,politics,CAH15-03-01,politics
+101357,nationalism,CAH15,social sciences,CAH15-03,politics,CAH15-03-01,politics
+100491,politics,CAH15,social sciences,CAH15-03,politics,CAH15-03-01,politics
+100090,public administration,CAH15,social sciences,CAH15-03,politics,CAH15-03-01,politics
+100091,public services,CAH15,social sciences,CAH15-03,politics,CAH15-03-01,politics
+101508,socialism,CAH15,social sciences,CAH15-03,politics,CAH15-03-01,politics
+100616,strategic studies,CAH15,social sciences,CAH15-03,politics,CAH15-03-01,politics
+100610,UK government/parliamentary studies,CAH15,social sciences,CAH15-03,politics,CAH15-03-01,politics
+100617,war and peace studies,CAH15,social sciences,CAH15-03,politics,CAH15-03-01,politics
+100659,community justice,CAH15,social sciences,CAH15-04,health and social care,CAH15-04-01,social work
+100655,community work,CAH15,social sciences,CAH15-04,health and social care,CAH15-04-01,social work
+100662,probation/after-care,CAH15,social sciences,CAH15-04,health and social care,CAH15-04-01,social work
+100501,social care,CAH15,social sciences,CAH15-04,health and social care,CAH15-04-01,social work
+100503,social work,CAH15,social sciences,CAH15-04,health and social care,CAH15-04-01,social work
+100466,youth and community work,CAH15,social sciences,CAH15-04,health and social care,CAH15-04-01,social work
+100654,child care,CAH15,social sciences,CAH15-04,health and social care,CAH15-04-02,childhood and youth studies
+100455,childhood and youth studies,CAH15,social sciences,CAH15-04,health and social care,CAH15-04-02,childhood and youth studies
+100456,childhood studies,CAH15,social sciences,CAH15-04,health and social care,CAH15-04-02,childhood and youth studies
+100457,early childhood studies,CAH15,social sciences,CAH15-04,health and social care,CAH15-04-02,childhood and youth studies
+100476,health and social care,CAH15,social sciences,CAH15-04,health and social care,CAH15-04-03,health studies
+100653,health and welfare,CAH15,social sciences,CAH15-04,health and social care,CAH15-04-03,health studies
+100473,health studies,CAH15,social sciences,CAH15-04,health and social care,CAH15-04-03,health studies
+100482,business law,CAH16,law,CAH16-01,law,CAH16-01-01,law
+100683,comparative law,CAH16,law,CAH16-01,law,CAH16-01-01,law
+100685,criminal law,CAH16,law,CAH16-01,law,CAH16-01-01,law
+101323,dispute resolution,CAH16,law,CAH16-01,law,CAH16-01-01,law
+100676,English law,CAH16,law,CAH16-01,law,CAH16-01-01,law
+100680,European Union law,CAH16,law,CAH16-01,law,CAH16-01-01,law
+100691,jurisprudence,CAH16,law,CAH16-01,law,CAH16-01-01,law
+100485,law,CAH16,law,CAH16-01,law,CAH16-01-01,law
+100692,legal practice,CAH16,law,CAH16-01,law,CAH16-01-01,law
+100693,medical law,CAH16,law,CAH16-01,law,CAH16-01-01,law
+100677,Northern Irish law,CAH16,law,CAH16-01,law,CAH16-01-01,law
+100486,policing,CAH16,law,CAH16-01,law,CAH16-01-01,law
+100686,private law,CAH16,law,CAH16-01,law,CAH16-01-01,law
+100689,property law,CAH16,law,CAH16-01,law,CAH16-01-01,law
+100681,public international law,CAH16,law,CAH16-01,law,CAH16-01-01,law
+100684,public law,CAH16,law,CAH16-01,law,CAH16-01-01,law
+100678,Scots law,CAH16,law,CAH16-01,law,CAH16-01-01,law
+100690,torts,CAH16,law,CAH16-01,law,CAH16-01-01,law
+100078,business and management,CAH17,business and management,CAH17-01,business and management,CAH17-01-01,business and management (non-specific)
+100079,business studies,CAH17,business and management,CAH17-01,business and management,CAH17-01-02,business studies
+100808,European business studies,CAH17,business and management,CAH17-01,business and management,CAH17-01-02,business studies
+100080,international business,CAH17,business and management,CAH17-01,business and management,CAH17-01-02,business studies
+100218,real estate,CAH17,business and management,CAH17-01,business and management,CAH17-01-02,business studies
+100074,advertising,CAH17,business and management,CAH17-01,business and management,CAH17-01-03,marketing
+100856,corporate image,CAH17,business and management,CAH17-01,business and management,CAH17-01-03,marketing
+101215,food marketing,CAH17,business and management,CAH17-01,business and management,CAH17-01-03,marketing
+100853,international marketing,CAH17,business and management,CAH17-01,business and management,CAH17-01-03,marketing
+100846,market research,CAH17,business and management,CAH17-01,business and management,CAH17-01-03,marketing
+100075,marketing,CAH17,business and management,CAH17-01,business and management,CAH17-01-03,marketing
+100644,music marketing,CAH17,business and management,CAH17-01,business and management,CAH17-01-03,marketing
+100855,promotion and advertising,CAH17,business and management,CAH17-01,business and management,CAH17-01-03,marketing
+100851,sales management,CAH17,business and management,CAH17-01,business and management,CAH17-01-03,marketing
+100813,change management,CAH17,business and management,CAH17-01,business and management,CAH17-01-04,management studies
+100811,creative management,CAH17,business and management,CAH17-01,business and management,CAH17-01-04,management studies
+100823,emergency and disaster management,CAH17,business and management,CAH17-01,business and management,CAH17-01-04,management studies
+101308,facilities management,CAH17,business and management,CAH17-01,business and management,CAH17-01-04,management studies
+100815,institutional management,CAH17,business and management,CAH17-01,business and management,CAH17-01-04,management studies
+100819,land management,CAH17,business and management,CAH17-01,business and management,CAH17-01-04,management studies
+100088,leadership,CAH17,business and management,CAH17-01,business and management,CAH17-01-04,management studies
+100817,management and organisation of education,CAH17,business and management,CAH17-01,business and management,CAH17-01-04,management studies
+100089,management studies,CAH17,business and management,CAH17-01,business and management,CAH17-01-04,management studies
+100814,organisational development,CAH17,business and management,CAH17-01,business and management,CAH17-01-04,management studies
+100812,project management,CAH17,business and management,CAH17-01,business and management,CAH17-01-04,management studies
+100820,property management,CAH17,business and management,CAH17-01,business and management,CAH17-01-04,management studies
+100092,retail management,CAH17,business and management,CAH17-01,business and management,CAH17-01-04,management studies
+101040,risk management,CAH17,business and management,CAH17-01,business and management,CAH17-01-04,management studies
+100896,salon management,CAH17,business and management,CAH17-01,business and management,CAH17-01-04,management studies
+100810,strategic management,CAH17,business and management,CAH17-01,business and management,CAH17-01-04,management studies
+100866,health and safety management,CAH17,business and management,CAH17-01,business and management,CAH17-01-05,human resource management
+101049,health risk,CAH17,business and management,CAH17-01,business and management,CAH17-01-05,human resource management
+100085,human resource management,CAH17,business and management,CAH17-01,business and management,CAH17-01-05,human resource management
+100861,staff development,CAH17,business and management,CAH17-01,business and management,CAH17-01-05,human resource management
+100083,event management,CAH17,business and management,CAH17-01,business and management,CAH17-01-06,"tourism, transport and travel"
+100891,hospitality,CAH17,business and management,CAH17-01,business and management,CAH17-01-06,"tourism, transport and travel"
+100084,hospitality management,CAH17,business and management,CAH17-01,business and management,CAH17-01-06,"tourism, transport and travel"
+100087,international hospitality management,CAH17,business and management,CAH17-01,business and management,CAH17-01-06,"tourism, transport and travel"
+100893,recreation and leisure studies,CAH17,business and management,CAH17-01,business and management,CAH17-01-06,"tourism, transport and travel"
+100894,spa management,CAH17,business and management,CAH17-01,business and management,CAH17-01-06,"tourism, transport and travel"
+100097,sports management,CAH17,business and management,CAH17-01,business and management,CAH17-01-06,"tourism, transport and travel"
+100875,tourism,CAH17,business and management,CAH17-01,business and management,CAH17-01-06,"tourism, transport and travel"
+100100,tourism management,CAH17,business and management,CAH17-01,business and management,CAH17-01-06,"tourism, transport and travel"
+100101,travel and tourism,CAH17,business and management,CAH17-01,business and management,CAH17-01-06,"tourism, transport and travel"
+100102,travel management,CAH17,business and management,CAH17-01,business and management,CAH17-01-06,"tourism, transport and travel"
+100106,actuarial science,CAH17,business and management,CAH17-01,business and management,CAH17-01-07,finance
+100827,banking,CAH17,business and management,CAH17-01,business and management,CAH17-01-07,finance
+100107,finance,CAH17,business and management,CAH17-01,business and management,CAH17-01-07,finance
+100832,financial management,CAH17,business and management,CAH17-01,business and management,CAH17-01-07,finance
+100835,financial risk,CAH17,business and management,CAH17-01,business and management,CAH17-01-07,finance
+100830,insurance,CAH17,business and management,CAH17-01,business and management,CAH17-01-07,finance
+100828,investment,CAH17,business and management,CAH17-01,business and management,CAH17-01-07,finance
+100831,taxation,CAH17,business and management,CAH17-01,business and management,CAH17-01-07,finance
+100104,accountancy,CAH17,business and management,CAH17-01,business and management,CAH17-01-08,accounting
+100105,accounting,CAH17,business and management,CAH17-01,business and management,CAH17-01-08,accounting
+100840,audit management,CAH17,business and management,CAH17-01,business and management,CAH17-01-08,accounting
+100838,book-keeping,CAH17,business and management,CAH17-01,business and management,CAH17-01-08,accounting
+100845,financial reporting,CAH17,business and management,CAH17-01,business and management,CAH17-01-08,accounting
+100836,management accountancy,CAH17,business and management,CAH17-01,business and management,CAH17-01-08,accounting
+100837,public accountancy,CAH17,business and management,CAH17-01,business and management,CAH17-01-08,accounting
+100868,office administration,CAH17,business and management,CAH17-01,business and management,CAH17-01-09,others in business and management
+101409,shorthand and shorthand transcription,CAH17,business and management,CAH17-01,business and management,CAH17-01-09,others in business and management
+100743,systems thinking,CAH17,business and management,CAH17-01,business and management,CAH17-01-09,others in business and management
+100915,archives and records management,CAH24,"media, journalism and communications",CAH24-01,"media, journalism and communications",CAH24-01-01,information services
+100914,curatorial studies,CAH24,"media, journalism and communications",CAH24-01,"media, journalism and communications",CAH24-01-01,information services
+100370,information management,CAH24,"media, journalism and communications",CAH24-01,"media, journalism and communications",CAH24-01-01,information services
+100916,information services,CAH24,"media, journalism and communications",CAH24-01,"media, journalism and communications",CAH24-01-01,information services
+100913,librarianship,CAH24,"media, journalism and communications",CAH24-01,"media, journalism and communications",CAH24-01-01,information services
+100918,museum studies,CAH24,"media, journalism and communications",CAH24-01,"media, journalism and communications",CAH24-01-01,information services
+100076,public relations,CAH24,"media, journalism and communications",CAH24-01,"media, journalism and communications",CAH24-01-02,publicity studies
+100919,publicity studies,CAH24,"media, journalism and communications",CAH24-01,"media, journalism and communications",CAH24-01-02,publicity studies
+100926,electronic publishing,CAH24,"media, journalism and communications",CAH24-01,"media, journalism and communications",CAH24-01-03,publishing
+100927,online publishing,CAH24,"media, journalism and communications",CAH24-01,"media, journalism and communications",CAH24-01-03,publishing
+100925,publishing,CAH24,"media, journalism and communications",CAH24-01,"media, journalism and communications",CAH24-01-03,publishing
+100439,broadcast journalism,CAH24,"media, journalism and communications",CAH24-01,"media, journalism and communications",CAH24-01-04,journalism
+100442,journalism,CAH24,"media, journalism and communications",CAH24-01,"media, journalism and communications",CAH24-01-04,journalism
+100445,multimedia journalism,CAH24,"media, journalism and communications",CAH24-01,"media, journalism and communications",CAH24-01-04,journalism
+100440,digital media,CAH24,"media, journalism and communications",CAH24-01,"media, journalism and communications",CAH24-01-05,media studies
+100058,film studies,CAH24,"media, journalism and communications",CAH24-01,"media, journalism and communications",CAH24-01-05,media studies
+100444,media and communication studies,CAH24,"media, journalism and communications",CAH24-01,"media, journalism and communications",CAH24-01-05,media studies
+100443,media production,CAH24,"media, journalism and communications",CAH24-01,"media, journalism and communications",CAH24-01-05,media studies
+100922,paper-based media studies,CAH24,"media, journalism and communications",CAH24-01,"media, journalism and communications",CAH24-01-05,media studies
+100921,radio studies,CAH24,"media, journalism and communications",CAH24-01,"media, journalism and communications",CAH24-01-05,media studies
+100920,television studies,CAH24,"media, journalism and communications",CAH24-01,"media, journalism and communications",CAH24-01-05,media studies
+100320,English studies,CAH19,language and area studies,CAH19-01,English studies,CAH19-01-01,English studies (non-specific)
+101109,English as a second language,CAH19,language and area studies,CAH19-01,English studies,CAH19-01-02,English language
+100318,English language,CAH19,language and area studies,CAH19-01,English studies,CAH19-01-02,English language
+101108,colonial and post-colonial literature,CAH19,language and area studies,CAH19-01,English studies,CAH19-01-03,literature in English
+100319,English literature,CAH19,language and area studies,CAH19-01,English studies,CAH19-01-03,literature in English
+101094,English literature 1200 - 1700,CAH19,language and area studies,CAH19-01,English studies,CAH19-01-03,literature in English
+101095,English literature 1700 - 1900,CAH19,language and area studies,CAH19-01,English studies,CAH19-01-03,literature in English
+101111,Scottish literature,CAH19,language and area studies,CAH19-01,English studies,CAH19-01-03,literature in English
+101492,Bob Dylan studies,CAH19,language and area studies,CAH19-01,English studies,CAH19-01-04,studies of specific authors
+101473,Brontës studies,CAH19,language and area studies,CAH19-01,English studies,CAH19-01-04,studies of specific authors
+101483,Byron studies,CAH19,language and area studies,CAH19-01,English studies,CAH19-01-04,studies of specific authors
+101477,Charles Dickens studies,CAH19,language and area studies,CAH19-01,English studies,CAH19-01-04,studies of specific authors
+101472,Chaucer studies,CAH19,language and area studies,CAH19-01,English studies,CAH19-01-04,studies of specific authors
+101487,Christopher Marlowe studies,CAH19,language and area studies,CAH19-01,English studies,CAH19-01-04,studies of specific authors
+101476,D.H. Lawrence studies,CAH19,language and area studies,CAH19-01,English studies,CAH19-01-04,studies of specific authors
+101493,Dylan Thomas studies,CAH19,language and area studies,CAH19-01,English studies,CAH19-01-04,studies of specific authors
+101486,J. M. Coetzee studies,CAH19,language and area studies,CAH19-01,English studies,CAH19-01-04,studies of specific authors
+101479,James Joyce studies,CAH19,language and area studies,CAH19-01,English studies,CAH19-01-04,studies of specific authors
+101478,Jane Austen studies,CAH19,language and area studies,CAH19-01,English studies,CAH19-01-04,studies of specific authors
+101468,John Donne studies,CAH19,language and area studies,CAH19-01,English studies,CAH19-01-04,studies of specific authors
+101495,Joseph Conrad studies,CAH19,language and area studies,CAH19-01,English studies,CAH19-01-04,studies of specific authors
+101480,Margaret Atwood studies,CAH19,language and area studies,CAH19-01,English studies,CAH19-01-04,studies of specific authors
+101485,Milton studies,CAH19,language and area studies,CAH19-01,English studies,CAH19-01-04,studies of specific authors
+101471,Oscar Wilde studies,CAH19,language and area studies,CAH19-01,English studies,CAH19-01-04,studies of specific authors
+101475,Philip Larkin studies,CAH19,language and area studies,CAH19-01,English studies,CAH19-01-04,studies of specific authors
+101490,Robert Burns studies,CAH19,language and area studies,CAH19-01,English studies,CAH19-01-04,studies of specific authors
+101489,Robert Louis Stevenson studies,CAH19,language and area studies,CAH19-01,English studies,CAH19-01-04,studies of specific authors
+101467,Ruskin studies,CAH19,language and area studies,CAH19-01,English studies,CAH19-01-04,studies of specific authors
+101496,Salman Rushdie studies,CAH19,language and area studies,CAH19-01,English studies,CAH19-01-04,studies of specific authors
+101481,Samuel Beckett studies,CAH19,language and area studies,CAH19-01,English studies,CAH19-01-04,studies of specific authors
+101107,Shakespeare studies,CAH19,language and area studies,CAH19-01,English studies,CAH19-01-04,studies of specific authors
+101484,Shelley studies,CAH19,language and area studies,CAH19-01,English studies,CAH19-01-04,studies of specific authors
+101469,T.S. Eliot studies,CAH19,language and area studies,CAH19-01,English studies,CAH19-01-04,studies of specific authors
+101470,Thomas Hardy studies,CAH19,language and area studies,CAH19-01,English studies,CAH19-01-04,studies of specific authors
+101474,Thomas Pynchon studies,CAH19,language and area studies,CAH19-01,English studies,CAH19-01-04,studies of specific authors
+101491,Virginia Woolf studies,CAH19,language and area studies,CAH19-01,English studies,CAH19-01-04,studies of specific authors
+101494,W. B. Yeats studies,CAH19,language and area studies,CAH19-01,English studies,CAH19-01-04,studies of specific authors
+101488,Walter Scott studies,CAH19,language and area studies,CAH19-01,English studies,CAH19-01-04,studies of specific authors
+101482,Wilkie Collins studies,CAH19,language and area studies,CAH19-01,English studies,CAH19-01-04,studies of specific authors
+100046,creative writing,CAH19,language and area studies,CAH19-01,English studies,CAH19-01-05,creative writing
+100730,poetry writing,CAH19,language and area studies,CAH19-01,English studies,CAH19-01-05,creative writing
+100731,professional writing,CAH19,language and area studies,CAH19-01,English studies,CAH19-01-05,creative writing
+100729,scriptwriting,CAH19,language and area studies,CAH19-01,English studies,CAH19-01-05,creative writing
+100317,British Sign Language studies,CAH19,language and area studies,CAH19-01,English studies,CAH19-01-06,others in English studies
+101412,Scots language,CAH19,language and area studies,CAH19-01,English studies,CAH19-01-06,others in English studies
+100970,applied linguistics,CAH19,language and area studies,CAH19-01,English studies,CAH19-01-07,linguistics
+101410,historical linguistics,CAH19,language and area studies,CAH19-01,English studies,CAH19-01-07,linguistics
+100328,linguistics,CAH19,language and area studies,CAH19-01,English studies,CAH19-01-07,linguistics
+100972,phonetics,CAH19,language and area studies,CAH19-01,English studies,CAH19-01-07,linguistics
+100971,phonetics and phonology,CAH19,language and area studies,CAH19-01,English studies,CAH19-01-07,linguistics
+100973,phonology,CAH19,language and area studies,CAH19-01,English studies,CAH19-01-07,linguistics
+101035,psycholinguistics,CAH19,language and area studies,CAH19-01,English studies,CAH19-01-07,linguistics
+101016,sociolinguistics,CAH19,language and area studies,CAH19-01,English studies,CAH19-01-07,linguistics
+101118,Celtic studies,CAH19,language and area studies,CAH19-02,Celtic studies,CAH19-02-01,Celtic studies (non-specific)
+101120,Gaelic language,CAH19,language and area studies,CAH19-02,Celtic studies,CAH19-02-02,Gaelic studies
+101497,Gaelic literature,CAH19,language and area studies,CAH19-02,Celtic studies,CAH19-02-02,Gaelic studies
+100333,Welsh language,CAH19,language and area studies,CAH19-02,Celtic studies,CAH19-02-03,Welsh studies
+101163,Welsh literature,CAH19,language and area studies,CAH19-02,Celtic studies,CAH19-02-03,Welsh studies
+100335,Welsh studies,CAH19,language and area studies,CAH19-02,Celtic studies,CAH19-02-03,Welsh studies
+101419,Breton language,CAH19,language and area studies,CAH19-02,Celtic studies,CAH19-02-04,others in Celtic studies
+101121,Irish language,CAH19,language and area studies,CAH19-02,Celtic studies,CAH19-02-04,others in Celtic studies
+101413,Irish language literature,CAH19,language and area studies,CAH19-02,Celtic studies,CAH19-02-04,others in Celtic studies
+101315,Irish studies,CAH19,language and area studies,CAH19-02,Celtic studies,CAH19-02-04,others in Celtic studies
+100321,French language,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-01,French studies
+101132,French literature,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-01,French studies
+101133,French society and culture,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-01,French studies
+100322,French studies,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-01,French studies
+101424,Danish language,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-02,German and Scandinavian studies
+101161,Dutch studies,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-02,German and Scandinavian studies
+100323,German language,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-02,German and Scandinavian studies
+101134,German literature,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-02,German and Scandinavian studies
+101135,German society and culture,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-02,German and Scandinavian studies
+100324,German studies,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-02,German and Scandinavian studies
+101149,Norwegian language,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-02,German and Scandinavian studies
+101425,Scandinavian literature,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-02,German and Scandinavian studies
+101145,Scandinavian studies,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-02,German and Scandinavian studies
+101148,Swedish language,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-02,German and Scandinavian studies
+100326,Italian language,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-03,Italian studies
+101137,Italian literature,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-03,Italian studies
+101136,Italian society and culture,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-03,Italian studies
+100327,Italian studies,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-03,Italian studies
+101143,Brazilian studies,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-04,Iberian studies
+100765,Iberian studies,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-04,Iberian studies
+101142,Portuguese language,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-04,Iberian studies
+101144,Portuguese society and culture,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-04,Iberian studies
+101141,Portuguese studies,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-04,Iberian studies
+100332,Spanish language,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-04,Iberian studies
+101139,Spanish literature,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-04,Iberian studies
+101138,Spanish society and culture,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-04,Iberian studies
+100325,Spanish studies,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-04,Iberian studies
+101155,Czech language,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-05,Slavic studies
+101501,Czech society and culture,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-05,Slavic studies
+101312,Czech studies,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-05,Slavic studies
+101153,Polish language,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-05,Slavic studies
+101500,Polish society and culture,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-05,Slavic studies
+101152,Polish studies,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-05,Slavic studies
+101158,Russian and East European society and culture,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-05,Slavic studies
+100331,Russian and East European studies,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-05,Slavic studies
+100330,Russian languages,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-05,Slavic studies
+101157,Russian literature,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-05,Slavic studies
+101499,Russian society and culture,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-05,Slavic studies
+101151,Russian studies,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-05,Slavic studies
+101428,south Slavonic languages,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-05,Slavic studies
+101429,Ukrainian language,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-05,Slavic studies
+101180,Asian studies,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-06,Asian studies
+101177,Bengali language,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-06,Asian studies
+101165,Chinese languages,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-06,Asian studies
+101166,Chinese literature,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-06,Asian studies
+101167,Chinese society and culture studies,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-06,Asian studies
+101164,Chinese studies,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-06,Asian studies
+101271,East Asian studies,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-06,Asian studies
+101174,Hindi language,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-06,Asian studies
+101430,Indian literature studies,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-06,Asian studies
+101179,Indian society and culture studies,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-06,Asian studies
+101368,Indonesian language,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-06,Asian studies
+101169,Japanese languages,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-06,Asian studies
+101170,Japanese literature,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-06,Asian studies
+101171,Japanese society and culture studies,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-06,Asian studies
+101168,Japanese studies,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-06,Asian studies
+101212,Korean studies,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-06,Asian studies
+101371,Nepali language,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-06,Asian studies
+101172,South Asian studies,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-06,Asian studies
+101372,South East Asian studies,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-06,Asian studies
+101258,Thai language,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-06,Asian studies
+101175,Urdu language,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-06,Asian studies
+101369,Vietnamese language,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-06,Asian studies
+101185,African languages,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-07,African and modern Middle Eastern studies
+101188,African literature,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-07,African and modern Middle Eastern studies
+101189,African society and culture studies,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-07,African and modern Middle Eastern studies
+101184,African studies,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-07,African and modern Middle Eastern studies
+101198,Arab society and culture studies,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-07,African and modern Middle Eastern studies
+101192,Arabic languages,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-07,African and modern Middle Eastern studies
+101432,Arabic literature,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-07,African and modern Middle Eastern studies
+101367,Hausa language,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-07,African and modern Middle Eastern studies
+101194,Israeli studies,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-07,African and modern Middle Eastern studies
+101269,modern Hebrew language,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-07,African and modern Middle Eastern studies
+101191,modern Middle Eastern languages,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-07,African and modern Middle Eastern studies
+101196,modern Middle Eastern literature,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-07,African and modern Middle Eastern studies
+101197,modern Middle Eastern society and culture studies,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-07,African and modern Middle Eastern studies
+101190,modern Middle Eastern studies,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-07,African and modern Middle Eastern studies
+101193,Persian languages,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-07,African and modern Middle Eastern studies
+101433,Persian literature studies,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-07,African and modern Middle Eastern studies
+101503,Persian society and culture studies,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-07,African and modern Middle Eastern studies
+101366,Swahili and other Bantu languages,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-07,African and modern Middle Eastern studies
+101431,Turkish languages,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-07,African and modern Middle Eastern studies
+101434,Turkish literature,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-07,African and modern Middle Eastern studies
+101504,Turkish society and culture studies,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-07,African and modern Middle Eastern studies
+101195,Turkish studies,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-07,African and modern Middle Eastern studies
+100316,American studies,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-08,American and Australasian studies
+101206,Australasian studies,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-08,American and Australasian studies
+101205,Canadian studies,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-08,American and Australasian studies
+101207,Caribbean studies,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-08,American and Australasian studies
+101201,Latin American literature,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-08,American and Australasian studies
+101202,Latin American society and culture studies,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-08,American and Australasian studies
+101199,Latin American studies,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-08,American and Australasian studies
+101203,North American literature studies,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-08,American and Australasian studies
+101204,North American society and culture studies,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-08,American and Australasian studies
+101415,Akkadian language,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-09,others in language and area studies
+101113,ancient Egyptian studies,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-09,others in language and area studies
+101117,ancient Hebrew language,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-09,others in language and area studies
+101112,ancient Middle Eastern languages,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-09,others in language and area studies
+101417,Aramaic language,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-09,others in language and area studies
+101114,classical Arabic,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-09,others in language and area studies
+101037,comparative literary studies,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-09,others in language and area studies
+101414,Coptic language,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-09,others in language and area studies
+101426,Estonian language,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-09,others in language and area studies
+101159,European studies,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-09,others in language and area studies
+101150,Finnish language,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-09,others in language and area studies
+101427,Hungarian language,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-09,others in language and area studies
+101311,Hungarian studies,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-09,others in language and area studies
+100329,modern languages,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-09,others in language and area studies
+101115,Sanskrit studies,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-09,others in language and area studies
+101416,Sumerian language,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-09,others in language and area studies
+101130,translation studies,CAH19,language and area studies,CAH19-04,languages and area studies,CAH19-04-09,others in language and area studies
+101360,African history,CAH20,"historical, philosophical and religious studies",CAH20-01,history and archaeology,CAH20-01-01,history
+100767,American history,CAH20,"historical, philosophical and religious studies",CAH20-01,history and archaeology,CAH20-01-01,history
+100298,ancient history,CAH20,"historical, philosophical and religious studies",CAH20-01,history and archaeology,CAH20-01-01,history
+100758,British history,CAH20,"historical, philosophical and religious studies",CAH20-01,history and archaeology,CAH20-01-01,history
+100774,Byzantine studies,CAH20,"historical, philosophical and religious studies",CAH20-01,history and archaeology,CAH20-01-01,history
+100771,Chinese history,CAH20,"historical, philosophical and religious studies",CAH20-01,history and archaeology,CAH20-01-01,history
+101436,crime history,CAH20,"historical, philosophical and religious studies",CAH20-01,history and archaeology,CAH20-01-01,history
+100301,economic history,CAH20,"historical, philosophical and religious studies",CAH20-01,history and archaeology,CAH20-01-01,history
+100761,English history,CAH20,"historical, philosophical and religious studies",CAH20-01,history and archaeology,CAH20-01-01,history
+100670,environmental history,CAH20,"historical, philosophical and religious studies",CAH20-01,history and archaeology,CAH20-01-01,history
+100762,European history,CAH20,"historical, philosophical and religious studies",CAH20-01,history and archaeology,CAH20-01-01,history
+100779,family history,CAH20,"historical, philosophical and religious studies",CAH20-01,history and archaeology,CAH20-01-01,history
+101248,French history,CAH20,"historical, philosophical and religious studies",CAH20-01,history and archaeology,CAH20-01-01,history
+100763,German history,CAH20,"historical, philosophical and religious studies",CAH20-01,history and archaeology,CAH20-01-01,history
+100302,history,CAH20,"historical, philosophical and religious studies",CAH20-01,history and archaeology,CAH20-01-01,history
+100784,history of mathematics,CAH20,"historical, philosophical and religious studies",CAH20-01,history and archaeology,CAH20-01-01,history
+100785,history of medicine,CAH20,"historical, philosophical and religious studies",CAH20-01,history and archaeology,CAH20-01-01,history
+100664,history of music,CAH20,"historical, philosophical and religious studies",CAH20-01,history and archaeology,CAH20-01-01,history
+100714,history of photography,CAH20,"historical, philosophical and religious studies",CAH20-01,history and archaeology,CAH20-01-01,history
+100780,history of religions,CAH20,"historical, philosophical and religious studies",CAH20-01,history and archaeology,CAH20-01-01,history
+100307,history of science,CAH20,"historical, philosophical and religious studies",CAH20-01,history and archaeology,CAH20-01-01,history
+100781,intellectual history,CAH20,"historical, philosophical and religious studies",CAH20-01,history and archaeology,CAH20-01-01,history
+100778,international history,CAH20,"historical, philosophical and religious studies",CAH20-01,history and archaeology,CAH20-01-01,history
+100759,Irish history,CAH20,"historical, philosophical and religious studies",CAH20-01,history and archaeology,CAH20-01-01,history
+100764,Italian history,CAH20,"historical, philosophical and religious studies",CAH20-01,history and archaeology,CAH20-01-01,history
+100769,Latin American history,CAH20,"historical, philosophical and religious studies",CAH20-01,history and archaeology,CAH20-01-01,history
+100308,local history,CAH20,"historical, philosophical and religious studies",CAH20-01,history and archaeology,CAH20-01-01,history
+100309,medieval history,CAH20,"historical, philosophical and religious studies",CAH20-01,history and archaeology,CAH20-01-01,history
+100786,military history,CAH20,"historical, philosophical and religious studies",CAH20-01,history and archaeology,CAH20-01-01,history
+100310,modern history,CAH20,"historical, philosophical and religious studies",CAH20-01,history and archaeology,CAH20-01-01,history
+101435,oral history,CAH20,"historical, philosophical and religious studies",CAH20-01,history and archaeology,CAH20-01-01,history
+100766,Russian history,CAH20,"historical, philosophical and religious studies",CAH20-01,history and archaeology,CAH20-01-01,history
+101498,Scandinavian history,CAH20,"historical, philosophical and religious studies",CAH20-01,history and archaeology,CAH20-01-01,history
+100311,Scottish history,CAH20,"historical, philosophical and religious studies",CAH20-01,history and archaeology,CAH20-01-01,history
+100312,social history,CAH20,"historical, philosophical and religious studies",CAH20-01,history and archaeology,CAH20-01-01,history
+100772,South Asian history,CAH20,"historical, philosophical and religious studies",CAH20-01,history and archaeology,CAH20-01-01,history
+100773,South East Asian history,CAH20,"historical, philosophical and religious studies",CAH20-01,history and archaeology,CAH20-01-01,history
+100768,USA history,CAH20,"historical, philosophical and religious studies",CAH20-01,history and archaeology,CAH20-01-01,history
+100760,Welsh history,CAH20,"historical, philosophical and religious studies",CAH20-01,history and archaeology,CAH20-01-01,history
+100777,world history,CAH20,"historical, philosophical and religious studies",CAH20-01,history and archaeology,CAH20-01-01,history
+100782,history of architecture,CAH20,"historical, philosophical and religious studies",CAH20-01,history and archaeology,CAH20-01-02,"history of art, architecture and design"
+100306,history of art,CAH20,"historical, philosophical and religious studies",CAH20-01,history and archaeology,CAH20-01-02,"history of art, architecture and design"
+100783,history of design,CAH20,"historical, philosophical and religious studies",CAH20-01,history and archaeology,CAH20-01-02,"history of art, architecture and design"
+100299,archaeology,CAH20,"historical, philosophical and religious studies",CAH20-01,history and archaeology,CAH20-01-03,archaeology
+101438,bronze age,CAH20,"historical, philosophical and religious studies",CAH20-01,history and archaeology,CAH20-01-03,archaeology
+101440,classical art and archaeology,CAH20,"historical, philosophical and religious studies",CAH20-01,history and archaeology,CAH20-01-03,archaeology
+100787,Egyptology,CAH20,"historical, philosophical and religious studies",CAH20-01,history and archaeology,CAH20-01-03,archaeology
+101439,Iron Age,CAH20,"historical, philosophical and religious studies",CAH20-01,history and archaeology,CAH20-01-03,archaeology
+101261,maritime archaeology,CAH20,"historical, philosophical and religious studies",CAH20-01,history and archaeology,CAH20-01-03,archaeology
+101437,Stone Age,CAH20,"historical, philosophical and religious studies",CAH20-01,history and archaeology,CAH20-01-03,archaeology
+100599,fine art conservation,CAH20,"historical, philosophical and religious studies",CAH20-01,history and archaeology,CAH20-01-04,heritage studies
+100807,heritage management,CAH20,"historical, philosophical and religious studies",CAH20-01,history and archaeology,CAH20-01-04,heritage studies
+100805,heritage studies,CAH20,"historical, philosophical and religious studies",CAH20-01,history and archaeology,CAH20-01-04,heritage studies
+101422,classical church Greek,CAH20,"historical, philosophical and religious studies",CAH20-01,history and archaeology,CAH20-01-05,classics
+101423,classical Greek literature,CAH20,"historical, philosophical and religious studies",CAH20-01,history and archaeology,CAH20-01-05,classics
+101126,classical Greek studies,CAH20,"historical, philosophical and religious studies",CAH20-01,history and archaeology,CAH20-01-05,classics
+101129,classical reception,CAH20,"historical, philosophical and religious studies",CAH20-01,history and archaeology,CAH20-01-05,classics
+100300,classical studies,CAH20,"historical, philosophical and religious studies",CAH20-01,history and archaeology,CAH20-01-05,classics
+101420,Latin language,CAH20,"historical, philosophical and religious studies",CAH20-01,history and archaeology,CAH20-01-05,classics
+101125,Latin literature,CAH20,"historical, philosophical and religious studies",CAH20-01,history and archaeology,CAH20-01-05,classics
+101124,Latin studies,CAH20,"historical, philosophical and religious studies",CAH20-01,history and archaeology,CAH20-01-05,classics
+101421,medieval Latin language,CAH20,"historical, philosophical and religious studies",CAH20-01,history and archaeology,CAH20-01-05,classics
+101442,epistemology,CAH20,"historical, philosophical and religious studies",CAH20-02,philosophy and religious studies,CAH20-02-01,philosophy
+100793,ethics,CAH20,"historical, philosophical and religious studies",CAH20-02,philosophy and religious studies,CAH20-02-01,philosophy
+100791,mental philosophy,CAH20,"historical, philosophical and religious studies",CAH20-02,philosophy and religious studies,CAH20-02-01,philosophy
+101441,metaphysics,CAH20,"historical, philosophical and religious studies",CAH20-02,philosophy and religious studies,CAH20-02-01,philosophy
+100337,philosophy,CAH20,"historical, philosophical and religious studies",CAH20-02,philosophy and religious studies,CAH20-02-01,philosophy
+100338,philosophy of science,CAH20,"historical, philosophical and religious studies",CAH20-02,philosophy and religious studies,CAH20-02-01,philosophy
+101443,scholastic philosophy,CAH20,"historical, philosophical and religious studies",CAH20-02,philosophy and religious studies,CAH20-02-01,philosophy
+100792,social philosophy,CAH20,"historical, philosophical and religious studies",CAH20-02,philosophy and religious studies,CAH20-02-01,philosophy
+100801,biblical studies,CAH20,"historical, philosophical and religious studies",CAH20-02,philosophy and religious studies,CAH20-02-02,theology and religious studies
+100798,buddhism,CAH20,"historical, philosophical and religious studies",CAH20-02,philosophy and religious studies,CAH20-02-02,theology and religious studies
+100795,Christian studies,CAH20,"historical, philosophical and religious studies",CAH20-02,philosophy and religious studies,CAH20-02-02,theology and religious studies
+100803,comparative religious studies,CAH20,"historical, philosophical and religious studies",CAH20-02,philosophy and religious studies,CAH20-02-02,theology and religious studies
+100799,divinity,CAH20,"historical, philosophical and religious studies",CAH20-02,philosophy and religious studies,CAH20-02-02,theology and religious studies
+101444,hinduism,CAH20,"historical, philosophical and religious studies",CAH20-02,philosophy and religious studies,CAH20-02-02,theology and religious studies
+100796,Islamic studies,CAH20,"historical, philosophical and religious studies",CAH20-02,philosophy and religious studies,CAH20-02-02,theology and religious studies
+100797,Judaism,CAH20,"historical, philosophical and religious studies",CAH20-02,philosophy and religious studies,CAH20-02-02,theology and religious studies
+100802,pastoral studies,CAH20,"historical, philosophical and religious studies",CAH20-02,philosophy and religious studies,CAH20-02-02,theology and religious studies
+100339,religious studies,CAH20,"historical, philosophical and religious studies",CAH20-02,philosophy and religious studies,CAH20-02-02,theology and religious studies
+100800,religious writings,CAH20,"historical, philosophical and religious studies",CAH20-02,philosophy and religious studies,CAH20-02-02,theology and religious studies
+101445,the Qur'an and Islamic texts,CAH20,"historical, philosophical and religious studies",CAH20-02,philosophy and religious studies,CAH20-02-02,theology and religious studies
+101446,the Torah and Judaic texts,CAH20,"historical, philosophical and religious studies",CAH20-02,philosophy and religious studies,CAH20-02-02,theology and religious studies
+100340,theology,CAH20,"historical, philosophical and religious studies",CAH20-02,philosophy and religious studies,CAH20-02-02,theology and religious studies
+100794,theology and religious studies,CAH20,"historical, philosophical and religious studies",CAH20-02,philosophy and religious studies,CAH20-02-02,theology and religious studies
+101361,creative arts and design,CAH25,"design, and creative and performing arts",CAH25-01,creative arts and design,CAH25-01-01,creative arts and design (non-specific)
+101362,calligraphy,CAH25,"design, and creative and performing arts",CAH25-01,creative arts and design,CAH25-01-02,art
+100587,drawing,CAH25,"design, and creative and performing arts",CAH25-01,creative arts and design,CAH25-01-02,art
+100059,fine art,CAH25,"design, and creative and performing arts",CAH25-01,creative arts and design,CAH25-01-02,art
+100589,painting,CAH25,"design, and creative and performing arts",CAH25-01,creative arts and design,CAH25-01-02,art
+100595,printmaking,CAH25,"design, and creative and performing arts",CAH25-01,creative arts and design,CAH25-01-02,art
+100592,sculpture,CAH25,"design, and creative and performing arts",CAH25-01,creative arts and design,CAH25-01-02,art
+100003,ceramics,CAH25,"design, and creative and performing arts",CAH25-01,creative arts and design,CAH25-01-03,design studies
+100048,design,CAH25,"design, and creative and performing arts",CAH25-01,creative arts and design,CAH25-01-03,design studies
+100052,ergonomics,CAH25,"design, and creative and performing arts",CAH25-01,creative arts and design,CAH25-01-03,design studies
+100054,fashion,CAH25,"design, and creative and performing arts",CAH25-01,creative arts and design,CAH25-01-03,design studies
+100055,fashion design,CAH25,"design, and creative and performing arts",CAH25-01,creative arts and design,CAH25-01-03,design studies
+100633,furniture design and making,CAH25,"design, and creative and performing arts",CAH25-01,creative arts and design,CAH25-01-03,design studies
+100060,graphic arts,CAH25,"design, and creative and performing arts",CAH25-01,creative arts and design,CAH25-01-03,design studies
+100061,graphic design,CAH25,"design, and creative and performing arts",CAH25-01,creative arts and design,CAH25-01-03,design studies
+100062,illustration,CAH25,"design, and creative and performing arts",CAH25-01,creative arts and design,CAH25-01-03,design studies
+100636,interactive and electronic design,CAH25,"design, and creative and performing arts",CAH25-01,creative arts and design,CAH25-01-03,design studies
+101316,interior design and architecture,CAH25,"design, and creative and performing arts",CAH25-01,creative arts and design,CAH25-01-03,design studies
+100050,product design,CAH25,"design, and creative and performing arts",CAH25-01,creative arts and design,CAH25-01-03,design studies
+100051,textile design,CAH25,"design, and creative and performing arts",CAH25-01,creative arts and design,CAH25-01-03,design studies
+100630,typography,CAH25,"design, and creative and performing arts",CAH25-01,creative arts and design,CAH25-01-03,design studies
+100632,visual communication,CAH25,"design, and creative and performing arts",CAH25-01,creative arts and design,CAH25-01-03,design studies
+100375,web and multimedia design,CAH25,"design, and creative and performing arts",CAH25-01,creative arts and design,CAH25-01-03,design studies
+100071,performing arts,CAH25,"design, and creative and performing arts",CAH25-02,performing arts,CAH25-02-01,performing arts (non-specific)
+101450,applied music and musicianship,CAH25,"design, and creative and performing arts",CAH25-02,performing arts,CAH25-02-02,music
+100854,community music,CAH25,"design, and creative and performing arts",CAH25-02,performing arts,CAH25-02-02,music
+100650,conducting,CAH25,"design, and creative and performing arts",CAH25-02,performing arts,CAH25-02-02,music
+100867,electronic music,CAH25,"design, and creative and performing arts",CAH25-02,performing arts,CAH25-02-02,music
+100674,ethnomusicology and world music,CAH25,"design, and creative and performing arts",CAH25-02,performing arts,CAH25-02-02,music
+100842,film music and screen music,CAH25,"design, and creative and performing arts",CAH25-02,performing arts,CAH25-02-02,music
+101447,folk music,CAH25,"design, and creative and performing arts",CAH25-02,performing arts,CAH25-02-02,music
+100661,historical performance practice,CAH25,"design, and creative and performing arts",CAH25-02,performing arts,CAH25-02-02,music
+100639,instrumental or vocal performance,CAH25,"design, and creative and performing arts",CAH25-02,performing arts,CAH25-02-02,music
+100843,jazz,CAH25,"design, and creative and performing arts",CAH25-02,performing arts,CAH25-02-02,music
+100870,jazz composition,CAH25,"design, and creative and performing arts",CAH25-02,performing arts,CAH25-02-02,music
+100656,jazz performance,CAH25,"design, and creative and performing arts",CAH25-02,performing arts,CAH25-02-02,music
+100070,music,CAH25,"design, and creative and performing arts",CAH25-02,performing arts,CAH25-02-02,music
+100643,music and arts management,CAH25,"design, and creative and performing arts",CAH25-02,performing arts,CAH25-02-02,music
+100695,music composition,CAH25,"design, and creative and performing arts",CAH25-02,performing arts,CAH25-02-02,music
+100642,music education and teaching,CAH25,"design, and creative and performing arts",CAH25-02,performing arts,CAH25-02-02,music
+100223,music production,CAH25,"design, and creative and performing arts",CAH25-02,performing arts,CAH25-02-02,music
+100221,music technology,CAH25,"design, and creative and performing arts",CAH25-02,performing arts,CAH25-02-02,music
+101449,music theory and analysis,CAH25,"design, and creative and performing arts",CAH25-02,performing arts,CAH25-02-02,music
+100035,musical theatre,CAH25,"design, and creative and performing arts",CAH25-02,performing arts,CAH25-02-02,music
+100637,musicianship and performance studies,CAH25,"design, and creative and performing arts",CAH25-02,performing arts,CAH25-02-02,music
+100667,musicology,CAH25,"design, and creative and performing arts",CAH25-02,performing arts,CAH25-02-02,music
+101448,opera,CAH25,"design, and creative and performing arts",CAH25-02,performing arts,CAH25-02-02,music
+100841,popular music,CAH25,"design, and creative and performing arts",CAH25-02,performing arts,CAH25-02-02,music
+101451,popular music composition,CAH25,"design, and creative and performing arts",CAH25-02,performing arts,CAH25-02-02,music
+100657,popular music performance,CAH25,"design, and creative and performing arts",CAH25-02,performing arts,CAH25-02-02,music
+100844,sacred music,CAH25,"design, and creative and performing arts",CAH25-02,performing arts,CAH25-02-02,music
+100862,sonic arts,CAH25,"design, and creative and performing arts",CAH25-02,performing arts,CAH25-02-02,music
+100067,acting,CAH25,"design, and creative and performing arts",CAH25-02,performing arts,CAH25-02-03,drama
+100707,circus arts,CAH25,"design, and creative and performing arts",CAH25-02,performing arts,CAH25-02-03,drama
+100710,community theatre,CAH25,"design, and creative and performing arts",CAH25-02,performing arts,CAH25-02-03,drama
+100697,directing for theatre,CAH25,"design, and creative and performing arts",CAH25-02,performing arts,CAH25-02-03,drama
+100069,drama,CAH25,"design, and creative and performing arts",CAH25-02,performing arts,CAH25-02-03,drama
+100708,stage design,CAH25,"design, and creative and performing arts",CAH25-02,performing arts,CAH25-02-03,drama
+100703,stage management,CAH25,"design, and creative and performing arts",CAH25-02,performing arts,CAH25-02-03,drama
+100704,technical stage management,CAH25,"design, and creative and performing arts",CAH25-02,performing arts,CAH25-02-03,drama
+100702,technical theatre studies,CAH25,"design, and creative and performing arts",CAH25-02,performing arts,CAH25-02-03,drama
+100700,theatre production,CAH25,"design, and creative and performing arts",CAH25-02,performing arts,CAH25-02-03,drama
+100698,theatre studies,CAH25,"design, and creative and performing arts",CAH25-02,performing arts,CAH25-02-03,drama
+100705,theatrical wardrobe design,CAH25,"design, and creative and performing arts",CAH25-02,performing arts,CAH25-02-03,drama
+100885,ballet,CAH25,"design, and creative and performing arts",CAH25-02,performing arts,CAH25-02-04,dance
+101452,body awareness,CAH25,"design, and creative and performing arts",CAH25-02,performing arts,CAH25-02-04,dance
+100711,choreography,CAH25,"design, and creative and performing arts",CAH25-02,performing arts,CAH25-02-04,dance
+101454,community dance,CAH25,"design, and creative and performing arts",CAH25-02,performing arts,CAH25-02-04,dance
+100886,contemporary dance,CAH25,"design, and creative and performing arts",CAH25-02,performing arts,CAH25-02-04,dance
+100068,dance,CAH25,"design, and creative and performing arts",CAH25-02,performing arts,CAH25-02-04,dance
+101453,dance and culture,CAH25,"design, and creative and performing arts",CAH25-02,performing arts,CAH25-02-04,dance
+100712,dance performance,CAH25,"design, and creative and performing arts",CAH25-02,performing arts,CAH25-02-04,dance
+100057,animation,CAH25,"design, and creative and performing arts",CAH25-01,creative arts and design,CAH25-01-04,cinematics and photography
+101214,cinematics,CAH25,"design, and creative and performing arts",CAH25-01,creative arts and design,CAH25-01-04,cinematics and photography
+100716,cinematography,CAH25,"design, and creative and performing arts",CAH25-01,creative arts and design,CAH25-01-04,cinematics and photography
+100890,film and sound recording,CAH25,"design, and creative and performing arts",CAH25-01,creative arts and design,CAH25-01-04,cinematics and photography
+100888,film directing,CAH25,"design, and creative and performing arts",CAH25-01,creative arts and design,CAH25-01-04,cinematics and photography
+100441,film production,CAH25,"design, and creative and performing arts",CAH25-01,creative arts and design,CAH25-01-04,cinematics and photography
+100887,moving image techniques,CAH25,"design, and creative and performing arts",CAH25-01,creative arts and design,CAH25-01-04,cinematics and photography
+100063,photography,CAH25,"design, and creative and performing arts",CAH25-01,creative arts and design,CAH25-01-04,cinematics and photography
+100924,radio production,CAH25,"design, and creative and performing arts",CAH25-01,creative arts and design,CAH25-01-04,cinematics and photography
+100923,television production,CAH25,"design, and creative and performing arts",CAH25-01,creative arts and design,CAH25-01-04,cinematics and photography
+100717,visual and audio effects,CAH25,"design, and creative and performing arts",CAH25-01,creative arts and design,CAH25-01-04,cinematics and photography
+101505,carpentry and joinery,CAH25,"design, and creative and performing arts",CAH25-01,creative arts and design,CAH25-01-05,others in creative arts and design
+100726,clock and watchmaking,CAH25,"design, and creative and performing arts",CAH25-01,creative arts and design,CAH25-01-05,others in creative arts and design
+100895,crafts,CAH25,"design, and creative and performing arts",CAH25-01,creative arts and design,CAH25-01-05,others in creative arts and design
+100724,glass crafts,CAH25,"design, and creative and performing arts",CAH25-01,creative arts and design,CAH25-01-05,others in creative arts and design
+100706,hair and make-up,CAH25,"design, and creative and performing arts",CAH25-01,creative arts and design,CAH25-01-05,others in creative arts and design
+101374,hair services,CAH25,"design, and creative and performing arts",CAH25-01,creative arts and design,CAH25-01-05,others in creative arts and design
+100721,metal work,CAH25,"design, and creative and performing arts",CAH25-01,creative arts and design,CAH25-01-05,others in creative arts and design
+100725,silversmithing and goldsmithing,CAH25,"design, and creative and performing arts",CAH25-01,creative arts and design,CAH25-01-05,others in creative arts and design
+101455,stone crafts,CAH25,"design, and creative and performing arts",CAH25-01,creative arts and design,CAH25-01-05,others in creative arts and design
+100728,surface decoration,CAH25,"design, and creative and performing arts",CAH25-01,creative arts and design,CAH25-01-05,others in creative arts and design
+100454,adult education,CAH22,education and teaching,CAH22-01,education and teaching,CAH22-01-01,education
+100463,early years education,CAH22,education and teaching,CAH22-01,education and teaching,CAH22-01-01,education
+100459,education studies,CAH22,education and teaching,CAH22-01,education and teaching,CAH22-01-01,education
+100460,further education,CAH22,education and teaching,CAH22-01,education and teaching,CAH22-01-01,education
+100461,higher education,CAH22,education and teaching,CAH22-01,education and teaching,CAH22-01-01,education
+100462,learning support,CAH22,education and teaching,CAH22-01,education and teaching,CAH22-01-01,education
+101322,mentorship,CAH22,education and teaching,CAH22-01,education and teaching,CAH22-01-01,education
+100508,post compulsory education and training,CAH22,education and teaching,CAH22-01,education and teaching,CAH22-01-01,education
+100464,primary education,CAH22,education and teaching,CAH22-01,education and teaching,CAH22-01-01,education
+101088,research and study skills in education,CAH22,education and teaching,CAH22-01,education and teaching,CAH22-01-01,education
+100465,secondary education,CAH22,education and teaching,CAH22-01,education and teaching,CAH22-01-01,education
+100507,adult education teaching,CAH22,education and teaching,CAH22-01,education and teaching,CAH22-01-02,teacher training
+100510,early years teaching,CAH22,education and teaching,CAH22-01,education and teaching,CAH22-01-02,teacher training
+100509,higher education teaching,CAH22,education and teaching,CAH22-01,education and teaching,CAH22-01-02,teacher training
+100511,primary teaching,CAH22,education and teaching,CAH22-01,education and teaching,CAH22-01-02,teacher training
+101246,professional practice in education,CAH22,education and teaching,CAH22-01,education and teaching,CAH22-01-02,teacher training
+100512,secondary teaching,CAH22,education and teaching,CAH22-01,education and teaching,CAH22-01-02,teacher training
+101087,special needs teaching,CAH22,education and teaching,CAH22-01,education and teaching,CAH22-01-02,teacher training
+101085,specialist teaching,CAH22,education and teaching,CAH22-01,education and teaching,CAH22-01-02,teacher training
+100513,teaching English as a foreign language,CAH22,education and teaching,CAH22-01,education and teaching,CAH22-01-02,teacher training
+101273,combined studies,CAH23,combined and general studies,CAH23-01,combined and general studies,CAH23-01-01,"combined, general or negotiated studies"
+101274,general studies,CAH23,combined and general studies,CAH23-01,combined and general studies,CAH23-01-01,"combined, general or negotiated studies"
+101275,negotiated studies,CAH23,combined and general studies,CAH23-01,combined and general studies,CAH23-01-01,"combined, general or negotiated studies"
+101279,advice and guidance (personal learning),CAH23,combined and general studies,CAH23-01,combined and general studies,CAH23-01-02,personal development
+100658,careers guidance,CAH23,combined and general studies,CAH23-01,combined and general studies,CAH23-01-02,personal development
+101278,employability skills (personal learning),CAH23,combined and general studies,CAH23-01,combined and general studies,CAH23-01-02,personal development
+101221,enterprise and entrepreneurship,CAH23,combined and general studies,CAH23-01,combined and general studies,CAH23-01-02,personal development
+100962,research skills,CAH23,combined and general studies,CAH23-01,combined and general studies,CAH23-01-02,personal development
+101090,study skills,CAH23,combined and general studies,CAH23-01,combined and general studies,CAH23-01-02,personal development
+101276,work placement experience (personal learning),CAH23,combined and general studies,CAH23-01,combined and general studies,CAH23-01-02,personal development
+101277,work-based learning,CAH23,combined and general studies,CAH23-01,combined and general studies,CAH23-01-02,personal development
+100314,humanities,CAH23,combined and general studies,CAH23-01,combined and general studies,CAH23-01-03,humanities (non-specific)
+100065,liberal arts,CAH23,combined and general studies,CAH23-01,combined and general studies,CAH23-01-04,liberal arts (non-specific)

@@ -47,7 +47,7 @@ def course_selector_section():
                 "Select Course/Programme",
                 courses,
                 index=courses.index(state.course) if state.course in courses else 0,
-                help="Choose a specific programme",
+                help="Start typing to search, or browse all available courses",
                 key="course_selector"
             )
 
@@ -58,44 +58,104 @@ def course_selector_section():
                 latest_fee = course_info.get('latest_fee', 0)
                 three_year_total = latest_fee * 3
 
+                # Display HESA subject classification if available
+                if course_info.get('has_hesa_data'):
+                    st.markdown("**Course Classification**")
+                    with st.container(border=True):
+                        col1, col2, col3 = st.columns(3)
+
+                        with col1:
+                            st.metric(
+                                "Subject Area",
+                                course_info.get('cah_level1', 'N/A') or 'N/A',
+                                help="CAH Level 1 classification"
+                            )
+
+                        with col2:
+                            st.metric(
+                                "Subject Category",
+                                course_info.get('cah_category', 'N/A') or 'N/A',
+                                help="CAH Level 2 classification"
+                            )
+
+                        with col3:
+                            st.metric(
+                                "Specific Subject",
+                                course_info.get('cah_subject', 'N/A') or 'N/A',
+                                help="CAH Level 3 classification (HECoS mapped)"
+                            )
+
+                        # Course metadata row
+                        metadata_parts = []
+                        if course_info.get('hecos_code'):
+                            metadata_parts.append(f"**HECoS:** {course_info['hecos_code']}")
+                        if course_info.get('mode') and course_info.get('mode') != 'Unknown':
+                            metadata_parts.append(f"**Mode:** {course_info['mode']}")
+                        if course_info.get('duration'):
+                            metadata_parts.append(f"**Duration:** {course_info['duration']} years")
+                        if course_info.get('ucas_code'):
+                            metadata_parts.append(f"**UCAS:** {course_info['ucas_code']}")
+
+                        if metadata_parts:
+                            st.caption(" • ".join(metadata_parts))
+
+                        # Links to official course pages
+                        link_cols = st.columns(3)
+                        if course_info.get('course_url'):
+                            with link_cols[0]:
+                                st.link_button("📖 Course Details", course_info['course_url'])
+                        if course_info.get('fees_url'):
+                            with link_cols[1]:
+                                st.link_button("💷 View Fees", course_info['fees_url'])
+                        if course_info.get('teaching_url'):
+                            with link_cols[2]:
+                                st.link_button("👨‍🏫 Teaching Info", course_info['teaching_url'])
+
                 st.markdown("**Course Fee Information**")
 
                 # Display current fees using professional KPI cards
-                with st.container(border=True):
-                    col1, col2, col3, col4 = st.columns(4)
+                if course_info.get('has_fee_data'):
+                    with st.container(border=True):
+                        col1, col2, col3, col4 = st.columns(4)
 
-                    with col1:
-                        professional_kpi_card(
-                            f"Annual Fee ({latest_year})",
-                            format_gbp(latest_fee),
-                            help_text="Current annual tuition fee from official course page"
-                        )
+                        with col1:
+                            professional_kpi_card(
+                                f"Annual Fee ({latest_year})",
+                                format_gbp(latest_fee),
+                                help_text="Current annual tuition fee from official course page"
+                            )
 
-                    with col2:
-                        professional_kpi_card(
-                            f"3-Year Total ({latest_year})",
-                            format_gbp(three_year_total),
-                            help_text="Total cost for standard 3-year programme"
-                        )
+                        with col2:
+                            professional_kpi_card(
+                                f"3-Year Total ({latest_year})",
+                                format_gbp(three_year_total),
+                                help_text="Total cost for standard 3-year programme"
+                            )
 
-                    with col3:
-                        professional_kpi_card(
-                            "Annual Growth Rate",
-                            f"{course_info.get('cagr_pct', 0):.1f}%",
-                            help_text="Historical fee compound annual growth rate"
-                        )
+                        with col3:
+                            professional_kpi_card(
+                                "Annual Growth Rate",
+                                f"{course_info.get('cagr_pct', 0):.1f}%",
+                                help_text="Historical fee compound annual growth rate"
+                            )
 
-                    with col4:
-                        professional_kpi_card(
-                            "Data Coverage",
-                            f"{course_info.get('data_points', 0)} years",
-                            help_text="Years of historical data available for analysis"
-                        )
+                        with col4:
+                            professional_kpi_card(
+                                "Data Coverage",
+                                f"{course_info.get('data_points', 0)} years",
+                                help_text="Years of historical data available for analysis"
+                            )
 
-                # Data quality information
-                transparency = course_info.get('transparency')
-                if transparency:
-                    st.info(f"**Data Quality:** {transparency.data_quality.value.title()} | **Confidence:** {transparency.confidence_level.value.title()}")
+                    # Data quality information
+                    transparency = course_info.get('transparency')
+                    if transparency:
+                        st.info(f"**Data Quality:** {transparency.data_quality.value.title()} | **Confidence:** {transparency.confidence_level.value.title()}")
+                else:
+                    # No fee data available - show info message
+                    st.info(
+                        f"⚠️ **Fee data not yet integrated for this course.** "
+                        f"This course is from the HESA catalog. You can view official fees using the links above."
+                    )
 
                 # Update state
                 update_state(university=university, course=course)
